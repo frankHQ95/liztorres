@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plan Personal de Retiro | Liz Torres</title>
+  <meta name="description" content="Construye tu libertad financiera con un Plan Personal de Retiro. Ahorra, crece y deduce hasta el 35% en el SAT. Asesoría gratuita con Liz Torres." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Variables (mismas que index.html) ──────────────────── */
+    :root {
+      --blue-dark:  #111827;
+      --blue:       #3B82F6;
+      --blue-mid:   #2563EB;
+      --blue-light: #60A5FA;
+      --gold:       #CDAA2B;
+      --gold-light: #DDB93E;
+      --gold-dark:  #A88C22;
+      --white:      #ffffff;
+      --off-white:  #DBEAFE;
+      --gray-light: #EFF6FF;
+      --gray:       #6B7280;
+      --text:       #111827;
+      --text-soft:  #374151;
+      --radius:     16px;
+      --shadow:     0 8px 32px rgba(17,24,39,.12);
+      --shadow-lg:  0 16px 48px rgba(17,24,39,.18);
+    }
+
+    /* ── Reset ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Utilities ──────────────────────────────────────────── */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
+    .section-sm { padding: 64px 0; }
+    .section-tag {
+      display: inline-block;
+      background: rgba(232,160,32,.15);
+      color: var(--gold-dark);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      line-height: 1.15;
+      color: var(--blue-dark);
+    }
+    .section-title span { color: var(--gold); }
+    .section-sub { font-size: 1.05rem; color: var(--text-soft); line-height: 1.7; max-width: 580px; }
+    .text-center { text-align: center; }
+    .text-center .section-sub { margin: 0 auto; }
+
+    /* ── Buttons ────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 15px 32px; border-radius: 100px;
+      font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .95rem;
+      cursor: pointer; transition: transform .2s, box-shadow .2s, background .2s;
+      border: none; white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--gold); color: var(--white); box-shadow: 0 6px 24px rgba(232,160,32,.4); }
+    .btn-primary:hover { background: var(--gold-light); box-shadow: 0 10px 32px rgba(232,160,32,.5); }
+    .btn-outline-white { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,.6); }
+    .btn-outline-white:hover { background: rgba(255,255,255,.1); border-color: var(--white); }
+    .btn-outline-blue { background: transparent; color: var(--blue); border: 2px solid var(--blue); }
+    .btn-outline-blue:hover { background: var(--blue); color: var(--white); }
+    .btn-wa { background: #25D366; color: var(--white); box-shadow: 0 6px 24px rgba(37,211,102,.35); }
+    .btn-wa:hover { background: #1ebe5d; box-shadow: 0 10px 32px rgba(37,211,102,.45); }
+    .btn-sm { padding: 11px 24px; font-size: .85rem; }
+
+    /* ── NAV ────────────────────────────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      transition: background .3s, box-shadow .3s;
+    }
+    .nav.scrolled { background: var(--white); box-shadow: 0 2px 20px rgba(13,43,85,.1); }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between; height: 72px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .nav-logo-icon {
+      width: 42px; height: 42px; background: var(--gold); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-logo-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--white); line-height: 1.15; }
+    .nav.scrolled .nav-logo-text { color: var(--blue-dark); }
+    .nav-logo-sub { font-size: .65rem; font-weight: 500; letter-spacing: .06em; color: rgba(255,255,255,.75); text-transform: uppercase; }
+    .nav.scrolled .nav-logo-sub { color: var(--gray); }
+    .nav-back {
+      font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: .85rem;
+      color: rgba(255,255,255,.8); display: flex; align-items: center; gap: 6px;
+      padding: 8px 14px; border-radius: 8px; transition: color .2s, background .2s;
+    }
+    .nav.scrolled .nav-back { color: var(--text-soft); }
+    .nav-back:hover { color: var(--gold); background: rgba(232,160,32,.08); }
+    .nav-cta { display: flex; align-items: center; gap: 10px; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: background .3s; }
+    .nav.scrolled .hamburger span { background: var(--blue-dark); }
+
+    /* ── HERO ───────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--blue-dark) 0%, #1a3a6b 50%, #2a5490 100%);
+      display: flex; align-items: center; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 80% 40%, rgba(232,160,32,.12) 0%, transparent 70%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-shape { position: absolute; border-radius: 50%; opacity: .06; background: var(--white); }
+    .hero-shape-1 { width: 700px; height: 700px; top: -250px; right: -150px; }
+    .hero-shape-2 { width: 350px; height: 350px; bottom: -100px; left: -80px; }
+
+    .hero-inner {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+      padding: 120px 0 80px;
+    }
+    .hero-breadcrumb {
+      display: flex; align-items: center; gap: 8px;
+      font-size: .8rem; color: rgba(255,255,255,.55);
+      margin-bottom: 20px;
+    }
+    .hero-breadcrumb a { color: rgba(255,255,255,.55); transition: color .2s; }
+    .hero-breadcrumb a:hover { color: var(--gold); }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(232,160,32,.2); border: 1px solid rgba(232,160,32,.4);
+      color: var(--gold-light); font-size: .8rem; font-weight: 600;
+      padding: 8px 18px; border-radius: 100px; margin-bottom: 24px;
+    }
+    .hero-title {
+      font-family: 'Montserrat', sans-serif; font-weight: 800;
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      line-height: 1.1; color: var(--white); margin-bottom: 20px;
+    }
+    .hero-title .accent { color: var(--gold); }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,.8); line-height: 1.7; margin-bottom: 36px; max-width: 480px; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+    .hero-pill {
+      display: flex; gap: 20px; flex-wrap: wrap;
+    }
+    .hero-pill-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: .82rem; color: rgba(255,255,255,.7); font-weight: 500;
+    }
+    .hero-pill-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+
+    /* ── MINI CALCULATOR (hero card) ────────────────────────── */
+    .calc-card {
+      background: rgba(255,255,255,.07);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 24px; padding: 36px;
+      box-shadow: 0 24px 64px rgba(0,0,0,.25);
+    }
+    .calc-card-title {
+      font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: .85rem; color: rgba(255,255,255,.6);
+      text-transform: uppercase; letter-spacing: .1em; margin-bottom: 24px;
+    }
+    .calc-result {
+      background: rgba(232,160,32,.15); border: 1px solid rgba(232,160,32,.3);
+      border-radius: 16px; padding: 24px; text-align: center; margin-bottom: 28px;
+    }
+    .calc-result-label { font-size: .78rem; color: var(--gold-light); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+    .calc-result-amount {
+      font-family: 'Montserrat', sans-serif; font-weight: 800;
+      font-size: 2.4rem; color: var(--white); line-height: 1;
+      transition: all .3s ease;
+    }
+    .calc-result-sub { font-size: .78rem; color: rgba(255,255,255,.55); margin-top: 6px; }
+    .calc-field { margin-bottom: 22px; }
+    .calc-field-header {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 10px;
+    }
+    .calc-field-label { font-size: .82rem; color: rgba(255,255,255,.7); font-weight: 500; }
+    .calc-field-value {
+      font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: .95rem; color: var(--gold-light);
+    }
+    .calc-slider {
+      width: 100%; -webkit-appearance: none; appearance: none;
+      height: 5px; border-radius: 10px; outline: none; cursor: pointer;
+      background: linear-gradient(to right, var(--gold) 0%, var(--gold) var(--pct, 40%), rgba(255,255,255,.15) var(--pct, 40%), rgba(255,255,255,.15) 100%);
+    }
+    .calc-slider::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 20px; height: 20px;
+      border-radius: 50%; background: var(--gold);
+      box-shadow: 0 2px 8px rgba(232,160,32,.5); cursor: pointer;
+    }
+    .calc-meta {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px;
+    }
+    .calc-meta-item {
+      background: rgba(255,255,255,.06); border-radius: 10px; padding: 12px;
+    }
+    .calc-meta-label { font-size: .72rem; color: rgba(255,255,255,.5); margin-bottom: 4px; }
+    .calc-meta-value { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .92rem; color: var(--white); }
+    .calc-disclaimer { font-size: .7rem; color: rgba(255,255,255,.35); text-align: center; margin-top: 12px; }
+
+    /* ── TRUST BAR ──────────────────────────────────────────── */
+    .trust-bar { background: var(--blue-dark); padding: 20px 0; }
+    .trust-inner { display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
+    .trust-item { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,.75); font-size: .85rem; font-weight: 500; }
+    .trust-divider { width: 1px; height: 24px; background: rgba(255,255,255,.15); }
+
+    /* ── WHAT IS PPR ────────────────────────────────────────── */
+    .what { background: var(--off-white); }
+    .what-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 56px; }
+    .what-card {
+      background: var(--white); border-radius: var(--radius); padding: 32px;
+      box-shadow: var(--shadow); text-align: center;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .what-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .what-icon {
+      width: 64px; height: 64px; border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; margin: 0 auto 20px;
+    }
+    .what-card-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--blue-dark); margin-bottom: 10px; }
+    .what-card-desc { font-size: .9rem; color: var(--text-soft); line-height: 1.7; }
+
+    /* ── COST OF WAITING ────────────────────────────────────── */
+    .waiting { background: var(--blue-dark); color: var(--white); position: relative; overflow: hidden; }
+    .waiting::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 30% 50%, rgba(232,160,32,.08) 0%, transparent 70%);
+    }
+    .waiting-inner { position: relative; z-index: 1; }
+    .waiting-header { text-align: center; margin-bottom: 56px; }
+    .waiting-header .section-title { color: var(--white); }
+    .waiting-header .section-tag { background: rgba(232,160,32,.2); color: var(--gold-light); }
+    .waiting-intro {
+      font-size: 1rem; color: rgba(255,255,255,.7); line-height: 1.7;
+      text-align: center; max-width: 580px; margin: 16px auto 0;
+    }
+    .waiting-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .waiting-card {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius); padding: 32px; text-align: center;
+      transition: background .3s, transform .3s;
+      position: relative;
+    }
+    .waiting-card:hover { background: rgba(255,255,255,.1); transform: translateY(-4px); }
+    .waiting-card.best {
+      background: rgba(232,160,32,.12); border-color: rgba(232,160,32,.4);
+    }
+    .waiting-best-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--gold); color: var(--white);
+      font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .72rem;
+      padding: 4px 16px; border-radius: 100px; white-space: nowrap;
+    }
+    .waiting-avatar {
+      width: 56px; height: 56px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.1rem;
+      color: var(--white); margin: 0 auto 16px;
+    }
+    .waiting-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--white); margin-bottom: 4px; }
+    .waiting-age { font-size: .82rem; color: rgba(255,255,255,.55); margin-bottom: 24px; }
+    .waiting-divider { width: 40px; height: 1px; background: rgba(255,255,255,.15); margin: 0 auto 24px; }
+    .waiting-contrib { font-size: .8rem; color: rgba(255,255,255,.6); margin-bottom: 8px; }
+    .waiting-years { font-size: .8rem; color: rgba(255,255,255,.6); margin-bottom: 24px; }
+    .waiting-result-label { font-size: .72rem; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+    .waiting-amount { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 2rem; line-height: 1; }
+    .waiting-amount.gold { color: var(--gold); }
+    .waiting-amount.mid  { color: #93c5fd; }
+    .waiting-amount.low  { color: #fca5a5; }
+    .waiting-cta { text-align: center; margin-top: 48px; }
+    .waiting-legal { font-size: .75rem; color: rgba(255,255,255,.35); margin-top: 20px; }
+
+    /* ── FOR WHOM ────────────────────────────────────────────── */
+    .whom { background: var(--white); }
+    .whom-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; margin-top: 48px; }
+    .whom-card {
+      border: 1.5px solid var(--gray-light); border-radius: var(--radius); padding: 28px 32px;
+      display: flex; gap: 18px; align-items: flex-start;
+      transition: border-color .3s, box-shadow .3s, transform .3s;
+    }
+    .whom-card:hover { border-color: var(--gold); box-shadow: var(--shadow); transform: translateY(-3px); }
+    .whom-icon { font-size: 1.8rem; flex-shrink: 0; margin-top: 2px; }
+    .whom-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1rem; color: var(--blue-dark); margin-bottom: 6px; }
+    .whom-desc { font-size: .88rem; color: var(--text-soft); line-height: 1.65; }
+
+    /* ── BENEFITS ────────────────────────────────────────────── */
+    .benefits { background: var(--off-white); }
+    .benefits-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 28px; margin-top: 48px; }
+    .benefit-card {
+      background: var(--white); border-radius: var(--radius); padding: 32px;
+      box-shadow: var(--shadow); display: flex; gap: 20px; align-items: flex-start;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .benefit-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .benefit-icon {
+      width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+    }
+    .benefit-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1rem; color: var(--blue-dark); margin-bottom: 8px; }
+    .benefit-desc { font-size: .88rem; color: var(--text-soft); line-height: 1.65; }
+
+    /* ── TAX HIGHLIGHT ──────────────────────────────────────── */
+    .tax-band {
+      background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-light) 100%);
+      padding: 64px 0;
+    }
+    .tax-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .tax-content .section-tag { background: rgba(255,255,255,.2); color: var(--white); }
+    .tax-content .section-title { color: var(--white); }
+    .tax-content .section-sub { color: rgba(255,255,255,.85); }
+    .tax-stats { display: flex; flex-direction: column; gap: 20px; }
+    .tax-stat {
+      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25);
+      border-radius: 14px; padding: 20px 24px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .tax-stat-num {
+      font-family: 'Montserrat', sans-serif; font-weight: 800;
+      font-size: 2rem; color: var(--white); line-height: 1; flex-shrink: 0;
+    }
+    .tax-stat-label { font-size: .88rem; color: rgba(255,255,255,.85); line-height: 1.5; }
+
+    /* ── PROCESS ────────────────────────────────────────────── */
+    .process { background: var(--white); }
+    .process-header { text-align: center; margin-bottom: 56px; }
+    .process-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 32px; position: relative; }
+    .process-steps::before {
+      content: ''; position: absolute; top: 32px; left: 10%; right: 10%;
+      height: 2px; background: linear-gradient(90deg, var(--blue-light), var(--gold));
+    }
+    .process-step { text-align: center; position: relative; z-index: 1; }
+    .process-step-num {
+      width: 64px; height: 64px; background: var(--white); border: 3px solid var(--gold);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.2rem;
+      color: var(--gold); margin: 0 auto 20px; box-shadow: var(--shadow);
+      transition: background .3s, color .3s;
+    }
+    .process-step:hover .process-step-num { background: var(--gold); color: var(--white); }
+    .process-step-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .95rem; color: var(--blue-dark); margin-bottom: 8px; }
+    .process-step-desc { font-size: .85rem; color: var(--text-soft); line-height: 1.6; }
+
+    /* ── FAQ ────────────────────────────────────────────────── */
+    .faq { background: var(--off-white); }
+    .faq-header { text-align: center; margin-bottom: 48px; }
+    .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item {
+      background: var(--white); border-radius: 14px; overflow: hidden;
+      box-shadow: 0 2px 12px rgba(13,43,85,.06);
+    }
+    .faq-question {
+      width: 100%; background: none; border: none; padding: 22px 28px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      cursor: pointer; text-align: left;
+      font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .95rem;
+      color: var(--blue-dark); transition: color .2s;
+    }
+    .faq-question:hover { color: var(--gold-dark); }
+    .faq-icon {
+      width: 28px; height: 28px; border-radius: 50%; background: var(--off-white);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      font-size: 1.2rem; color: var(--gold); transition: transform .3s, background .3s;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--gold); color: var(--white); }
+    .faq-answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height .4s ease, padding .3s ease;
+      font-size: .9rem; color: var(--text-soft); line-height: 1.75;
+    }
+    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-answer-inner { padding: 0 28px 22px; }
+
+    /* ── TESTIMONIALS ───────────────────────────────────────── */
+    .testimonials { background: var(--white); }
+    .testimonials-header { text-align: center; margin-bottom: 56px; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .testimonial-card { background: var(--off-white); border-radius: var(--radius); padding: 32px; transition: box-shadow .3s; }
+    .testimonial-card:hover { box-shadow: var(--shadow); }
+    .testimonial-quote { font-size: 3rem; line-height: 1; color: var(--gold); font-family: Georgia, serif; margin-bottom: 12px; }
+    .testimonial-stars { display: flex; gap: 4px; margin-bottom: 16px; }
+    .star { color: var(--gold); font-size: 1rem; }
+    .testimonial-text { font-size: .92rem; color: var(--text-soft); line-height: 1.75; margin-bottom: 24px; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--gold) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--white); font-size: .9rem;
+    }
+    .testimonial-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .9rem; color: var(--blue-dark); }
+    .testimonial-role { font-size: .78rem; color: var(--gray); margin-top: 2px; }
+
+    /* ── CTA BAND ───────────────────────────────────────────── */
+    .cta-band { background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-mid) 100%); position: relative; overflow: hidden; }
+    .cta-band::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(232,160,32,.15) 0%, transparent 70%); }
+    .cta-band-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; padding: 72px 0; }
+    .cta-band-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: var(--white); line-height: 1.2; margin-bottom: 12px; }
+    .cta-band-title span { color: var(--gold); }
+    .cta-band-sub { font-size: 1rem; color: rgba(255,255,255,.75); line-height: 1.6; }
+    .cta-band-actions { display: flex; flex-direction: column; gap: 12px; min-width: 220px; }
+
+    /* ── CONTACT FORM ───────────────────────────────────────── */
+    .contact { background: var(--off-white); }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .contact-items { margin-top: 32px; display: flex; flex-direction: column; gap: 20px; }
+    .contact-item { display: flex; align-items: center; gap: 16px; }
+    .contact-item-icon {
+      width: 48px; height: 48px; background: var(--white); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+      box-shadow: var(--shadow); flex-shrink: 0;
+    }
+    .contact-item-label { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: .8rem; color: var(--gray); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
+    .contact-item-value { font-weight: 600; color: var(--blue-dark); font-size: .95rem; }
+    .contact-form-wrap { background: var(--white); border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow); }
+    .contact-form-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--blue-dark); margin-bottom: 8px; }
+    .contact-form-sub { font-size: .85rem; color: var(--text-soft); margin-bottom: 28px; line-height: 1.6; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: .83rem; font-weight: 600; color: var(--text-soft); margin-bottom: 6px; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 12px 16px; border: 1.5px solid var(--gray-light);
+      border-radius: 10px; font-family: 'Inter', sans-serif; font-size: .9rem;
+      color: var(--text); outline: none; transition: border-color .2s, box-shadow .2s;
+      background: var(--white); resize: vertical;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(232,160,32,.12); }
+    .form-submit { width: 100%; margin-top: 8px; justify-content: center; font-size: 1rem; padding: 16px; }
+
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    .footer { background: var(--blue-dark); color: rgba(255,255,255,.7); padding: 56px 0 28px; }
+    .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 48px; }
+    .footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .footer-logo-icon { width: 40px; height: 40px; background: var(--gold); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .footer-logo-name { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1rem; color: var(--white); }
+    .footer-tagline { font-size: .88rem; line-height: 1.7; margin-bottom: 24px; max-width: 280px; }
+    .footer-social { display: flex; gap: 10px; }
+    .footer-social-btn { width: 38px; height: 38px; background: rgba(255,255,255,.08); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: background .2s; cursor: pointer; }
+    .footer-social-btn:hover { background: var(--gold); }
+    .footer-col-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .9rem; color: var(--white); margin-bottom: 18px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-links a { font-size: .87rem; color: rgba(255,255,255,.6); transition: color .2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.08); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: .82rem; }
+    .footer-bottom-legal { display: flex; gap: 20px; }
+    .footer-bottom-legal a { color: rgba(255,255,255,.45); transition: color .2s; }
+    .footer-bottom-legal a:hover { color: var(--white); }
+
+    /* ── Floating WhatsApp ──────────────────────────────────── */
+    .wa-float { position: fixed; bottom: 28px; right: 28px; z-index: 900; display: flex; align-items: center; gap: 12px; }
+    .wa-float-label { background: var(--white); color: var(--text); font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: .82rem; padding: 8px 16px; border-radius: 100px; box-shadow: var(--shadow); opacity: 0; transform: translateX(10px); transition: opacity .3s, transform .3s; white-space: nowrap; }
+    .wa-float:hover .wa-float-label { opacity: 1; transform: translateX(0); }
+    .wa-float-btn { width: 58px; height: 58px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 24px rgba(37,211,102,.45); transition: transform .2s; cursor: pointer; }
+    .wa-float-btn:hover { transform: scale(1.1); }
+    .wa-ripple { position: absolute; width: 100%; height: 100%; border-radius: 50%; background: #25D366; animation: wa-ripple 2s ease-out infinite; z-index: -1; }
+    @keyframes wa-ripple { 0% { transform: scale(1); opacity: .4; } 100% { transform: scale(1.8); opacity: 0; } }
+
+    /* ── Animations ─────────────────────────────────────────── */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; padding: 110px 0 60px; }
+      .what-grid { grid-template-columns: 1fr 1fr; }
+      .waiting-cards { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+      .whom-grid { grid-template-columns: 1fr; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .tax-inner { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: repeat(2,1fr); }
+      .process-steps::before { display: none; }
+      .testimonials-grid { grid-template-columns: 1fr 1fr; }
+      .contact-inner { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .section { padding: 72px 0; }
+      .hamburger { display: flex; }
+      .what-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .cta-band-inner { grid-template-columns: 1fr; text-align: center; }
+      .cta-band-actions { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .trust-divider { display: none; }
+    }
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; }
+      .btn { justify-content: center; }
+      .process-steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ──────────────────────────────────────────────── -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <div class="nav-logo-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11.35C16.5 22.15 20 17.25 20 12V6l-8-4z"/></svg>
+          </div>
+          <div>
+            <div class="nav-logo-text">Liz Torres</div>
+            <div class="nav-logo-sub">Agente de Seguros</div>
+          </div>
+        </a>
+        <a href="index.html" class="nav-back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Regresar al inicio
+        </a>
+        <div class="nav-cta">
+          <a href="#cotizar" class="btn btn-primary btn-sm">Cotizar mi Plan</a>
+          <a href="#" class="btn btn-wa btn-sm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+        <div class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ──────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-shape hero-shape-1"></div>
+    <div class="hero-shape hero-shape-2"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <!-- Left content -->
+        <div>
+          <div class="hero-breadcrumb">
+            <a href="index.html">Inicio</a>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            <span>Plan Personal de Retiro</span>
+          </div>
+          <div class="hero-badge">📈 Plan Personal de Retiro (PPR)</div>
+          <h1 class="hero-title">
+            Construye tu<br><span class="accent">libertad financiera</span><br>antes de los 65
+          </h1>
+          <p class="hero-sub">
+            Ahorra mes a mes, haz crecer tu dinero con fondos de inversión regulados y recupera hasta el <strong style="color:var(--gold-light)">35% de tu inversión</strong> cada año gracias a deducciones fiscales.
+          </p>
+          <div class="hero-actions">
+            <a href="#calculadora" class="btn btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+              Ver mi proyección
+            </a>
+            <a href="#cotizar" class="btn btn-outline-white">
+              Solicitar asesoría gratis
+            </a>
+          </div>
+          <div class="hero-pill">
+            <div class="hero-pill-item"><div class="hero-pill-dot"></div>Sin letra pequeña</div>
+            <div class="hero-pill-item"><div class="hero-pill-dot"></div>Asesoría gratuita</div>
+            <div class="hero-pill-item"><div class="hero-pill-dot"></div>Sin presiones</div>
+          </div>
+        </div>
+
+        <!-- Calculator card -->
+        <div id="calculadora">
+          <div class="calc-card">
+            <div class="calc-card-title">🧮 Calculadora · Ajusta tu escenario</div>
+            <div class="calc-result">
+              <div class="calc-result-label">Tu proyección a los 65 años</div>
+              <div class="calc-result-amount" id="calc-amount">$9,234,567</div>
+              <div class="calc-result-sub" id="calc-years">En 30 años de aportaciones</div>
+            </div>
+            <div class="calc-field">
+              <div class="calc-field-header">
+                <span class="calc-field-label">Tu edad actual</span>
+                <span class="calc-field-value" id="age-display">35 años</span>
+              </div>
+              <input type="range" class="calc-slider" id="age-slider" min="22" max="58" value="35" />
+            </div>
+            <div class="calc-field">
+              <div class="calc-field-header">
+                <span class="calc-field-label">Aportación mensual</span>
+                <span class="calc-field-value" id="contrib-display">$5,000 / mes</span>
+              </div>
+              <input type="range" class="calc-slider" id="contrib-slider" min="2000" max="20000" step="500" value="5000" />
+            </div>
+            <div class="calc-meta">
+              <div class="calc-meta-item">
+                <div class="calc-meta-label">Total aportado</div>
+                <div class="calc-meta-value" id="calc-total">$1,800,000</div>
+              </div>
+              <div class="calc-meta-item">
+                <div class="calc-meta-label">Ahorro fiscal est.</div>
+                <div class="calc-meta-value" id="calc-tax">$18,000 / año</div>
+              </div>
+            </div>
+            <a href="#cotizar" class="btn btn-primary" style="width:100%;justify-content:center;font-size:.9rem;padding:14px">
+              Quiero cotizar este plan →
+            </a>
+            <div class="calc-disclaimer">Escenario ilustrativo al 10% anual. No garantiza rendimientos.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TRUST BAR ─────────────────────────────────────────── -->
+  <div class="trust-bar">
+    <div class="container">
+      <div class="trust-inner">
+        <div class="trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2"><path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11.35C16.5 22.15 20 17.25 20 12V6l-8-4z"/></svg>
+          Agente certificada CNSF
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Plan 100% deducible de impuestos
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Múltiples aseguradoras comparadas
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          Respuesta en menos de 24h
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── WHAT IS PPR ───────────────────────────────────────── -->
+  <section class="section what">
+    <div class="container">
+      <div class="text-center">
+        <div class="section-tag">¿Qué es un PPR?</div>
+        <h2 class="section-title">Tres ventajas que no<br>tiene ningún otro producto</h2>
+        <p class="section-sub">Un Plan Personal de Retiro no es solo una cuenta de ahorro — es una estrategia financiera regulada que combina crecimiento, protección y beneficios fiscales en un solo lugar.</p>
+      </div>
+      <div class="what-grid">
+        <div class="what-card fade-up">
+          <div class="what-icon" style="background:rgba(232,160,32,.12)">📈</div>
+          <div class="what-card-title">Tu dinero crece con fondos de inversión</div>
+          <div class="what-card-desc">Tus aportaciones se invierten en portafolios diversificados y regulados por la CNSF. El tiempo es tu mayor aliado.</div>
+        </div>
+        <div class="what-card fade-up" style="transition-delay:.1s">
+          <div class="what-icon" style="background:rgba(26,79,138,.1)">🛡️</div>
+          <div class="what-card-title">Protección incluida mientras ahorras</div>
+          <div class="what-card-desc">Si algo te pasa, tu familia recibe el beneficio pactado sin importar cuánto llevas ahorrado. Ahorras y te proteges al mismo tiempo.</div>
+        </div>
+        <div class="what-card fade-up" style="transition-delay:.2s">
+          <div class="what-icon" style="background:rgba(74,222,128,.1)">💸</div>
+          <div class="what-card-title">El SAT te devuelve hasta el 35%</div>
+          <div class="what-card-desc">Tus aportaciones son deducibles de impuestos. Es como recibir un aumento inmediato por ahorrar para tu retiro.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── COST OF WAITING ───────────────────────────────────── -->
+  <section class="section waiting">
+    <div class="container waiting-inner">
+      <div class="waiting-header">
+        <div class="section-tag">El tiempo es el recurso más valioso</div>
+        <h2 class="section-title">Costo de <span>esperar</span></h2>
+        <p class="waiting-intro">Los tres invierten <strong>$5,000 pesos al mes</strong>. La única diferencia es cuándo empezaron. Esto es lo que acumulan a los 65 años:</p>
+      </div>
+      <div class="waiting-cards">
+
+        <div class="waiting-card best fade-up">
+          <div class="waiting-best-badge">⚡ Mejor momento: ahora</div>
+          <div class="waiting-avatar" style="background:linear-gradient(135deg,#E8A020,#F5B942)">C</div>
+          <div class="waiting-name">Carlos</div>
+          <div class="waiting-age">Empieza a los 30 años</div>
+          <div class="waiting-divider"></div>
+          <div class="waiting-contrib">$5,000 / mes · 35 años</div>
+          <div class="waiting-years">Total aportado: $2,100,000</div>
+          <div class="waiting-result-label">Acumula a los 65</div>
+          <div class="waiting-amount gold">$19.2 millones</div>
+        </div>
+
+        <div class="waiting-card fade-up" style="transition-delay:.1s">
+          <div class="waiting-avatar" style="background:linear-gradient(135deg,#3b82c4,#2563a8)">A</div>
+          <div class="waiting-name">Ana</div>
+          <div class="waiting-age">Empieza a los 40 años</div>
+          <div class="waiting-divider"></div>
+          <div class="waiting-contrib">$5,000 / mes · 25 años</div>
+          <div class="waiting-years">Total aportado: $1,500,000</div>
+          <div class="waiting-result-label">Acumula a los 65</div>
+          <div class="waiting-amount mid">$6.6 millones</div>
+        </div>
+
+        <div class="waiting-card fade-up" style="transition-delay:.2s">
+          <div class="waiting-avatar" style="background:linear-gradient(135deg,#e53e3e,#c53030)">D</div>
+          <div class="waiting-name">Diego</div>
+          <div class="waiting-age">Empieza a los 50 años</div>
+          <div class="waiting-divider"></div>
+          <div class="waiting-contrib">$5,000 / mes · 15 años</div>
+          <div class="waiting-years">Total aportado: $900,000</div>
+          <div class="waiting-result-label">Acumula a los 65</div>
+          <div class="waiting-amount low">$2.1 millones</div>
+        </div>
+
+      </div>
+      <div class="waiting-cta fade-up">
+        <a href="#cotizar" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Quiero empezar ahora
+        </a>
+        <p class="waiting-legal">Escenarios ilustrativos al 10% anual. No garantizan rendimientos futuros.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOR WHOM ──────────────────────────────────────────── -->
+  <section class="section whom">
+    <div class="container">
+      <div class="text-center">
+        <div class="section-tag">¿Es para mí?</div>
+        <h2 class="section-title">Este plan es para ti si...</h2>
+        <p class="section-sub">No importa tu situación laboral ni cuánto tienes ahorrado hoy. Lo que importa es que quieras tomar el control de tu futuro financiero.</p>
+      </div>
+      <div class="whom-grid">
+        <div class="whom-card fade-up">
+          <div class="whom-icon">💼</div>
+          <div>
+            <div class="whom-title">"Mi AFORE no es suficiente"</div>
+            <div class="whom-desc">Trabajo por nómina y sé que mi pensión del IMSS no me alcanzará. Necesito una alternativa que complemente mis ahorros y me dé más tranquilidad.</div>
+          </div>
+        </div>
+        <div class="whom-card fade-up" style="transition-delay:.1s">
+          <div class="whom-icon">🚀</div>
+          <div>
+            <div class="whom-title">"Quiero independencia financiera"</div>
+            <div class="whom-desc">No quiero depender de nadie cuando deje de trabajar. Elijo un PPR porque quiero que mi dinero trabaje para mí, no al revés.</div>
+          </div>
+        </div>
+        <div class="whom-card fade-up" style="transition-delay:.2s">
+          <div class="whom-icon">🧾</div>
+          <div>
+            <div class="whom-title">"Necesito deducir impuestos"</div>
+            <div class="whom-desc">Soy independiente o profesionista. Me interesa un instrumento que me dé rendimientos Y que me permita pagar menos ISR cada año.</div>
+          </div>
+        </div>
+        <div class="whom-card fade-up" style="transition-delay:.3s">
+          <div class="whom-icon">👨‍👩‍👧</div>
+          <div>
+            <div class="whom-title">"Quiero asegurar el futuro de mis hijos"</div>
+            <div class="whom-desc">Quiero seguir siendo un respaldo para mi familia incluso después de mi retiro, y garantizar que estarán bien protegidos pase lo que pase.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── BENEFITS ──────────────────────────────────────────── -->
+  <section class="section benefits">
+    <div class="container">
+      <div class="text-center">
+        <div class="section-tag">Beneficios clave</div>
+        <h2 class="section-title">Todo lo que incluye<br>tu <span>Plan de Retiro</span></h2>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-card fade-up">
+          <div class="benefit-icon" style="background:rgba(232,160,32,.12)">🎯</div>
+          <div>
+            <div class="benefit-title">Bono por constancia</div>
+            <div class="benefit-desc">Algunas aseguradoras premian tu disciplina con un bono equivalente al 100% de tus aportaciones del primer año si mantienes tu plan activo. Tu compromiso se recompensa desde el inicio.</div>
+          </div>
+        </div>
+        <div class="benefit-card fade-up" style="transition-delay:.1s">
+          <div class="benefit-icon" style="background:rgba(26,79,138,.1)">🔄</div>
+          <div>
+            <div class="benefit-title">Flexibilidad real</div>
+            <div class="benefit-desc">Puedes ajustar tu aportación mensual hacia arriba o hacia abajo según tu situación financiera. Tu plan se adapta a tu vida, no al revés.</div>
+          </div>
+        </div>
+        <div class="benefit-card fade-up" style="transition-delay:.2s">
+          <div class="benefit-icon" style="background:rgba(74,222,128,.1)">📊</div>
+          <div>
+            <div class="benefit-title">Portafolios diversificados</div>
+            <div class="benefit-desc">Tu dinero se invierte en una mezcla de activos nacionales e internacionales. Esto reduce el riesgo y maximiza el crecimiento a largo plazo.</div>
+          </div>
+        </div>
+        <div class="benefit-card fade-up" style="transition-delay:.3s">
+          <div class="benefit-icon" style="background:rgba(229,62,62,.1)">💊</div>
+          <div>
+            <div class="benefit-title">Protección ante enfermedades graves</div>
+            <div class="benefit-desc">Muchos planes incluyen cobertura por enfermedades críticas como cáncer, infarto o accidente, para que tu ahorro no se vea afectado ante una emergencia.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TAX HIGHLIGHT ─────────────────────────────────────── -->
+  <section class="tax-band section-sm">
+    <div class="container">
+      <div class="tax-inner">
+        <div class="tax-content">
+          <div class="section-tag">Beneficio fiscal</div>
+          <h2 class="section-title" style="color:var(--white)">El SAT te ayuda a<br>construir tu retiro</h2>
+          <p class="section-sub" style="color:rgba(255,255,255,.85);margin-top:16px">
+            Las aportaciones a un PPR son deducibles de impuestos. Dependiendo de tu nivel de ingresos, el SAT puede devolverte una parte importante de lo que inviertes cada año. Es dinero que de otra forma estarías pagando en impuestos.
+          </p>
+          <a href="#cotizar" class="btn btn-outline-white" style="margin-top:28px">Calcular mi deducción →</a>
+        </div>
+        <div class="tax-stats">
+          <div class="tax-stat">
+            <div class="tax-stat-num">35%</div>
+            <div class="tax-stat-label">Máximo de devolución fiscal anual según tu nivel de ISR</div>
+          </div>
+          <div class="tax-stat">
+            <div class="tax-stat-num">10%</div>
+            <div class="tax-stat-label">De tu ingreso anual es deducible como tope de aportación al PPR</div>
+          </div>
+          <div class="tax-stat">
+            <div class="tax-stat-num">$152k</div>
+            <div class="tax-stat-label">Monto máximo deducible por año según normativa del SAT (referencia)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROCESS ───────────────────────────────────────────── -->
+  <section class="section process">
+    <div class="container">
+      <div class="process-header">
+        <div class="section-tag">¿Cómo funciona?</div>
+        <h2 class="section-title">De la duda a tu plan<br>en <span>4 pasos</span></h2>
+        <p class="section-sub" style="margin:16px auto 0;text-align:center">Un proceso simple, claro y a tu ritmo. Sin visitas a oficinas, sin papeleo innecesario.</p>
+      </div>
+      <div class="process-steps">
+        <div class="process-step fade-up">
+          <div class="process-step-num">1</div>
+          <div class="process-step-title">Cotiza en línea</div>
+          <div class="process-step-desc">Llena el formulario o escríbeme por WhatsApp. En menos de 24h tienes tu proyección personalizada.</div>
+        </div>
+        <div class="process-step fade-up" style="transition-delay:.1s">
+          <div class="process-step-num">2</div>
+          <div class="process-step-title">Asesoría personalizada</div>
+          <div class="process-step-desc">Reviso tu situación real — ingresos, metas, AFORE — y te presento la mejor opción entre varias aseguradoras.</div>
+        </div>
+        <div class="process-step fade-up" style="transition-delay:.2s">
+          <div class="process-step-num">3</div>
+          <div class="process-step-title">Contratación digital</div>
+          <div class="process-step-desc">Solo documentos esenciales y verificación de identidad. Todo desde tu teléfono o computadora, sin salir de casa.</div>
+        </div>
+        <div class="process-step fade-up" style="transition-delay:.3s">
+          <div class="process-step-num">4</div>
+          <div class="process-step-title">Seguimiento de por vida</div>
+          <div class="process-step-desc">Te acompaño con revisiones anuales, ajustes a tu plan y atención ante cualquier situación o reclamación.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FAQ ───────────────────────────────────────────────── -->
+  <section class="section faq">
+    <div class="container">
+      <div class="faq-header">
+        <div class="section-tag">Preguntas frecuentes</div>
+        <h2 class="section-title">Lo que debes saber<br>antes de <span>decidir</span></h2>
+      </div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Qué es exactamente un Plan Personal de Retiro?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Un PPR es un instrumento de ahorro a largo plazo regulado por la CNSF que combina inversión en fondos diversificados, protección de vida y beneficios fiscales. No es solo una póliza de seguro ni solo una cuenta de inversión — es una estrategia completa para tu retiro.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Desde cuánto puedo empezar a ahorrar?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Los planes arrancan desde $2,000 a $3,000 pesos mensuales dependiendo de la aseguradora. El monto ideal lo definimos juntos según tu flujo de efectivo real y tus metas de retiro. La clave no es cuánto empieces, sino que empieces.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Siempre conviene hacerlo deducible de impuestos?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">No siempre. Si estás en un régimen de bajos ingresos o en el RIF/RESICO, el beneficio fiscal puede ser menor. En nuestra asesoría revisamos las dos rutas — deducible y no deducible — para que elijas la más conveniente para tu caso específico.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Ya tengo AFORE o inversiones en otro lado. ¿Igual me conviene?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Muy probablemente sí. Tener AFORE u otras inversiones es una ventaja, no un obstáculo. El PPR complementa lo que ya tienes. En la asesoría definimos exactamente qué papel juega cada instrumento en tu estrategia total, para que no dupliques esfuerzos y optimices cada peso.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Los montos de la calculadora son una garantía?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">No. Los escenarios de la calculadora son ilustrativos y usan una tasa del 10% anual como referencia histórica promedio. Los rendimientos reales dependen del mercado y la aseguradora. En tu propuesta personalizada te mostraré proyecciones en escenario conservador, moderado y optimista.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Qué pasa si necesito retirar mi dinero antes de los 65?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">La mayoría de los planes permiten retiros parciales o rescates totales con ciertas condiciones dependiendo del tiempo que llevas con el plan y la aseguradora. Hay que considerar que un retiro anticipado puede afectar los beneficios fiscales. Esto lo revisamos en detalle durante tu asesoría.</div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TESTIMONIALS ──────────────────────────────────────── -->
+  <section class="section testimonials">
+    <div class="container">
+      <div class="testimonials-header">
+        <div class="section-tag">Testimonios</div>
+        <h2 class="section-title">Clientes que ya tienen<br>su <span>retiro asegurado</span></h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+          <p class="testimonial-text">Tenía 38 años y nunca había pensado en mi retiro. Liz me mostró con números reales lo que perdía cada año que esperaba. Contraté mi PPR ese mismo mes. Hoy estoy muy tranquilo.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">JM</div>
+            <div>
+              <div class="testimonial-name">Jorge M.</div>
+              <div class="testimonial-role">Ingeniero civil · 40 años</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up" style="transition-delay:.1s">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+          <p class="testimonial-text">Como freelancer no tenía AFORE ni nada. Liz me explicó que podía deducir mis aportaciones del SAT — ese mismo beneficio fiscal paga casi una tercera parte de lo que aporto. Un regalo.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">PL</div>
+            <div>
+              <div class="testimonial-name">Patricia L.</div>
+              <div class="testimonial-role">Diseñadora independiente · 34 años</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up" style="transition-delay:.2s">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+          <p class="testimonial-text">Mi esposa y yo contratamos el PPR al mismo tiempo. Liz nos hizo proyecciones para los dos y nos ayudó a entender cómo coordinarlo con nuestra AFORE. Excelente servicio, muy humana.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">RV</div>
+            <div>
+              <div class="testimonial-name">Rodrigo V.</div>
+              <div class="testimonial-role">Médico · 42 años</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA BAND ──────────────────────────────────────────── -->
+  <section class="cta-band section-sm">
+    <div class="container">
+      <div class="cta-band-inner">
+        <div>
+          <h2 class="cta-band-title">El mejor momento para<br>empezar fue ayer.<br>El <span>segundo mejor es hoy.</span></h2>
+          <p class="cta-band-sub">Cada mes que pasa sin un plan es dinero que el interés compuesto no puede recuperar. La asesoría es gratuita, sin compromiso y sin presiones.</p>
+        </div>
+        <div class="cta-band-actions">
+          <a href="#cotizar" class="btn btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Agendar mi asesoría
+          </a>
+          <a href="#" class="btn btn-wa">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Escribir por WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FORM ──────────────────────────────────────────────── -->
+  <section class="section contact" id="cotizar">
+    <div class="container">
+      <div class="contact-inner">
+        <div class="fade-up">
+          <div class="section-tag">Solicita tu propuesta</div>
+          <h2 class="section-title">Cotiza tu Plan<br>de Retiro <span>gratis</span></h2>
+          <p class="section-sub" style="margin-top:16px">Atención personalizada. Te envío tu proyección detallada por correo o WhatsApp en menos de 24 horas, sin compromiso.</p>
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-item-icon">📱</div>
+              <div>
+                <div class="contact-item-label">WhatsApp / Teléfono</div>
+                <div class="contact-item-value">Por agregar</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">📧</div>
+              <div>
+                <div class="contact-item-label">Correo electrónico</div>
+                <div class="contact-item-value">Por agregar</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">🕐</div>
+              <div>
+                <div class="contact-item-label">Horario de atención</div>
+                <div class="contact-item-value">Lunes a viernes · 9am – 7pm</div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:32px">
+            <a href="#" class="btn btn-wa">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Escribir por WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap fade-up" style="transition-delay:.15s">
+          <div class="contact-form-title">Solicita tu propuesta personalizada</div>
+          <div class="contact-form-sub">Te envío una proyección con escenario conservador, moderado y optimista — directamente a tu correo o WhatsApp.</div>
+          <form id="ppr-form" onsubmit="handleForm(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nombre">Nombre *</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+              </div>
+              <div class="form-group">
+                <label for="apellido">Apellido *</label>
+                <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Correo electrónico *</label>
+              <input type="email" id="email" name="email" placeholder="tu@correo.com" required />
+            </div>
+            <div class="form-group">
+              <label for="whatsapp">WhatsApp *</label>
+              <input type="tel" id="whatsapp" name="whatsapp" placeholder="55 1234 5678" required />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="edad">Edad actual *</label>
+                <input type="number" id="edad" name="edad" placeholder="35" min="18" max="62" required />
+              </div>
+              <div class="form-group">
+                <label for="aportacion">Aportación mensual estimada</label>
+                <select id="aportacion" name="aportacion">
+                  <option value="" disabled selected>Selecciona</option>
+                  <option>$2,000 – $3,000</option>
+                  <option>$3,000 – $5,000</option>
+                  <option>$5,000 – $10,000</option>
+                  <option>Más de $10,000</option>
+                  <option>No sé aún</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="mensaje">¿Alguna situación particular que quieras que considere?</label>
+              <textarea id="mensaje" name="mensaje" placeholder="Ej: tengo AFORE, soy independiente, quiero deducir impuestos..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Enviar solicitud
+            </button>
+          </form>
+          <p style="font-size:.78rem;color:var(--gray);text-align:center;margin-top:14px">El monto mínimo de referencia para este plan es de $2,000 mensuales. Tu información es 100% confidencial.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-logo">
+            <div class="footer-logo-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11.35C16.5 22.15 20 17.25 20 12V6l-8-4z"/></svg>
+            </div>
+            <div class="footer-logo-name">Liz Torres · Agente de Seguros</div>
+          </div>
+          <p class="footer-tagline">Comprometida con tu bienestar y el de tu familia. Tu retiro es una prioridad, no una opción.</p>
+          <div class="footer-social">
+            <a href="#" class="footer-social-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+            <a href="#" class="footer-social-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#" class="footer-social-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Otros seguros</div>
+          <ul class="footer-links">
+            <li><a href="index.html#servicios">Seguro de Vida</a></li>
+            <li><a href="index.html#servicios">Gastos Médicos Mayores</a></li>
+            <li><a href="index.html#servicios">Seguro de Auto</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Navegación</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="#calculadora">Calculadora</a></li>
+            <li><a href="#cotizar">Cotizar</a></li>
+            <li><a href="index.html#contacto">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Liz Torres · Agente de Seguros. Todos los derechos reservados.</span>
+        <div class="footer-bottom-legal">
+          <a href="#">Aviso de Privacidad</a>
+          <a href="#">Términos de Uso</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── FLOATING WHATSAPP ─────────────────────────────────── -->
+  <div class="wa-float">
+    <div class="wa-float-label">¡Escríbeme ahora!</div>
+    <a href="#" class="wa-float-btn" style="position:relative">
+      <div class="wa-ripple"></div>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+  </div>
+
+  <!-- ─── SCRIPTS ───────────────────────────────────────────── -->
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
+
+    // Fade-up observer
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // ── Calculator ──────────────────────────────────────────
+    const ageSlider    = document.getElementById('age-slider');
+    const contribSlider = document.getElementById('contrib-slider');
+
+    function fmtMXN(n) {
+      if (n >= 1_000_000) return '$' + (n / 1_000_000).toFixed(1) + ' millones';
+      return '$' + n.toLocaleString('es-MX');
+    }
+
+    function calcProjection(age, monthly) {
+      const years = 65 - age;
+      if (years <= 0) return { fv: 0, years: 0, total: 0, tax: 0 };
+      const n = years * 12;
+      const r = 0.10 / 12;
+      const fv = Math.round(monthly * ((Math.pow(1 + r, n) - 1) / r) * (1 + r));
+      const total = monthly * n;
+      const tax = Math.round(monthly * 12 * 0.30);
+      return { fv, years, total, tax };
+    }
+
+    function updateSliderFill(slider) {
+      const min = parseFloat(slider.min);
+      const max = parseFloat(slider.max);
+      const val = parseFloat(slider.value);
+      const pct = ((val - min) / (max - min)) * 100;
+      slider.style.setProperty('--pct', pct + '%');
+    }
+
+    function updateCalc() {
+      const age     = parseInt(ageSlider.value);
+      const monthly = parseInt(contribSlider.value);
+      const { fv, years, total, tax } = calcProjection(age, monthly);
+
+      document.getElementById('age-display').textContent    = age + ' años';
+      document.getElementById('contrib-display').textContent = '$' + monthly.toLocaleString('es-MX') + ' / mes';
+      document.getElementById('calc-amount').textContent    = fmtMXN(fv);
+      document.getElementById('calc-years').textContent     = 'En ' + years + ' años de aportaciones';
+      document.getElementById('calc-total').textContent     = '$' + total.toLocaleString('es-MX');
+      document.getElementById('calc-tax').textContent       = '$' + tax.toLocaleString('es-MX') + ' / año';
+
+      updateSliderFill(ageSlider);
+      updateSliderFill(contribSlider);
+    }
+
+    ageSlider.addEventListener('input', updateCalc);
+    contribSlider.addEventListener('input', updateCalc);
+    updateCalc();
+
+    // FAQ accordion
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // Form handler
+    function handleForm(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      const original = btn.innerHTML;
+      btn.innerHTML = '✓ ¡Solicitud recibida! Me pondré en contacto muy pronto.';
+      btn.style.background = '#4ade80';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.innerHTML = original;
+        btn.style.background = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 6000);
+    }
+  </script>
+</body>
+</html>

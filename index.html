@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liz Torres | Agente de Seguros</title>
+  <meta name="description" content="Liz Torres, tu agente de seguros de confianza. Seguros de Vida, Gastos Médicos Mayores, Auto y Planes de Retiro personalizados para ti y tu familia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Variables ──────────────────────────────────────────── */
+    :root {
+      --blue-dark:  #111827;
+      --blue:       #3B82F6;
+      --blue-mid:   #2563EB;
+      --blue-light: #60A5FA;
+      --gold:       #CDAA2B;
+      --gold-light: #DDB93E;
+      --gold-dark:  #A88C22;
+      --white:      #ffffff;
+      --off-white:  #DBEAFE;
+      --gray-light: #EFF6FF;
+      --gray:       #6B7280;
+      --text:       #111827;
+      --text-soft:  #374151;
+      --radius:     16px;
+      --shadow:     0 8px 32px rgba(17,24,39,.12);
+      --shadow-lg:  0 16px 48px rgba(17,24,39,.18);
+    }
+
+    /* ── Reset ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Utilities ──────────────────────────────────────────── */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
+    .section-sm { padding: 64px 0; }
+    .section-tag {
+      display: inline-block;
+      background: rgba(205,170,43,.15);
+      color: var(--gold);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      line-height: 1.15;
+      color: var(--blue-dark);
+    }
+    .section-title span { color: var(--gold); }
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--text-soft);
+      line-height: 1.7;
+      max-width: 580px;
+    }
+    .text-center { text-align: center; }
+    .text-center .section-sub { margin: 0 auto; }
+
+    /* ── Buttons ────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 32px;
+      border-radius: 100px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s, background .2s;
+      border: none;
+      white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--white);
+      box-shadow: 0 6px 24px rgba(205,170,43,.4);
+    }
+    .btn-primary:hover { background: var(--gold-light); box-shadow: 0 10px 32px rgba(205,170,43,.5); }
+    .btn-outline-white {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,.6);
+    }
+    .btn-outline-white:hover { background: rgba(255,255,255,.1); border-color: var(--white); }
+    .btn-outline-blue {
+      background: transparent;
+      color: var(--blue);
+      border: 2px solid var(--blue);
+    }
+    .btn-outline-blue:hover { background: var(--blue); color: var(--white); }
+    .btn-wa {
+      background: #25D366;
+      color: var(--white);
+      box-shadow: 0 6px 24px rgba(37,211,102,.35);
+    }
+    .btn-wa:hover { background: #1ebe5d; box-shadow: 0 10px 32px rgba(37,211,102,.45); }
+
+    /* ── NAV ────────────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      transition: background .3s, box-shadow .3s;
+    }
+    .nav.scrolled {
+      background: var(--white);
+      box-shadow: 0 2px 20px rgba(17,24,39,.1);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .nav-logo-icon {
+      width: 42px; height: 42px;
+      background: var(--gold);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--white);
+      line-height: 1.15;
+    }
+    .nav.scrolled .nav-logo-text { color: var(--blue-dark); }
+    .nav-logo-sub {
+      font-size: .65rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      color: rgba(255,255,255,.75);
+      text-transform: uppercase;
+    }
+    .nav.scrolled .nav-logo-sub { color: var(--gray); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: .85rem;
+      color: rgba(255,255,255,.85);
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: color .2s, background .2s;
+    }
+    .nav.scrolled .nav-links a { color: var(--text-soft); }
+    .nav-links a:hover { color: var(--gold); background: rgba(205,170,43,.08); }
+    .nav-cta { display: flex; align-items: center; gap: 10px; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: background .3s;
+    }
+    .nav.scrolled .hamburger span { background: var(--blue-dark); }
+
+    /* ── HERO ───────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-mid) 60%, var(--blue-light) 100%);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(96,165,250,.25) 0%, transparent 70%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-shapes {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .hero-shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: .06;
+      background: var(--white);
+    }
+    .hero-shape-1 { width: 600px; height: 600px; top: -200px; right: -100px; }
+    .hero-shape-2 { width: 400px; height: 400px; bottom: -150px; left: -100px; }
+    .hero-shape-3 { width: 200px; height: 200px; top: 30%; right: 20%; }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      padding: 120px 0 80px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,.12);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.2);
+      color: var(--white);
+      font-size: .8rem;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+    .hero-badge-dot {
+      width: 8px; height: 8px;
+      background: #4ade80;
+      border-radius: 50%;
+      animation: pulse-dot 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50%       { transform: scale(1.4); opacity: .7; }
+    }
+    .hero-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+    .hero-title .accent { color: var(--gold); }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,.82);
+      line-height: 1.7;
+      margin-bottom: 40px;
+      max-width: 480px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 52px; }
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+    }
+    .hero-stat-num {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+      color: var(--white);
+      line-height: 1;
+    }
+    .hero-stat-num span { color: var(--gold); }
+    .hero-stat-label {
+      font-size: .8rem;
+      color: rgba(255,255,255,.65);
+      margin-top: 4px;
+    }
+    .hero-stat-divider { width: 1px; background: rgba(255,255,255,.15); }
+
+    /* Hero visual card */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-card {
+      background: rgba(255,255,255,.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 24px;
+      padding: 36px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 24px 64px rgba(0,0,0,.2);
+    }
+    .hero-card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .hero-card-avatar {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+    .hero-card-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      color: var(--white);
+      font-size: 1.05rem;
+    }
+    .hero-card-role {
+      color: rgba(255,255,255,.65);
+      font-size: .8rem;
+      margin-top: 2px;
+    }
+    .hero-card-services {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .hero-card-service {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(255,255,255,.08);
+      border-radius: 12px;
+      padding: 14px 16px;
+      transition: background .2s;
+    }
+    .hero-card-service:hover { background: rgba(255,255,255,.14); }
+    .hero-card-service-icon {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .hero-card-service-label {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: .88rem;
+      color: var(--white);
+    }
+    .hero-card-service-desc {
+      font-size: .75rem;
+      color: rgba(255,255,255,.55);
+      margin-top: 2px;
+    }
+    .hero-card-service-check {
+      margin-left: auto;
+      color: #4ade80;
+      font-size: 1rem;
+    }
+
+    /* ── TRUST BAR ──────────────────────────────────────────── */
+    .trust-bar {
+      background: var(--blue-dark);
+      padding: 20px 0;
+    }
+    .trust-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,.75);
+      font-size: .85rem;
+      font-weight: 500;
+    }
+    .trust-item svg { flex-shrink: 0; }
+    .trust-divider {
+      width: 1px; height: 24px;
+      background: rgba(255,255,255,.15);
+    }
+
+    /* ── SERVICES ───────────────────────────────────────────── */
+    .services { background: var(--off-white); }
+    .services-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 36px;
+      box-shadow: var(--shadow);
+      transition: transform .3s, box-shadow .3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .service-card-1::before { background: linear-gradient(90deg, #3B82F6, #60A5FA); }
+    .service-card-2::before { background: linear-gradient(90deg, #e53e3e, #fc8181); }
+    .service-card-3::before { background: linear-gradient(90deg, #60A5FA, #93C5FD); }
+    .service-card-4::before { background: linear-gradient(90deg, #e8a020, #f5b942); }
+
+    .service-icon-wrap {
+      width: 64px; height: 64px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+      font-size: 1.8rem;
+    }
+    .service-card-1 .service-icon-wrap { background: rgba(59,130,246,.1); }
+    .service-card-2 .service-icon-wrap { background: rgba(229,62,62,.1); }
+    .service-card-3 .service-icon-wrap { background: rgba(96,165,250,.1); }
+    .service-card-4 .service-icon-wrap { background: rgba(205,170,43,.1); }
+
+    .service-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--blue-dark);
+      margin-bottom: 10px;
+    }
+    .service-desc {
+      font-size: .93rem;
+      color: var(--text-soft);
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+    .service-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    .service-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .88rem;
+      color: var(--text-soft);
+    }
+    .service-features li::before {
+      content: '';
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: #4ade80;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: .85rem;
+      color: var(--blue);
+      transition: gap .2s;
+    }
+    .service-link:hover { gap: 10px; }
+
+    /* ── WHY LIZ ────────────────────────────────────────────── */
+    .why {
+      background: var(--white);
+    }
+    .why-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .why-visual {
+      position: relative;
+    }
+    .why-bg-card {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-mid) 100%);
+      border-radius: 24px;
+      padding: 48px 40px;
+      color: var(--white);
+    }
+    .why-bg-card-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+    .why-bg-card-sub {
+      font-size: .9rem;
+      color: rgba(255,255,255,.7);
+      margin-bottom: 32px;
+    }
+    .why-promise {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .why-promise-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(255,255,255,.1);
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+    .why-promise-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .why-promise-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: .9rem;
+    }
+    .why-floating {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--gold);
+      border-radius: 16px;
+      padding: 20px 24px;
+      color: var(--white);
+      box-shadow: 0 12px 32px rgba(205,170,43,.4);
+      text-align: center;
+    }
+    .why-floating-num {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+      line-height: 1;
+    }
+    .why-floating-label { font-size: .75rem; opacity: .85; margin-top: 4px; }
+
+    .why-items {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      margin-top: 36px;
+    }
+    .why-item {
+      display: flex;
+      gap: 20px;
+    }
+    .why-item-icon {
+      width: 52px; height: 52px;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      box-shadow: 0 6px 20px rgba(59,130,246,.25);
+    }
+    .why-item-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--blue-dark);
+      margin-bottom: 6px;
+    }
+    .why-item-desc {
+      font-size: .9rem;
+      color: var(--text-soft);
+      line-height: 1.65;
+    }
+
+    /* ── PROCESS ────────────────────────────────────────────── */
+    .process {
+      background: var(--off-white);
+    }
+    .process-header { text-align: center; margin-bottom: 56px; }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 32px; left: 10%; right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue-light), var(--gold));
+      z-index: 0;
+    }
+    .process-step {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .process-step-num {
+      width: 64px; height: 64px;
+      background: var(--white);
+      border: 3px solid var(--blue-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--blue);
+      margin: 0 auto 20px;
+      box-shadow: var(--shadow);
+      transition: background .3s, color .3s;
+    }
+    .process-step:hover .process-step-num {
+      background: var(--blue);
+      color: var(--white);
+      border-color: var(--blue);
+    }
+    .process-step-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--blue-dark);
+      margin-bottom: 8px;
+    }
+    .process-step-desc {
+      font-size: .85rem;
+      color: var(--text-soft);
+      line-height: 1.6;
+    }
+
+    /* ── TESTIMONIALS ───────────────────────────────────────── */
+    .testimonials { background: var(--white); }
+    .testimonials-header { text-align: center; margin-bottom: 56px; }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testimonial-card {
+      background: var(--off-white);
+      border-radius: var(--radius);
+      padding: 32px;
+      position: relative;
+      transition: box-shadow .3s;
+    }
+    .testimonial-card:hover { box-shadow: var(--shadow); }
+    .testimonial-quote {
+      font-size: 3rem;
+      line-height: 1;
+      color: var(--gold);
+      font-family: Georgia, serif;
+      margin-bottom: 16px;
+    }
+    .testimonial-text {
+      font-size: .93rem;
+      color: var(--text-soft);
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+    .testimonial-stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 20px;
+    }
+    .star { color: var(--gold); font-size: 1rem; }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .testimonial-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      color: var(--white);
+      font-size: .95rem;
+    }
+    .testimonial-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: .9rem;
+      color: var(--blue-dark);
+    }
+    .testimonial-role { font-size: .78rem; color: var(--gray); margin-top: 2px; }
+
+    /* ── CTA BAND ───────────────────────────────────────────── */
+    .cta-band {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-mid) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-band::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(205,170,43,.15) 0%, transparent 70%);
+    }
+    .cta-band-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: center;
+      padding: 72px 0;
+    }
+    .cta-band-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .cta-band-title span { color: var(--gold); }
+    .cta-band-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,.75);
+      line-height: 1.6;
+    }
+    .cta-band-actions { display: flex; flex-direction: column; gap: 12px; min-width: 220px; }
+
+    /* ── CONTACT ────────────────────────────────────────────── */
+    .contact { background: var(--off-white); }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .contact-items {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .contact-item-icon {
+      width: 48px; height: 48px;
+      background: var(--white);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: var(--shadow);
+      flex-shrink: 0;
+    }
+    .contact-item-label {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: .8rem;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 2px;
+    }
+    .contact-item-value {
+      font-weight: 600;
+      color: var(--blue-dark);
+      font-size: .95rem;
+    }
+
+    /* Contact form */
+    .contact-form-wrap {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 40px;
+      box-shadow: var(--shadow);
+    }
+    .contact-form-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--blue-dark);
+      margin-bottom: 24px;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block;
+      font-size: .83rem;
+      font-weight: 600;
+      color: var(--text-soft);
+      margin-bottom: 6px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--gray-light);
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: .9rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+      background: var(--white);
+      resize: vertical;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(59,130,246,.1);
+    }
+    .form-group textarea { height: 100px; }
+    .form-submit { width: 100%; margin-top: 8px; justify-content: center; font-size: 1rem; padding: 16px; }
+
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    .footer {
+      background: var(--blue-dark);
+      color: rgba(255,255,255,.7);
+      padding: 56px 0 28px;
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 48px;
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .footer-logo-icon {
+      width: 40px; height: 40px;
+      background: var(--gold);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .footer-logo-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--white);
+    }
+    .footer-tagline {
+      font-size: .88rem;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      max-width: 280px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 10px;
+    }
+    .footer-social-btn {
+      width: 38px; height: 38px;
+      background: rgba(255,255,255,.08);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: background .2s;
+      cursor: pointer;
+    }
+    .footer-social-btn:hover { background: var(--gold); }
+    .footer-col-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: .9rem;
+      color: var(--white);
+      margin-bottom: 18px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-links a {
+      font-size: .87rem;
+      color: rgba(255,255,255,.6);
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: .82rem;
+    }
+    .footer-bottom-legal { display: flex; gap: 20px; }
+    .footer-bottom-legal a {
+      color: rgba(255,255,255,.45);
+      transition: color .2s;
+    }
+    .footer-bottom-legal a:hover { color: var(--white); }
+
+    /* ── Floating WhatsApp ──────────────────────────────────── */
+    .wa-float {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      z-index: 900;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .wa-float-label {
+      background: var(--white);
+      color: var(--text);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: .82rem;
+      padding: 8px 16px;
+      border-radius: 100px;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateX(10px);
+      transition: opacity .3s, transform .3s;
+      white-space: nowrap;
+    }
+    .wa-float:hover .wa-float-label { opacity: 1; transform: translateX(0); }
+    .wa-float-btn {
+      width: 58px; height: 58px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,.45);
+      transition: transform .2s;
+      cursor: pointer;
+    }
+    .wa-float-btn:hover { transform: scale(1.1); }
+    .wa-ripple {
+      position: absolute;
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: #25D366;
+      animation: wa-ripple 2s ease-out infinite;
+      z-index: -1;
+    }
+    @keyframes wa-ripple {
+      0%   { transform: scale(1); opacity: .4; }
+      100% { transform: scale(1.8); opacity: 0; }
+    }
+
+    /* ── Animations ─────────────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; padding: 110px 0 60px; }
+      .hero-visual { display: none; }
+      .why-inner { grid-template-columns: 1fr; }
+      .why-visual { display: none; }
+      .process-steps { grid-template-columns: repeat(2, 1fr); }
+      .process-steps::before { display: none; }
+      .testimonials-grid { grid-template-columns: 1fr 1fr; }
+      .contact-inner { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .section { padding: 72px 0; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .services-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 24px; }
+      .hero-stat-divider { display: none; }
+      .cta-band-inner { grid-template-columns: 1fr; text-align: center; }
+      .cta-band-actions { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .trust-inner { gap: 20px; }
+      .trust-divider { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; }
+      .btn { justify-content: center; }
+      .process-steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ──────────────────────────────────────────────── -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#inicio" class="nav-logo">
+          <div class="nav-logo-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+              <path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11.35C16.5 22.15 20 17.25 20 12V6l-8-4z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="nav-logo-text">Liz Torres</div>
+            <div class="nav-logo-sub">Agente de Seguros</div>
+          </div>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#por-que-liz">¿Por qué Liz?</a></li>
+          <li><a href="#proceso">Proceso</a></li>
+          <li><a href="#testimonios">Testimonios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+
+        <div class="nav-cta">
+          <a href="#" class="btn btn-wa" style="padding: 10px 22px; font-size: .83rem;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            WhatsApp
+          </a>
+        </div>
+
+        <div class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ──────────────────────────────────────────────── -->
+  <section class="hero" id="inicio">
+    <div class="hero-shapes">
+      <div class="hero-shape hero-shape-1"></div>
+      <div class="hero-shape hero-shape-2"></div>
+      <div class="hero-shape hero-shape-3"></div>
+    </div>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <div class="hero-badge-dot"></div>
+            Atención personalizada · Respuesta en menos de 24h
+          </div>
+          <h1 class="hero-title">
+            Protege lo que<br>más amas con<br>
+            <span class="accent">el seguro ideal</span>
+          </h1>
+          <p class="hero-sub">
+            Soy Liz Torres, agente de seguros certificada. Te ayudo a encontrar la protección perfecta para ti, tu familia y tu patrimonio — sin complicaciones y con el trato que mereces.
+          </p>
+          <div class="hero-actions">
+            <a href="#contacto" class="btn btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2">
+                <rect x="3" y="4" width="18" height="18" rx="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              Agenda tu asesoría gratis
+            </a>
+            <a href="#" class="btn btn-wa">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Escríbeme por WhatsApp
+            </a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="hero-stat-num">+500<span>+</span></div>
+              <div class="hero-stat-label">Familias protegidas</div>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">10<span>+</span></div>
+              <div class="hero-stat-label">Años de experiencia</div>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">4</div>
+              <div class="hero-stat-label">Tipos de cobertura</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-card">
+            <div class="hero-card-header">
+              <div class="hero-card-avatar">🛡️</div>
+              <div>
+                <div class="hero-card-name">Liz Torres</div>
+                <div class="hero-card-role">Agente Certificada · Seguros</div>
+              </div>
+            </div>
+            <div class="hero-card-services">
+              <div class="hero-card-service">
+                <div class="hero-card-service-icon" style="background:rgba(59,130,246,.2)">💙</div>
+                <div>
+                  <div class="hero-card-service-label">Seguro de Vida</div>
+                  <div class="hero-card-service-desc">Protección para tu familia</div>
+                </div>
+                <div class="hero-card-service-check">✓</div>
+              </div>
+              <div class="hero-card-service">
+                <div class="hero-card-service-icon" style="background:rgba(229,62,62,.2)">❤️</div>
+                <div>
+                  <div class="hero-card-service-label">Gastos Médicos Mayores</div>
+                  <div class="hero-card-service-desc">Salud sin preocupaciones</div>
+                </div>
+                <div class="hero-card-service-check">✓</div>
+              </div>
+              <div class="hero-card-service">
+                <div class="hero-card-service-icon" style="background:rgba(96,165,250,.2)">🚗</div>
+                <div>
+                  <div class="hero-card-service-label">Seguro de Auto</div>
+                  <div class="hero-card-service-desc">Maneja con tranquilidad</div>
+                </div>
+                <div class="hero-card-service-check">✓</div>
+              </div>
+              <div class="hero-card-service">
+                <div class="hero-card-service-icon" style="background:rgba(205,170,43,.2)">📈</div>
+                <div>
+                  <div class="hero-card-service-label">Plan de Retiro</div>
+                  <div class="hero-card-service-desc">Asegura tu futuro</div>
+                </div>
+                <div class="hero-card-service-check">✓</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TRUST BAR ─────────────────────────────────────────── -->
+  <div class="trust-bar">
+    <div class="container">
+      <div class="trust-inner">
+        <div class="trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2"><path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11.35C16.5 22.15 20 17.25 20 12V6l-8-4z"/></svg>
+          Agente certificada y autorizada
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          Respuesta en menos de 24 horas
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          +500 familias protegidas
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Asesoría inicial 100% gratuita
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Múltiples aseguradoras disponibles
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── SERVICES ──────────────────────────────────────────── -->
+  <section class="section services" id="servicios">
+    <div class="container">
+      <div class="services-header">
+        <div class="section-tag">Nuestros Servicios</div>
+        <h2 class="section-title">Una solución para cada<br><span>etapa de tu vida</span></h2>
+        <p class="section-sub" style="margin:16px auto 0">Cada persona tiene necesidades únicas. Por eso te ofrezco un análisis personalizado para encontrar la cobertura exacta que necesitas.</p>
+      </div>
+      <div class="services-grid">
+
+        <!-- Vida -->
+        <div class="service-card service-card-1 fade-up">
+          <div class="service-icon-wrap">💙</div>
+          <h3 class="service-title">Seguro de Vida</h3>
+          <p class="service-desc">Porque tus seres queridos merecen seguir adelante sin importar lo que pase. Un seguro de vida es el acto de amor más grande que puedes hacer hoy.</p>
+          <ul class="service-features">
+            <li>Protección en caso de fallecimiento</li>
+            <li>Beneficio por invalidez total</li>
+            <li>Cobertura de enfermedades graves</li>
+            <li>Planes desde jóvenes hasta adultos</li>
+          </ul>
+          <a href="#contacto" class="service-link">
+            Quiero cotizar
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- Gastos Médicos -->
+        <div class="service-card service-card-2 fade-up" style="transition-delay:.1s">
+          <div class="service-icon-wrap">❤️</div>
+          <h3 class="service-title">Gastos Médicos Mayores</h3>
+          <p class="service-desc">Una emergencia médica no tiene que significar una crisis financiera. Te ayudo a encontrar el plan que cuida tu salud sin que tu bolsillo sufra.</p>
+          <ul class="service-features">
+            <li>Hospitalización y cirugías</li>
+            <li>Atención médica especializada</li>
+            <li>Medicamentos y estudios</li>
+            <li>Red de hospitales de primer nivel</li>
+          </ul>
+          <a href="#contacto" class="service-link" style="color:#dc2626">
+            Quiero cotizar
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- Auto -->
+        <div class="service-card service-card-3 fade-up" style="transition-delay:.2s">
+          <div class="service-icon-wrap">🚗</div>
+          <h3 class="service-title">Seguro de Auto</h3>
+          <p class="service-desc">Maneja con la tranquilidad de saber que estás protegido. Desde cobertura básica hasta amplia, encuentra el plan que se ajusta a tu presupuesto.</p>
+          <ul class="service-features">
+            <li>Cobertura amplia o básica</li>
+            <li>Robo total y daños materiales</li>
+            <li>Responsabilidad civil</li>
+            <li>Asistencia en carretera 24/7</li>
+          </ul>
+          <a href="#contacto" class="service-link" style="color:#3B82F6">
+            Quiero cotizar
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <!-- Retiro -->
+        <div class="service-card service-card-4 fade-up" style="transition-delay:.3s">
+          <div class="service-icon-wrap">📈</div>
+          <h3 class="service-title">Plan Personal de Retiro</h3>
+          <p class="service-desc">El mejor momento para pensar en tu retiro es hoy. Te asesoro en construir un fondo que te permita vivir cómodamente cuando llegue el momento de descansar.</p>
+          <ul class="service-features">
+            <li>Ahorro con rendimientos garantizados</li>
+            <li>Beneficios fiscales (deducible)</li>
+            <li>Flexibilidad en aportaciones</li>
+            <li>Protección ante imprevistos</li>
+          </ul>
+          <a href="ppr.html" class="service-link" style="color:#e8a020">
+            Quiero cotizar
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── WHY LIZ ────────────────────────────────────────────── -->
+  <section class="section why" id="por-que-liz">
+    <div class="container">
+      <div class="why-inner">
+        <div class="why-visual fade-up">
+          <div class="why-bg-card">
+            <div class="why-bg-card-title">Mi compromiso contigo</div>
+            <div class="why-bg-card-sub">No soy solo tu agente, soy tu aliada financiera</div>
+            <div class="why-promise">
+              <div class="why-promise-item">
+                <div class="why-promise-icon">🤝</div>
+                <div class="why-promise-text">Siempre pongo tus intereses primero</div>
+              </div>
+              <div class="why-promise-item">
+                <div class="why-promise-icon">📞</div>
+                <div class="why-promise-text">Disponible cuando más me necesites</div>
+              </div>
+              <div class="why-promise-item">
+                <div class="why-promise-icon">💡</div>
+                <div class="why-promise-text">Explico todo con claridad, sin letra pequeña</div>
+              </div>
+              <div class="why-promise-item">
+                <div class="why-promise-icon">🏆</div>
+                <div class="why-promise-text">Negocio las mejores condiciones para ti</div>
+              </div>
+            </div>
+          </div>
+          <div class="why-floating">
+            <div class="why-floating-num">10+</div>
+            <div class="why-floating-label">Años<br>de experiencia</div>
+          </div>
+        </div>
+
+        <div class="why-content fade-up" style="transition-delay:.15s">
+          <div class="section-tag">¿Por qué elegir a Liz?</div>
+          <h2 class="section-title">Una asesora que<br>realmente te <span>escucha</span></h2>
+          <div class="why-items">
+            <div class="why-item">
+              <div class="why-item-icon">🎯</div>
+              <div>
+                <div class="why-item-title">Asesoría 100% personalizada</div>
+                <div class="why-item-desc">Analizo tu situación real — tu familia, ingresos y necesidades — antes de recomendarte cualquier producto. Nunca te ofrezco algo que no necesitas.</div>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-item-icon">🏢</div>
+              <div>
+                <div class="why-item-title">Acceso a múltiples aseguradoras</div>
+                <div class="why-item-desc">Trabajo con las principales compañías del mercado, lo que me permite comparar y ofrecerte las mejores coberturas al mejor precio.</div>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-item-icon">🛡️</div>
+              <div>
+                <div class="why-item-title">Acompañamiento en cada reclamación</div>
+                <div class="why-item-desc">Mi trabajo no termina cuando firmas tu póliza. Estoy contigo en el momento que más me necesitas: cuando tienes que hacer válida tu cobertura.</div>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-item-icon">💬</div>
+              <div>
+                <div class="why-item-title">Comunicación sin tecnicismos</div>
+                <div class="why-item-desc">Te explico en palabras simples qué cubre tu seguro, qué no cubre y por qué. Tú mereces entender perfectamente lo que estás contratando.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROCESS ───────────────────────────────────────────── -->
+  <section class="section process" id="proceso">
+    <div class="container">
+      <div class="process-header">
+        <div class="section-tag">Así funciona</div>
+        <h2 class="section-title">De la duda a la <span>tranquilidad</span><br>en 4 pasos</h2>
+        <p class="section-sub" style="margin:16px auto 0">Un proceso claro, sin presiones y completamente a tu ritmo.</p>
+      </div>
+      <div class="process-steps">
+        <div class="process-step fade-up">
+          <div class="process-step-num">1</div>
+          <div class="process-step-title">Contáctame</div>
+          <div class="process-step-desc">Escríbeme por WhatsApp o llena el formulario. Te respondo en menos de 24 horas para agendar tu cita.</div>
+        </div>
+        <div class="process-step fade-up" style="transition-delay:.1s">
+          <div class="process-step-num">2</div>
+          <div class="process-step-title">Análisis de necesidades</div>
+          <div class="process-step-desc">Conversamos sobre tu situación, tu familia y tus metas para entender exactamente qué tipo de protección necesitas.</div>
+        </div>
+        <div class="process-step fade-up" style="transition-delay:.2s">
+          <div class="process-step-num">3</div>
+          <div class="process-step-title">Propuesta personalizada</div>
+          <div class="process-step-desc">Te presento opciones de diferentes aseguradoras con precios y coberturas comparadas. Tú decides con información completa.</div>
+        </div>
+        <div class="process-step fade-up" style="transition-delay:.3s">
+          <div class="process-step-num">4</div>
+          <div class="process-step-title">Contratación y seguimiento</div>
+          <div class="process-step-desc">Una vez que eliges, te acompaño en toda la contratación y quedo disponible para cualquier duda o reclamación futura.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TESTIMONIALS ──────────────────────────────────────── -->
+  <section class="section testimonials" id="testimonios">
+    <div class="container">
+      <div class="testimonials-header">
+        <div class="section-tag">Testimonios</div>
+        <h2 class="section-title">Lo que dicen mis <span>clientes</span></h2>
+        <p class="section-sub" style="margin:16px auto 0">La confianza de mis clientes es mi mayor orgullo y mi mejor carta de presentación.</p>
+      </div>
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimonial-text">Liz me explicó con mucha paciencia todas las opciones disponibles para mi familia. Contratamos el seguro de gastos médicos y vida, y quedamos muy tranquilos. Su atención es excepcional.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MA</div>
+            <div>
+              <div class="testimonial-name">María Andrade</div>
+              <div class="testimonial-role">Emprendedora · Guadalajara</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-up" style="transition-delay:.1s">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimonial-text">Tuve un accidente de auto y Liz estuvo conmigo en todo el proceso de reclamación. Literalmente no tuve que preocuparme por nada. Eso es lo que diferencia a un buen agente de uno extraordinario.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">RC</div>
+            <div>
+              <div class="testimonial-name">Roberto Cruz</div>
+              <div class="testimonial-role">Ingeniero · Ciudad de México</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-up" style="transition-delay:.2s">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimonial-text">Gracias a Liz empecé mi Plan de Retiro a los 32 años. Me mostró de forma muy clara cómo los ahorros crecen con el tiempo. Sin duda fue la mejor decisión financiera que he tomado.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SV</div>
+            <div>
+              <div class="testimonial-name">Sofía Vargas</div>
+              <div class="testimonial-role">Profesora · Monterrey</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA BAND ──────────────────────────────────────────── -->
+  <section class="cta-band section-sm">
+    <div class="container">
+      <div class="cta-band-inner">
+        <div>
+          <h2 class="cta-band-title">¿Listo para proteger<br>lo que más importa?</h2>
+          <p class="cta-band-sub">Agenda tu asesoría gratuita hoy. Sin compromisos, sin presiones — solo información clara para que tomes la mejor decisión.</p>
+        </div>
+        <div class="cta-band-actions">
+          <a href="#contacto" class="btn btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Agendar cita gratuita
+          </a>
+          <a href="#" class="btn btn-wa">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Escribir por WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ────────────────────────────────────────────── -->
+  <section class="section contact" id="contacto">
+    <div class="container">
+      <div class="contact-inner">
+        <div class="contact-info fade-up">
+          <div class="section-tag">Contacto</div>
+          <h2 class="section-title">Hablemos sobre<br>tu <span>protección</span></h2>
+          <p class="section-sub" style="margin-top:16px">Estoy aquí para responder todas tus preguntas. Contáctame por el canal que prefieras y te respondo a la brevedad.</p>
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-item-icon">📱</div>
+              <div>
+                <div class="contact-item-label">WhatsApp / Teléfono</div>
+                <div class="contact-item-value">Por agregar</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">📧</div>
+              <div>
+                <div class="contact-item-label">Correo electrónico</div>
+                <div class="contact-item-value">Por agregar</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">📍</div>
+              <div>
+                <div class="contact-item-label">Ciudad</div>
+                <div class="contact-item-value">Por agregar</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">🕐</div>
+              <div>
+                <div class="contact-item-label">Horario de atención</div>
+                <div class="contact-item-value">Lunes a viernes · 9am – 7pm</div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:32px; display:flex; gap:12px">
+            <a href="#" class="btn btn-wa">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Escribir por WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap fade-up" style="transition-delay:.15s">
+          <div class="contact-form-title">Solicita tu asesoría gratuita</div>
+          <form id="contact-form" onsubmit="handleForm(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nombre">Nombre *</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+              </div>
+              <div class="form-group">
+                <label for="apellido">Apellido *</label>
+                <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Correo electrónico *</label>
+              <input type="email" id="email" name="email" placeholder="tu@correo.com" required />
+            </div>
+            <div class="form-group">
+              <label for="telefono">Teléfono / WhatsApp</label>
+              <input type="tel" id="telefono" name="telefono" placeholder="55 1234 5678" />
+            </div>
+            <div class="form-group">
+              <label for="seguro">¿Qué tipo de seguro te interesa? *</label>
+              <select id="seguro" name="seguro" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option>Seguro de Vida</option>
+                <option>Gastos Médicos Mayores</option>
+                <option>Seguro de Auto</option>
+                <option>Plan Personal de Retiro</option>
+                <option>Varios / No sé aún</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="mensaje">¿Algo más que quieras contarme?</label>
+              <textarea id="mensaje" name="mensaje" placeholder="Cuéntame un poco sobre tu situación o cualquier pregunta que tengas…"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Enviar solicitud
+            </button>
+          </form>
+          <p style="font-size:.8rem;color:var(--gray);text-align:center;margin-top:16px">
+            Al enviar este formulario, aceptas ser contactado por Liz Torres para brindarte información sobre seguros. Tu información es confidencial.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="footer-logo-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                <path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11.35C16.5 22.15 20 17.25 20 12V6l-8-4z"/>
+              </svg>
+            </div>
+            <div class="footer-logo-name">Liz Torres · Agente de Seguros</div>
+          </div>
+          <p class="footer-tagline">Comprometida con tu bienestar y el de tu familia. Te ayudo a encontrar la protección que realmente necesitas, hoy y siempre.</p>
+          <div class="footer-social">
+            <a href="#" class="footer-social-btn" title="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            </a>
+            <a href="#" class="footer-social-btn" title="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="footer-social-btn" title="WhatsApp">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+            <a href="#" class="footer-social-btn" title="LinkedIn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Servicios</div>
+          <ul class="footer-links">
+            <li><a href="#servicios">Seguro de Vida</a></li>
+            <li><a href="#servicios">Gastos Médicos Mayores</a></li>
+            <li><a href="#servicios">Seguro de Auto</a></li>
+            <li><a href="#servicios">Plan Personal de Retiro</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Navegación</div>
+          <ul class="footer-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#por-que-liz">¿Por qué Liz?</a></li>
+            <li><a href="#proceso">Proceso</a></li>
+            <li><a href="#testimonios">Testimonios</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Liz Torres · Agente de Seguros. Todos los derechos reservados.</span>
+        <div class="footer-bottom-legal">
+          <a href="#">Aviso de Privacidad</a>
+          <a href="#">Términos de Uso</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── FLOATING WHATSAPP ─────────────────────────────────── -->
+  <div class="wa-float">
+    <div class="wa-float-label">¡Escríbeme ahora!</div>
+    <a href="#" class="wa-float-btn" style="position:relative">
+      <div class="wa-ripple"></div>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- ─── SCRIPTS ───────────────────────────────────────────── -->
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Fade-up observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Form handler (placeholder)
+    function handleForm(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      const original = btn.innerHTML;
+      btn.innerHTML = '✓ ¡Solicitud enviada! Me pondré en contacto pronto.';
+      btn.style.background = '#4ade80';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.innerHTML = original;
+        btn.style.background = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 5000);
+    }
+
+    // Smooth active nav link highlight
+    const sections = document.querySelectorAll('section[id], div[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--gold)' : '';
+      });
+    });
+  </script>
+
+</body>
+</html>
