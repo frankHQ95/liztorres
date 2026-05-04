@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seguro de Gastos Médicos Mayores | Mirae Asesores</title>
+  <meta name="description" content="Protege tu salud y la de tu familia con un Seguro de Gastos Médicos Mayores. Hospitalizaciones, cirugías, medicamentos y más. Asesoría gratuita con Mirae Asesores." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue-dark:  #111827;
+      --blue:       #3B82F6;
+      --blue-mid:   #2563EB;
+      --blue-light: #60A5FA;
+      --gold:       #CDAA2B;
+      --gold-light: #DDB93E;
+      --gold-dark:  #A88C22;
+      --red:        #DC2626;
+      --red-light:  #EF4444;
+      --red-soft:   #FEE2E2;
+      --white:      #ffffff;
+      --off-white:  #DBEAFE;
+      --gray-light: #EFF6FF;
+      --gray:       #6B7280;
+      --text:       #111827;
+      --text-soft:  #374151;
+      --radius:     16px;
+      --shadow:     0 8px 32px rgba(17,24,39,.12);
+      --shadow-lg:  0 16px 48px rgba(17,24,39,.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
+    .section-sm { padding: 64px 0; }
+    .section-tag {
+      display: inline-block;
+      font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: .75rem; letter-spacing: .12em; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 100px; margin-bottom: 16px;
+    }
+    .tag-red  { background: rgba(220,38,38,.12); color: var(--red); }
+    .tag-gold { background: rgba(205,170,43,.15); color: var(--gold-dark); }
+    .section-title {
+      font-family: 'Montserrat', sans-serif; font-weight: 800;
+      font-size: clamp(1.75rem, 4vw, 2.75rem); line-height: 1.15; color: var(--blue-dark);
+    }
+    .section-title span { color: var(--red); }
+    .section-title .gold { color: var(--gold); }
+    .section-sub { font-size: 1.05rem; color: var(--text-soft); line-height: 1.7; max-width: 580px; }
+    .text-center { text-align: center; }
+    .text-center .section-sub { margin: 0 auto; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 15px 32px; border-radius: 100px;
+      font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .95rem;
+      cursor: pointer; transition: transform .2s, box-shadow .2s, background .2s;
+      border: none; white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-red { background: var(--red); color: var(--white); box-shadow: 0 6px 24px rgba(220,38,38,.35); }
+    .btn-red:hover { background: var(--red-light); box-shadow: 0 10px 32px rgba(220,38,38,.45); }
+    .btn-outline-white { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,.6); }
+    .btn-outline-white:hover { background: rgba(255,255,255,.1); border-color: var(--white); }
+    .btn-wa { background: #25D366; color: var(--white); box-shadow: 0 6px 24px rgba(37,211,102,.35); }
+    .btn-wa:hover { background: #1ebe5d; }
+    .btn-sm { padding: 11px 24px; font-size: .85rem; }
+
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; transition: background .3s, box-shadow .3s; }
+    .nav.scrolled { background: var(--white); box-shadow: 0 2px 20px rgba(17,24,39,.1); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .nav-logo-icon { width: 42px; height: 42px; background: var(--red); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .nav-logo-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--white); line-height: 1.15; }
+    .nav.scrolled .nav-logo-text { color: var(--blue-dark); }
+    .nav-logo-sub { font-size: .65rem; font-weight: 500; letter-spacing: .06em; color: rgba(255,255,255,.75); text-transform: uppercase; }
+    .nav.scrolled .nav-logo-sub { color: var(--gray); }
+    .nav-back { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: .85rem; color: rgba(255,255,255,.8); display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; transition: color .2s, background .2s; }
+    .nav.scrolled .nav-back { color: var(--text-soft); }
+    .nav-back:hover { color: var(--red); background: rgba(220,38,38,.08); }
+    .nav-cta { display: flex; align-items: center; gap: 10px; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1a0a0a 0%, #3b0d0d 45%, #7f1d1d 100%);
+      display: flex; align-items: center; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 70% at 75% 45%, rgba(220,38,38,.15) 0%, transparent 70%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-shape { position: absolute; border-radius: 50%; opacity: .05; background: var(--white); }
+    .hero-shape-1 { width: 700px; height: 700px; top: -250px; right: -150px; }
+    .hero-shape-2 { width: 350px; height: 350px; bottom: -100px; left: -80px; }
+
+    .hero-inner {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center; padding: 120px 0 80px;
+    }
+    .hero-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: .8rem; color: rgba(255,255,255,.5); margin-bottom: 20px; }
+    .hero-breadcrumb a { color: rgba(255,255,255,.5); transition: color .2s; }
+    .hero-breadcrumb a:hover { color: var(--red-light); }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(220,38,38,.2); border: 1px solid rgba(220,38,38,.4); color: #fca5a5; font-size: .8rem; font-weight: 600; padding: 8px 18px; border-radius: 100px; margin-bottom: 24px; }
+    .hero-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.1; color: var(--white); margin-bottom: 20px; }
+    .hero-title .accent { color: #fca5a5; }
+    .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,.8); line-height: 1.7; margin-bottom: 36px; max-width: 480px; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+    .hero-pill { display: flex; gap: 20px; flex-wrap: wrap; }
+    .hero-pill-item { display: flex; align-items: center; gap: 8px; font-size: .82rem; color: rgba(255,255,255,.7); font-weight: 500; }
+    .hero-pill-dot { width: 6px; height: 6px; background: #fca5a5; border-radius: 50%; flex-shrink: 0; }
+
+    /* HERO VISUAL CARD */
+    .hero-card { background: rgba(255,255,255,.08); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,.15); border-radius: 24px; padding: 36px; box-shadow: 0 24px 64px rgba(0,0,0,.25); }
+    .hero-card-label { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .75rem; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 20px; }
+    .hero-coverage-items { display: flex; flex-direction: column; gap: 12px; }
+    .hero-coverage-item { display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,.07); border-radius: 12px; padding: 14px 16px; }
+    .hero-coverage-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+    .hero-coverage-label { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: .88rem; color: var(--white); }
+    .hero-coverage-desc { font-size: .75rem; color: rgba(255,255,255,.55); margin-top: 2px; }
+    .hero-coverage-check { margin-left: auto; color: #86efac; font-size: 1rem; }
+
+    /* TRUST BAR */
+    .trust-bar { background: var(--blue-dark); padding: 20px 0; }
+    .trust-inner { display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
+    .trust-item { display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,.75); font-size: .85rem; font-weight: 500; }
+    .trust-divider { width: 1px; height: 24px; background: rgba(255,255,255,.15); }
+
+    /* WHAT COVERS */
+    .covers { background: var(--off-white); }
+    .covers-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 56px; }
+    .cover-card { background: var(--white); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow); text-align: center; transition: transform .3s, box-shadow .3s; position: relative; overflow: hidden; }
+    .cover-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
+    .cover-card-1::before { background: linear-gradient(90deg, var(--red), var(--red-light)); }
+    .cover-card-2::before { background: linear-gradient(90deg, #9333ea, #c084fc); }
+    .cover-card-3::before { background: linear-gradient(90deg, var(--blue), var(--blue-light)); }
+    .cover-card-4::before { background: linear-gradient(90deg, #16a34a, #4ade80); }
+    .cover-card-5::before { background: linear-gradient(90deg, #d97706, #fbbf24); }
+    .cover-card-6::before { background: linear-gradient(90deg, var(--gold-dark), var(--gold-light)); }
+    .cover-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .cover-icon { width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.7rem; margin: 0 auto 18px; }
+    .cover-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1rem; color: var(--blue-dark); margin-bottom: 8px; }
+    .cover-desc { font-size: .88rem; color: var(--text-soft); line-height: 1.65; }
+
+    /* TYPES */
+    .types { background: var(--white); }
+    .types-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .types-list { margin-top: 32px; display: flex; flex-direction: column; gap: 20px; }
+    .type-item { display: flex; gap: 16px; align-items: flex-start; padding: 20px; border-radius: 14px; border: 1.5px solid var(--gray-light); transition: border-color .3s, box-shadow .3s; }
+    .type-item:hover { border-color: var(--red); box-shadow: var(--shadow); }
+    .type-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+    .type-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .95rem; color: var(--blue-dark); margin-bottom: 6px; }
+    .type-desc { font-size: .87rem; color: var(--text-soft); line-height: 1.6; }
+    .types-card { background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%); border-radius: 24px; padding: 40px; color: var(--white); }
+    .types-card-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.3rem; margin-bottom: 6px; }
+    .types-card-sub { font-size: .85rem; color: rgba(255,255,255,.65); margin-bottom: 28px; }
+    .types-card-items { display: flex; flex-direction: column; gap: 14px; }
+    .types-card-item { display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,.1); border-radius: 12px; padding: 14px 16px; }
+    .types-card-item-icon { font-size: 1.2rem; flex-shrink: 0; }
+    .types-card-item-text { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: .88rem; }
+
+    /* COST OF NOT HAVING */
+    .cost-band { background: var(--blue-dark); color: var(--white); position: relative; overflow: hidden; }
+    .cost-band::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 20% 50%, rgba(220,38,38,.08) 0%, transparent 70%); }
+    .cost-inner { position: relative; z-index: 1; }
+    .cost-header { text-align: center; margin-bottom: 56px; }
+    .cost-header .section-title { color: var(--white); }
+    .cost-intro { font-size: 1rem; color: rgba(255,255,255,.7); line-height: 1.7; text-align: center; max-width: 600px; margin: 16px auto 0; }
+    .cost-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .cost-card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius); padding: 32px; text-align: center; transition: background .3s; }
+    .cost-card:hover { background: rgba(255,255,255,.1); }
+    .cost-icon { font-size: 2.5rem; margin-bottom: 16px; }
+    .cost-situation { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1rem; color: var(--white); margin-bottom: 8px; }
+    .cost-amount { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.8rem; color: #fca5a5; margin-bottom: 8px; line-height: 1; }
+    .cost-label { font-size: .8rem; color: rgba(255,255,255,.55); line-height: 1.5; }
+    .cost-cta { text-align: center; margin-top: 48px; }
+    .cost-legal { font-size: .75rem; color: rgba(255,255,255,.35); margin-top: 16px; }
+
+    /* FOR WHOM */
+    .whom { background: var(--off-white); }
+    .whom-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; margin-top: 48px; }
+    .whom-card { border: 1.5px solid var(--gray-light); border-radius: var(--radius); padding: 28px 32px; display: flex; gap: 18px; align-items: flex-start; transition: border-color .3s, box-shadow .3s, transform .3s; background: var(--white); }
+    .whom-card:hover { border-color: var(--red); box-shadow: var(--shadow); transform: translateY(-3px); }
+    .whom-icon { font-size: 1.8rem; flex-shrink: 0; margin-top: 2px; }
+    .whom-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1rem; color: var(--blue-dark); margin-bottom: 6px; }
+    .whom-desc { font-size: .88rem; color: var(--text-soft); line-height: 1.65; }
+
+    /* PROCESS */
+    .process { background: var(--white); }
+    .process-header { text-align: center; margin-bottom: 56px; }
+    .process-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 32px; position: relative; }
+    .process-steps::before { content: ''; position: absolute; top: 32px; left: 10%; right: 10%; height: 2px; background: linear-gradient(90deg, var(--red-light), var(--gold)); }
+    .process-step { text-align: center; position: relative; z-index: 1; }
+    .process-step-num { width: 64px; height: 64px; background: var(--white); border: 3px solid var(--red); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--red); margin: 0 auto 20px; box-shadow: var(--shadow); transition: background .3s, color .3s; }
+    .process-step:hover .process-step-num { background: var(--red); color: var(--white); }
+    .process-step-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .95rem; color: var(--blue-dark); margin-bottom: 8px; }
+    .process-step-desc { font-size: .85rem; color: var(--text-soft); line-height: 1.6; }
+
+    /* FAQ */
+    .faq { background: var(--off-white); }
+    .faq-header { text-align: center; margin-bottom: 48px; }
+    .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(17,24,39,.06); }
+    .faq-question { width: 100%; background: none; border: none; padding: 22px 28px; display: flex; align-items: center; justify-content: space-between; gap: 16px; cursor: pointer; text-align: left; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .95rem; color: var(--blue-dark); transition: color .2s; }
+    .faq-question:hover { color: var(--red); }
+    .faq-icon { width: 28px; height: 28px; border-radius: 50%; background: var(--off-white); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.2rem; color: var(--red); transition: transform .3s, background .3s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--red); color: var(--white); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height .4s ease; font-size: .9rem; color: var(--text-soft); line-height: 1.75; }
+    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-answer-inner { padding: 0 28px 22px; }
+
+    /* TESTIMONIALS */
+    .testimonials { background: var(--white); }
+    .testimonials-header { text-align: center; margin-bottom: 56px; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .testimonial-card { background: var(--off-white); border-radius: var(--radius); padding: 32px; transition: box-shadow .3s; }
+    .testimonial-card:hover { box-shadow: var(--shadow); }
+    .testimonial-quote { font-size: 3rem; line-height: 1; color: var(--red); font-family: Georgia, serif; margin-bottom: 12px; }
+    .testimonial-stars { display: flex; gap: 4px; margin-bottom: 16px; }
+    .star { color: var(--gold); font-size: 1rem; }
+    .testimonial-text { font-size: .92rem; color: var(--text-soft); line-height: 1.75; margin-bottom: 24px; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--red) 0%, #f87171 100%); display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--white); font-size: .9rem; }
+    .testimonial-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .9rem; color: var(--blue-dark); }
+    .testimonial-role { font-size: .78rem; color: var(--gray); margin-top: 2px; }
+
+    /* CTA BAND */
+    .cta-band { background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 60%, #b91c1c 100%); position: relative; overflow: hidden; }
+    .cta-band::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(205,170,43,.12) 0%, transparent 70%); }
+    .cta-band-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; padding: 72px 0; }
+    .cta-band-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: var(--white); line-height: 1.2; margin-bottom: 12px; }
+    .cta-band-title span { color: var(--gold-light); }
+    .cta-band-sub { font-size: 1rem; color: rgba(255,255,255,.75); line-height: 1.6; }
+    .cta-band-actions { display: flex; flex-direction: column; gap: 12px; min-width: 220px; }
+    .btn-gold { background: var(--gold); color: var(--white); box-shadow: 0 6px 24px rgba(205,170,43,.4); }
+    .btn-gold:hover { background: var(--gold-light); }
+
+    /* CONTACT */
+    .contact { background: var(--off-white); }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .contact-items { margin-top: 32px; display: flex; flex-direction: column; gap: 20px; }
+    .contact-item { display: flex; align-items: center; gap: 16px; }
+    .contact-item-icon { width: 48px; height: 48px; background: var(--white); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; box-shadow: var(--shadow); flex-shrink: 0; }
+    .contact-item-label { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: .8rem; color: var(--gray); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
+    .contact-item-value { font-weight: 600; color: var(--blue-dark); font-size: .95rem; }
+    .contact-form-wrap { background: var(--white); border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow); }
+    .contact-form-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--blue-dark); margin-bottom: 8px; }
+    .contact-form-sub { font-size: .85rem; color: var(--text-soft); margin-bottom: 28px; line-height: 1.6; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: .83rem; font-weight: 600; color: var(--text-soft); margin-bottom: 6px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 16px; border: 1.5px solid var(--gray-light); border-radius: 10px; font-family: 'Inter', sans-serif; font-size: .9rem; color: var(--text); outline: none; transition: border-color .2s, box-shadow .2s; background: var(--white); resize: vertical; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(220,38,38,.1); }
+    .form-submit { width: 100%; margin-top: 8px; justify-content: center; font-size: 1rem; padding: 16px; }
+
+    /* FOOTER */
+    .footer { background: var(--blue-dark); color: rgba(255,255,255,.7); padding: 56px 0 28px; }
+    .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 48px; }
+    .footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .footer-logo-icon { width: 40px; height: 40px; background: var(--red); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .footer-logo-name { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1rem; color: var(--white); }
+    .footer-tagline { font-size: .88rem; line-height: 1.7; margin-bottom: 24px; max-width: 280px; }
+    .footer-social { display: flex; gap: 10px; }
+    .footer-social-btn { width: 38px; height: 38px; background: rgba(255,255,255,.08); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: background .2s; cursor: pointer; }
+    .footer-social-btn:hover { background: var(--red); }
+    .footer-col-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .9rem; color: var(--white); margin-bottom: 18px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-links a { font-size: .87rem; color: rgba(255,255,255,.6); transition: color .2s; }
+    .footer-links a:hover { color: var(--red-light); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.08); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: .82rem; }
+    .footer-bottom-legal { display: flex; gap: 20px; }
+    .footer-bottom-legal a { color: rgba(255,255,255,.45); transition: color .2s; }
+    .footer-bottom-legal a:hover { color: var(--white); }
+
+    /* Floating WA */
+    .wa-float { position: fixed; bottom: 28px; right: 28px; z-index: 900; display: flex; align-items: center; gap: 12px; }
+    .wa-float-label { background: var(--white); color: var(--text); font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: .82rem; padding: 8px 16px; border-radius: 100px; box-shadow: var(--shadow); opacity: 0; transform: translateX(10px); transition: opacity .3s, transform .3s; white-space: nowrap; }
+    .wa-float:hover .wa-float-label { opacity: 1; transform: translateX(0); }
+    .wa-float-btn { width: 58px; height: 58px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 24px rgba(37,211,102,.45); transition: transform .2s; cursor: pointer; position: relative; }
+    .wa-float-btn:hover { transform: scale(1.1); }
+    .wa-ripple { position: absolute; width: 100%; height: 100%; border-radius: 50%; background: #25D366; animation: wa-ripple 2s ease-out infinite; z-index: -1; }
+    @keyframes wa-ripple { 0% { transform: scale(1); opacity: .4; } 100% { transform: scale(1.8); opacity: 0; } }
+
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; padding: 110px 0 60px; }
+      .covers-grid { grid-template-columns: repeat(2,1fr); }
+      .types-inner { grid-template-columns: 1fr; }
+      .types-visual { display: none; }
+      .cost-cards { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+      .whom-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: repeat(2,1fr); }
+      .process-steps::before { display: none; }
+      .testimonials-grid { grid-template-columns: 1fr 1fr; }
+      .contact-inner { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .cta-band-inner { grid-template-columns: 1fr; text-align: center; }
+      .cta-band-actions { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+    }
+    @media (max-width: 768px) {
+      .section { padding: 72px 0; }
+      .covers-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .trust-divider { display: none; }
+    }
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; }
+      .btn { justify-content: center; }
+      .process-steps { grid-template-columns: 1fr; }
+    }
+
+    /* ── COMPARISON TABLE ───────────────────────────────────── */
+    .comparison { background: var(--white); }
+    .comparison-header { text-align: center; margin-bottom: 48px; }
+    .comparison-note {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(205,170,43,.12); border: 1px solid rgba(205,170,43,.3);
+      color: var(--gold-dark); font-size: .8rem; font-weight: 600;
+      padding: 8px 18px; border-radius: 100px; margin-top: 16px;
+    }
+    .table-wrap { overflow-x: auto; border-radius: var(--radius); box-shadow: var(--shadow); }
+    .comp-table {
+      width: 100%; border-collapse: collapse; background: var(--white);
+      font-size: .88rem;
+    }
+    .comp-table thead tr { background: var(--blue-dark); }
+    .comp-table thead th {
+      padding: 16px 20px; text-align: left;
+      font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: .78rem; text-transform: uppercase; letter-spacing: .07em;
+      color: rgba(255,255,255,.75); white-space: nowrap;
+    }
+    .comp-table thead th:first-child { color: var(--white); }
+    .comp-table tbody tr { border-bottom: 1px solid var(--gray-light); transition: background .2s; }
+    .comp-table tbody tr:last-child { border-bottom: none; }
+    .comp-table tbody tr:hover { background: var(--off-white); }
+    .comp-table td { padding: 18px 20px; vertical-align: middle; }
+    .comp-insurer { display: flex; align-items: center; gap: 12px; }
+    .comp-insurer-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .comp-insurer-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .9rem; color: var(--blue-dark); }
+    .comp-insurer-plan { font-size: .75rem; color: var(--gray); margin-top: 2px; }
+    .comp-price { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1rem; color: var(--blue-dark); }
+    .comp-price-mo { font-size: .72rem; color: var(--gray); font-weight: 400; margin-top: 2px; }
+    .comp-tag {
+      display: inline-block; font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: .68rem; padding: 3px 10px; border-radius: 100px;
+    }
+    .comp-tag-best { background: rgba(22,163,74,.12); color: #16a34a; }
+    .comp-tag-pop  { background: rgba(59,130,246,.12); color: var(--blue-mid); }
+    .comp-table tfoot td {
+      padding: 14px 20px; font-size: .75rem; color: var(--gray);
+      background: var(--off-white); border-top: 1px solid var(--gray-light);
+    }
+
+    /* ── KEY VARIABLES ──────────────────────────────────────── */
+    .variables { background: var(--off-white); }
+    .variables-header { text-align: center; margin-bottom: 48px; }
+    .variables-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .var-card {
+      background: var(--white); border-radius: var(--radius); padding: 28px;
+      box-shadow: var(--shadow); border-top: 3px solid transparent;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .var-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .var-card-1 { border-top-color: var(--red); }
+    .var-card-2 { border-top-color: var(--blue); }
+    .var-card-3 { border-top-color: #9333ea; }
+    .var-card-4 { border-top-color: #16a34a; }
+    .var-card-5 { border-top-color: #d97706; }
+    .var-card-6 { border-top-color: var(--gold); }
+    .var-icon { font-size: 1.8rem; margin-bottom: 14px; }
+    .var-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .95rem; color: var(--blue-dark); margin-bottom: 8px; }
+    .var-desc { font-size: .86rem; color: var(--text-soft); line-height: 1.65; }
+    .var-tip { font-size: .78rem; color: var(--gray); margin-top: 10px; font-style: italic; }
+
+    /* ── SWITCH SECTION ─────────────────────────────────────── */
+    .switch-sec { background: var(--white); }
+    .switch-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .switch-cards { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+    .switch-card {
+      display: flex; gap: 18px; align-items: flex-start;
+      background: var(--off-white); border-radius: 14px; padding: 20px 22px;
+      border-left: 4px solid transparent; transition: border-color .2s, box-shadow .2s;
+    }
+    .switch-card:hover { border-left-color: var(--red); box-shadow: var(--shadow); }
+    .switch-card-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+    .switch-card-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .92rem; color: var(--blue-dark); margin-bottom: 4px; }
+    .switch-card-desc { font-size: .86rem; color: var(--text-soft); line-height: 1.6; }
+    .switch-visual {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, #1e3a5f 100%);
+      border-radius: 24px; padding: 40px; color: var(--white);
+    }
+    .switch-visual-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.2rem; margin-bottom: 6px; }
+    .switch-visual-sub { font-size: .85rem; color: rgba(255,255,255,.6); margin-bottom: 28px; }
+    .switch-stat { background: rgba(255,255,255,.08); border-radius: 12px; padding: 16px 18px; margin-bottom: 12px; display: flex; align-items: center; gap: 14px; }
+    .switch-stat-num { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.6rem; color: var(--gold-light); flex-shrink: 0; min-width: 56px; }
+    .switch-stat-label { font-size: .85rem; color: rgba(255,255,255,.8); line-height: 1.45; }
+
+    /* ── INSURERS BAND ──────────────────────────────────────── */
+    .insurers { background: var(--white); padding: 56px 0; border-top: 1px solid var(--gray-light); border-bottom: 1px solid var(--gray-light); }
+    .insurers-label { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .78rem; color: var(--gray); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 36px; text-align: center; }
+    .insurers-grid { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; align-items: center; }
+    .insurer-logo-card {
+      background: var(--white); border: 1.5px solid var(--gray-light);
+      border-radius: 14px; padding: 16px 28px;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color .25s, box-shadow .25s, transform .25s;
+      box-shadow: 0 2px 8px rgba(17,24,39,.06);
+      min-width: 160px; height: 72px;
+    }
+    .insurer-logo-card:hover { border-color: var(--blue-light); box-shadow: var(--shadow); transform: translateY(-3px); }
+    .insurer-logo-card img { max-height: 40px; max-width: 140px; width: auto; object-fit: contain; filter: grayscale(20%); transition: filter .25s; }
+    .insurer-logo-card:hover img { filter: grayscale(0%); }
+
+    /* Responsive additions */
+    @media (max-width: 1024px) {
+      .variables-grid { grid-template-columns: repeat(2,1fr); }
+      .switch-inner { grid-template-columns: 1fr; }
+      .switch-visual { display: none; }
+    }
+    @media (max-width: 768px) {
+      .variables-grid { grid-template-columns: 1fr; }
+      .table-wrap { font-size: .8rem; }
+      .comp-table td, .comp-table th { padding: 12px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <div class="nav-logo-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11.35C16.5 22.15 20 17.25 20 12V6l-8-4z"/></svg>
+          </div>
+          <div>
+            <div class="nav-logo-text">Mirae Asesores</div>
+            <div class="nav-logo-sub">Seguros, Ahorro e Inversión</div>
+          </div>
+        </a>
+        <a href="index.html" class="nav-back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Regresar al inicio
+        </a>
+        <div class="nav-cta">
+          <a href="#cotizar" class="btn btn-red btn-sm">Cotizar mi Seguro</a>
+          <a href="https://wa.me/message/L72YZKC2BBKRG1" class="btn btn-wa btn-sm">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-shape hero-shape-1"></div>
+    <div class="hero-shape hero-shape-2"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <div>
+          <div class="hero-breadcrumb">
+            <a href="index.html">Inicio</a>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            <span>Gastos Médicos Mayores</span>
+          </div>
+          <div class="hero-badge">❤️ Seguro de Gastos Médicos Mayores</div>
+          <h1 class="hero-title">
+            Cuida tu salud sin<br>que tu bolsillo<br><span class="accent">sufra las consecuencias</span>
+          </h1>
+          <p class="hero-sub">
+            Una hospitalización inesperada puede costar cientos de miles de pesos. Con un Seguro de Gastos Médicos Mayores, tú y tu familia están cubiertos ante cualquier emergencia — en los mejores hospitales del país.
+          </p>
+          <div class="hero-actions">
+            <a href="#cotizar" class="btn btn-red">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Cotizar mi seguro gratis
+            </a>
+            <a href="#" class="btn btn-outline-white">
+              Hablar con un asesor
+            </a>
+          </div>
+          <div class="hero-pill">
+            <div class="hero-pill-item"><div class="hero-pill-dot"></div>Sin deducible en urgencias</div>
+            <div class="hero-pill-item"><div class="hero-pill-dot"></div>Red de hospitales privados</div>
+            <div class="hero-pill-item"><div class="hero-pill-dot"></div>Atención 24/7</div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-card-label">🏥 ¿Qué cubre tu seguro?</div>
+          <div class="hero-coverage-items">
+            <div class="hero-coverage-item">
+              <div class="hero-coverage-icon" style="background:rgba(220,38,38,.2)">🏥</div>
+              <div>
+                <div class="hero-coverage-label">Hospitalización</div>
+                <div class="hero-coverage-desc">Cuarto, médico tratante, enfermería</div>
+              </div>
+              <div class="hero-coverage-check">✓</div>
+            </div>
+            <div class="hero-coverage-item">
+              <div class="hero-coverage-icon" style="background:rgba(147,51,234,.2)">🔬</div>
+              <div>
+                <div class="hero-coverage-label">Estudios y laboratorio</div>
+                <div class="hero-coverage-desc">Análisis, resonancias, tomografías</div>
+              </div>
+              <div class="hero-coverage-check">✓</div>
+            </div>
+            <div class="hero-coverage-item">
+              <div class="hero-coverage-icon" style="background:rgba(59,130,246,.2)">💊</div>
+              <div>
+                <div class="hero-coverage-label">Medicamentos</div>
+                <div class="hero-coverage-desc">Durante la hospitalización</div>
+              </div>
+              <div class="hero-coverage-check">✓</div>
+            </div>
+            <div class="hero-coverage-item">
+              <div class="hero-coverage-icon" style="background:rgba(22,163,74,.2)">🚑</div>
+              <div>
+                <div class="hero-coverage-label">Urgencias y traslado</div>
+                <div class="hero-coverage-desc">Ambulancia y atención de emergencia</div>
+              </div>
+              <div class="hero-coverage-check">✓</div>
+            </div>
+            <div class="hero-coverage-item">
+              <div class="hero-coverage-icon" style="background:rgba(217,119,6,.2)">🩺</div>
+              <div>
+                <div class="hero-coverage-label">Honorarios médicos</div>
+                <div class="hero-coverage-desc">Cirujano, anestesiólogo, especialistas</div>
+              </div>
+              <div class="hero-coverage-check">✓</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="container">
+      <div class="trust-inner">
+        <div class="trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#86efac" stroke-width="2"><path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11.35C16.5 22.15 20 17.25 20 12V6l-8-4z"/></svg>
+          Agente certificada CNSF
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#86efac" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+          Hospitales privados de primer nivel
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#86efac" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          Asistencia médica 24/7
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#86efac" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Múltiples aseguradoras comparadas
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT COVERS -->
+  <section class="section covers">
+    <div class="container">
+      <div class="text-center">
+        <div class="section-tag tag-red">Cobertura completa</div>
+        <h2 class="section-title">Todo lo que incluye<br>tu seguro <span>médico</span></h2>
+        <p class="section-sub">Un buen Seguro de Gastos Médicos Mayores cubre mucho más de lo que imaginas. Esto es lo que recibes:</p>
+      </div>
+      <div class="covers-grid">
+        <div class="cover-card cover-card-1 fade-up">
+          <div class="cover-icon" style="background:rgba(220,38,38,.1)">🏥</div>
+          <div class="cover-title">Hospitalización</div>
+          <div class="cover-desc">Cuarto privado, médico tratante, enfermería y todos los servicios durante tu internamiento, sin límite de días según tu plan.</div>
+        </div>
+        <div class="cover-card cover-card-2 fade-up" style="transition-delay:.08s">
+          <div class="cover-icon" style="background:rgba(147,51,234,.1)">🔬</div>
+          <div class="cover-title">Estudios de diagnóstico</div>
+          <div class="cover-desc">Resonancias magnéticas, tomografías, análisis de laboratorio, rayos X y todos los estudios necesarios para tu diagnóstico.</div>
+        </div>
+        <div class="cover-card cover-card-3 fade-up" style="transition-delay:.16s">
+          <div class="cover-icon" style="background:rgba(59,130,246,.1)">💊</div>
+          <div class="cover-title">Medicamentos</div>
+          <div class="cover-desc">Los medicamentos administrados durante tu hospitalización están cubiertos. Algunos planes incluyen medicamentos ambulatorios de alto costo.</div>
+        </div>
+        <div class="cover-card cover-card-4 fade-up" style="transition-delay:.24s">
+          <div class="cover-icon" style="background:rgba(22,163,74,.1)">🚑</div>
+          <div class="cover-title">Urgencias y traslados</div>
+          <div class="cover-desc">Atención de emergencia, servicio de ambulancia y traslado a hospitales dentro de la red. Disponible las 24 horas del día.</div>
+        </div>
+        <div class="cover-card cover-card-5 fade-up" style="transition-delay:.32s">
+          <div class="cover-icon" style="background:rgba(217,119,6,.1)">🩺</div>
+          <div class="cover-title">Honorarios médicos</div>
+          <div class="cover-desc">Cirujano, anestesiólogo, médico internista y todos los especialistas que participen en tu tratamiento están cubiertos.</div>
+        </div>
+        <div class="cover-card cover-card-6 fade-up" style="transition-delay:.4s">
+          <div class="cover-icon" style="background:rgba(205,170,43,.1)">🦷</div>
+          <div class="cover-title">Coberturas adicionales</div>
+          <div class="cover-desc">Maternidad, enfermedades crónicas, rehabilitación, atención dental de emergencia y más — dependiendo del plan que elijas.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON TABLE -->
+  <section class="section comparison">
+    <div class="container">
+      <div class="comparison-header">
+        <div class="section-tag tag-red">Comparativa de aseguradoras</div>
+        <h2 class="section-title">Precios reales, coberturas<br><span>claras y sin letra chica</span></h2>
+        <p class="section-sub text-center" style="margin:16px auto 0">Comparamos las principales aseguradoras del mercado para que tú elijas con información completa. El precio importa, pero la estructura lo es todo.</p>
+        <div class="comparison-note">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Referencia: adulto de 35 años, plan individual · Precios aproximados 2024
+        </div>
+      </div>
+      <div class="table-wrap fade-up">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Aseguradora · Plan</th>
+              <th>Prima anual</th>
+              <th>Suma asegurada</th>
+              <th>Deducible</th>
+              <th>Coaseguro</th>
+              <th>Tabulador</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="comp-insurer">
+                  <div class="comp-insurer-dot" style="background:#dc2626"></div>
+                  <div>
+                    <div class="comp-insurer-name">GNP Seguros</div>
+                    <div class="comp-insurer-plan">Nivel Amplio</div>
+                  </div>
+                </div>
+              </td>
+              <td><div class="comp-price">$21,594</div><div class="comp-price-mo">~$1,800 / mes</div></td>
+              <td>$93.3 millones</td>
+              <td>$21,000 variable</td>
+              <td>10% hasta $30,000</td>
+              <td>GAMMA</td>
+              <td><span class="comp-tag comp-tag-best">Mejor precio</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="comp-insurer">
+                  <div class="comp-insurer-dot" style="background:#3B82F6"></div>
+                  <div>
+                    <div class="comp-insurer-name">Bupa</div>
+                    <div class="comp-insurer-plan">Nivel Vital</div>
+                  </div>
+                </div>
+              </td>
+              <td><div class="comp-price">$23,910</div><div class="comp-price-mo">~$1,993 / mes</div></td>
+              <td>$10 millones</td>
+              <td>$0 (sin deducible)</td>
+              <td>20% hasta $50,000</td>
+              <td>Solo Red</td>
+              <td><span class="comp-tag comp-tag-pop">Sin deducible</span></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="comp-insurer">
+                  <div class="comp-insurer-dot" style="background:#CDAA2B"></div>
+                  <div>
+                    <div class="comp-insurer-name">Allianz</div>
+                    <div class="comp-insurer-plan">Tabulador 200%</div>
+                  </div>
+                </div>
+              </td>
+              <td><div class="comp-price">$25,490</div><div class="comp-price-mo">~$2,124 / mes</div></td>
+              <td>$160 millones</td>
+              <td>$47,500</td>
+              <td>10% hasta $40,000</td>
+              <td>200%</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="comp-insurer">
+                  <div class="comp-insurer-dot" style="background:#9333ea"></div>
+                  <div>
+                    <div class="comp-insurer-name">AXA</div>
+                    <div class="comp-insurer-plan">Nivel Diamante</div>
+                  </div>
+                </div>
+              </td>
+              <td><div class="comp-price">$25,860</div><div class="comp-price-mo">~$2,155 / mes</div></td>
+              <td>$180 millones</td>
+              <td>$39,500</td>
+              <td>10% hasta $50,000</td>
+              <td>ROBLE 100</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <div class="comp-insurer">
+                  <div class="comp-insurer-dot" style="background:#16a34a"></div>
+                  <div>
+                    <div class="comp-insurer-name">Monterrey NY Life</div>
+                    <div class="comp-insurer-plan">Nivel Íntegro</div>
+                  </div>
+                </div>
+              </td>
+              <td><div class="comp-price">$30,079</div><div class="comp-price-mo">~$2,507 / mes</div></td>
+              <td>$170 millones</td>
+              <td>$41,000</td>
+              <td>10% hasta $60,000</td>
+              <td>C</td>
+              <td></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="7">⚠️ Precios ilustrativos sujetos a cambio según perfil, aseguradora y vigencia. Solicita tu cotización personalizada para conocer tu precio exacto.</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div style="text-align:center;margin-top:36px">
+        <a href="#cotizar" class="btn btn-red">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Quiero mi cotización exacta
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY VARIABLES -->
+  <section class="section variables">
+    <div class="container">
+      <div class="variables-header">
+        <div class="section-tag tag-gold">Antes de contratar</div>
+        <h2 class="section-title">Lo que debes entender<br>para elegir <span class="gold">bien</span></h2>
+        <p class="section-sub text-center" style="margin:16px auto 0">El precio de la prima no lo es todo. Estos son los factores reales que determinan qué tan bueno es tu seguro cuando más lo necesitas.</p>
+      </div>
+      <div class="variables-grid">
+        <div class="var-card var-card-1 fade-up">
+          <div class="var-icon">💸</div>
+          <div class="var-title">Deducible</div>
+          <div class="var-desc">Es la cantidad que tú pagas antes de que el seguro arranque. A mayor deducible, menor prima anual — pero mayor gasto de bolsillo en una emergencia.</div>
+          <div class="var-tip">Tip: elige un deducible que puedas pagar sin problema si ocurre una emergencia.</div>
+        </div>
+        <div class="var-card var-card-2 fade-up" style="transition-delay:.08s">
+          <div class="var-icon">📊</div>
+          <div class="var-title">Coaseguro</div>
+          <div class="var-desc">Porcentaje del gasto que compartes con la aseguradora después del deducible, hasta un tope máximo. Ejemplo: 10% hasta $40,000 — nunca pagas más de eso.</div>
+          <div class="var-tip">Tip: verifica el tope del coaseguro, no solo el porcentaje.</div>
+        </div>
+        <div class="var-card var-card-3 fade-up" style="transition-delay:.16s">
+          <div class="var-icon">🏥</div>
+          <div class="var-title">Tabulador médico</div>
+          <div class="var-desc">Define cuánto paga la aseguradora por honorarios médicos. Un tabulador 200% cubre el doble del IMSS; uno C o GAMMA cubre menos — lo que afecta hospitales y médicos disponibles.</div>
+          <div class="var-tip">Tip: el tabulador impacta directamente qué médicos y hospitales puedes usar.</div>
+        </div>
+        <div class="var-card var-card-4 fade-up" style="transition-delay:.24s">
+          <div class="var-icon">🗺️</div>
+          <div class="var-title">Red hospitalaria</div>
+          <div class="var-desc">Lista de hospitales donde tu seguro opera sin restricciones. Fuera de red, el coaseguro puede ser mucho mayor o podrías pagar la diferencia de bolsillo.</div>
+          <div class="var-tip">Tip: verifica si tus hospitales y médicos preferidos están en la red.</div>
+        </div>
+        <div class="var-card var-card-5 fade-up" style="transition-delay:.32s">
+          <div class="var-icon">⏳</div>
+          <div class="var-title">Períodos de espera</div>
+          <div class="var-desc">Tiempo que debes esperar para que ciertas coberturas apliquen (maternidad, enfermedades crónicas). Los accidentes generalmente se cubren desde el día 1.</div>
+          <div class="var-tip">Tip: los accidentes cubren desde día 1; las enfermedades tienen espera de 30 días o más.</div>
+        </div>
+        <div class="var-card var-card-6 fade-up" style="transition-delay:.4s">
+          <div class="var-icon">💰</div>
+          <div class="var-title">Suma asegurada</div>
+          <div class="var-desc">El monto máximo que la aseguradora pagará en el año o por padecimiento. Planes con sumas bajas pueden quedarse cortos ante enfermedades graves o tratamientos prolongados.</div>
+          <div class="var-tip">Tip: para enfermedades graves como cáncer, necesitas al menos $10–$20 millones de cobertura.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPES OF PLANS -->
+  <section class="section types">
+    <div class="container">
+      <div class="types-inner">
+        <div class="types-content fade-up">
+          <div class="section-tag tag-red">Tipos de planes</div>
+          <h2 class="section-title">Encuentra el plan<br><span>ideal para ti</span></h2>
+          <p class="section-sub" style="margin-top:12px">No todos los seguros son iguales. Te explico las diferencias para que elijas el que mejor se adapta a tu situación y presupuesto.</p>
+          <div class="types-list">
+            <div class="type-item">
+              <div class="type-icon" style="background:var(--red-soft)">🏆</div>
+              <div>
+                <div class="type-title">Plan Amplio</div>
+                <div class="type-desc">Máxima cobertura. Suma asegurada alta, red amplia de hospitales, cobertura de enfermedades preexistentes negociadas y sin límite de días de hospitalización.</div>
+              </div>
+            </div>
+            <div class="type-item">
+              <div class="type-icon" style="background:#EFF6FF">⚖️</div>
+              <div>
+                <div class="type-title">Plan Básico Plus</div>
+                <div class="type-desc">El equilibrio ideal entre cobertura y precio. Ideal para familias y personas que buscan protección real sin un gasto excesivo en prima mensual.</div>
+              </div>
+            </div>
+            <div class="type-item">
+              <div class="type-icon" style="background:rgba(205,170,43,.1)">👨‍👩‍👧‍👦</div>
+              <div>
+                <div class="type-title">Plan Familiar</div>
+                <div class="type-desc">Un solo seguro para toda la familia. Cubre a titulares, cónyuge e hijos con beneficios especiales para recién nacidos y maternidad.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="types-visual fade-up" style="transition-delay:.15s">
+          <div class="types-card">
+            <div class="types-card-title">¿Por qué un seguro privado?</div>
+            <div class="types-card-sub">La diferencia que no querrás descubrir en una emergencia</div>
+            <div class="types-card-items">
+              <div class="types-card-item">
+                <div class="types-card-item-icon">🏥</div>
+                <div class="types-card-item-text">Hospitales privados de tu elección</div>
+              </div>
+              <div class="types-card-item">
+                <div class="types-card-item-icon">⚡</div>
+                <div class="types-card-item-text">Atención inmediata, sin listas de espera</div>
+              </div>
+              <div class="types-card-item">
+                <div class="types-card-item-icon">👨‍⚕️</div>
+                <div class="types-card-item-text">Médico especialista de tu confianza</div>
+              </div>
+              <div class="types-card-item">
+                <div class="types-card-item-icon">💰</div>
+                <div class="types-card-item-text">Protección financiera ante gastos catastróficos</div>
+              </div>
+              <div class="types-card-item">
+                <div class="types-card-item-icon">📞</div>
+                <div class="types-card-item-text">Orientación médica telefónica 24/7</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COST OF NOT HAVING IT -->
+  <section class="section cost-band">
+    <div class="container cost-inner">
+      <div class="cost-header">
+        <div class="section-tag tag-red" style="background:rgba(220,38,38,.2);color:#fca5a5">¿Cuánto cuesta no tenerlo?</div>
+        <h2 class="section-title" style="color:var(--white)">El costo real de una <span style="color:#fca5a5">emergencia médica</span></h2>
+        <p class="cost-intro">Una sola hospitalización puede borrar años de ahorro. Estos son costos reales en hospitales privados de México:</p>
+      </div>
+      <div class="cost-cards">
+        <div class="cost-card fade-up">
+          <div class="cost-icon">🦷</div>
+          <div class="cost-situation">Apendicitis con cirugía</div>
+          <div class="cost-amount">$80,000–$150,000</div>
+          <div class="cost-label">Incluye cirugía, hospitalización 2–3 días y recuperación</div>
+        </div>
+        <div class="cost-card fade-up" style="transition-delay:.1s">
+          <div class="cost-icon">❤️</div>
+          <div class="cost-situation">Infarto al corazón</div>
+          <div class="cost-amount">$400,000–$900,000</div>
+          <div class="cost-label">Cateterismo, stents, UCI y hospitalización extendida</div>
+        </div>
+        <div class="cost-card fade-up" style="transition-delay:.2s">
+          <div class="cost-icon">🧠</div>
+          <div class="cost-situation">Tratamiento de cáncer</div>
+          <div class="cost-amount">$1,000,000+</div>
+          <div class="cost-label">Quimioterapia, radioterapia, cirugía y seguimiento</div>
+        </div>
+      </div>
+      <div class="cost-cta fade-up">
+        <a href="#cotizar" class="btn btn-red" style="font-size:1rem;padding:16px 40px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Protegerme desde hoy
+        </a>
+        <p class="cost-legal">Costos ilustrativos basados en rangos de mercado en hospitales privados de México (2024).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR WHOM -->
+  <section class="section whom">
+    <div class="container">
+      <div class="text-center">
+        <div class="section-tag tag-red">¿Es para mí?</div>
+        <h2 class="section-title">Este seguro es para ti si...</h2>
+        <p class="section-sub">No importa tu edad ni tu estado de salud actual. Lo que importa es que empieces antes de necesitarlo.</p>
+      </div>
+      <div class="whom-grid">
+        <div class="whom-card fade-up">
+          <div class="whom-icon">👶</div>
+          <div>
+            <div class="whom-title">"Tengo familia y quiero protegerlos"</div>
+            <div class="whom-desc">Quiero que mis hijos y mi pareja tengan acceso a los mejores hospitales sin que una emergencia nos arruine financieramente.</div>
+          </div>
+        </div>
+        <div class="whom-card fade-up" style="transition-delay:.1s">
+          <div class="whom-icon">💼</div>
+          <div>
+            <div class="whom-title">"Trabajo por mi cuenta y no tengo IMSS"</div>
+            <div class="whom-desc">Como independiente o empresario, no tengo seguridad social. Necesito mi propia cobertura médica de calidad.</div>
+          </div>
+        </div>
+        <div class="whom-card fade-up" style="transition-delay:.2s">
+          <div class="whom-icon">🏥</div>
+          <div>
+            <div class="whom-title">"Prefiero hospitales privados"</div>
+            <div class="whom-desc">Aunque tengo IMSS o ISSSTE, prefiero atenderme en clínicas y hospitales privados con médicos de mi elección.</div>
+          </div>
+        </div>
+        <div class="whom-card fade-up" style="transition-delay:.3s">
+          <div class="whom-icon">🧬</div>
+          <div>
+            <div class="whom-title">"Tengo antecedentes familiares de enfermedades"</div>
+            <div class="whom-desc">En mi familia hay historial de diabetes, hipertensión o cáncer. Quiero estar cubierto antes de que algo se manifieste.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SWITCH SECTION -->
+  <section class="section switch-sec">
+    <div class="container">
+      <div class="switch-inner">
+        <div class="fade-up">
+          <div class="section-tag tag-red">¿Ya tienes un GMM?</div>
+          <h2 class="section-title">Puede que estés<br><span>pagando de más</span></h2>
+          <p class="section-sub" style="margin-top:12px">Cambiar de aseguradora no significa perder lo que has construido. Si llevas años con tu póliza actual, podemos revisar juntos si tienes la mejor opción del mercado.</p>
+          <div class="switch-cards">
+            <div class="switch-card">
+              <div class="switch-card-icon">💰</div>
+              <div>
+                <div class="switch-card-title">Ahorra hasta un 40% en tu prima anual</div>
+                <div class="switch-card-desc">El mercado cambia cada año. Comparamos tu póliza actual contra las mejores opciones disponibles — muchos clientes descubren que pagan más por menos cobertura.</div>
+              </div>
+            </div>
+            <div class="switch-card">
+              <div class="switch-card-icon">🔄</div>
+              <div>
+                <div class="switch-card-title">Tu antigüedad se puede respetar</div>
+                <div class="switch-card-desc">Algunas aseguradoras aceptan la antigüedad de tu póliza anterior, lo que significa que no perderías los beneficios de continuidad al cambiarte.</div>
+              </div>
+            </div>
+            <div class="switch-card">
+              <div class="switch-card-icon">🩺</div>
+              <div>
+                <div class="switch-card-title">Te acompañamos en el proceso</div>
+                <div class="switch-card-desc">Revisamos tu póliza actual, identificamos qué te conviene conservar y qué puedes mejorar, y te guiamos sin presiones en cada paso del cambio.</div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:28px">
+            <a href="#cotizar" class="btn btn-red">Revisar mi póliza actual →</a>
+          </div>
+        </div>
+        <div class="switch-visual fade-up" style="transition-delay:.15s">
+          <div class="switch-visual-title">¿Vale la pena cambiarse?</div>
+          <div class="switch-visual-sub">Resultados reales de clientes que revisaron su GMM con nosotros</div>
+          <div class="switch-stat">
+            <div class="switch-stat-num">40%</div>
+            <div class="switch-stat-label">Ahorro promedio en prima anual al cambiar de aseguradora</div>
+          </div>
+          <div class="switch-stat">
+            <div class="switch-stat-num">3 de 5</div>
+            <div class="switch-stat-label">Personas que revisan su GMM encuentran una mejor opción disponible</div>
+          </div>
+          <div class="switch-stat">
+            <div class="switch-stat-num">72h</div>
+            <div class="switch-stat-label">Tiempo promedio para recibir tu comparativa completa personalizada</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSURERS BAND -->
+  <section class="insurers">
+    <div class="container">
+      <div class="insurers-label">Aseguradoras que comparamos para ti</div>
+      <div class="insurers-grid">
+        <div class="insurer-logo-card">
+          <img src="img/allianz.png" alt="Allianz Distribuidor Autorizado" />
+        </div>
+        <div class="insurer-logo-card">
+          <img src="img/axa.png" alt="AXA Seguros" />
+        </div>
+        <div class="insurer-logo-card">
+          <img src="img/bupa.png" alt="Bupa" />
+        </div>
+        <div class="insurer-logo-card">
+          <img src="img/gnp.png" alt="GNP Seguros" />
+        </div>
+        <div class="insurer-logo-card">
+          <img src="img/monterrey.png" alt="Seguros Monterrey New York Life" />
+        </div>
+      </div>
+      <p style="text-align:center;font-size:.78rem;color:var(--gray);margin-top:24px">La recomendación final depende de tu perfil, ciudad y necesidades. No siempre es la misma aseguradora para todos.</p>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section process">
+    <div class="container">
+      <div class="process-header">
+        <div class="section-tag tag-red">¿Cómo funciona?</div>
+        <h2 class="section-title">Tu seguro médico<br>en <span>4 pasos</span></h2>
+        <p class="section-sub" style="margin:16px auto 0;text-align:center">Sin papeleo complicado, sin visitas innecesarias. Todo rápido y claro.</p>
+      </div>
+      <div class="process-steps">
+        <div class="process-step fade-up">
+          <div class="process-step-num">1</div>
+          <div class="process-step-title">Solicita tu cotización</div>
+          <div class="process-step-desc">Llena el formulario o escríbeme por WhatsApp. Te envío tu propuesta personalizada en menos de 24 horas.</div>
+        </div>
+        <div class="process-step fade-up" style="transition-delay:.1s">
+          <div class="process-step-num">2</div>
+          <div class="process-step-title">Comparamos opciones</div>
+          <div class="process-step-desc">Reviso tu caso con las principales aseguradoras del mercado y te presento las mejores opciones con precios reales.</div>
+        </div>
+        <div class="process-step fade-up" style="transition-delay:.2s">
+          <div class="process-step-num">3</div>
+          <div class="process-step-title">Eliges tu plan</div>
+          <div class="process-step-desc">Con información completa y sin presiones, tú decides qué plan y qué aseguradora se adapta mejor a tus necesidades.</div>
+        </div>
+        <div class="process-step fade-up" style="transition-delay:.3s">
+          <div class="process-step-num">4</div>
+          <div class="process-step-title">Cobertura activa</div>
+          <div class="process-step-desc">Una vez contratado, estoy contigo para cualquier duda, reclamación o ajuste que necesites durante la vigencia.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section faq">
+    <div class="container">
+      <div class="faq-header">
+        <div class="section-tag tag-red">Preguntas frecuentes</div>
+        <h2 class="section-title">Lo que debes saber<br>antes de <span>contratar</span></h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Cuánto cuesta un Seguro de Gastos Médicos Mayores?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">El costo depende de tu edad, el plan elegido y la aseguradora. Un plan individual puede arrancar desde $3,000–$5,000 al año para personas jóvenes. Un plan familiar varía más según el número de integrantes. En tu cotización personalizada te doy rangos exactos con varias opciones.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Cubre enfermedades que ya tengo (preexistentes)?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Depende de la aseguradora y la condición. Algunas enfermedades preexistentes pueden ser excluidas, otras se cubren tras un período de espera, y algunas aseguradoras las aceptan con un ajuste en la prima. Es importante declarar todo al momento de la solicitud para evitar problemas al hacer válida la póliza.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Qué es el deducible y cómo funciona?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">El deducible es la cantidad que pagas de tu bolsillo antes de que el seguro empiece a cubrir. A mayor deducible, menor prima anual. Por ejemplo, si tienes un deducible de $20,000 y tu hospitalización cuesta $150,000, tú pagas los primeros $20,000 y el seguro cubre los $130,000 restantes.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Puedo usar cualquier hospital o médico?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Cada aseguradora tiene una red de hospitales y médicos afiliados. Si usas hospitales fuera de la red, normalmente se aplica un coaseguro mayor o se paga la diferencia. En la asesoría revisamos qué hospitales están disponibles en tu ciudad para que elijas el plan que mejor se ajuste a tus preferencias.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Tengo que pagar primero y luego me reembolsan?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">En la mayoría de los casos no. Con el servicio de hospitalización en red, la aseguradora paga directamente al hospital. Solo pagas el deducible y coaseguro pactado. Para gastos fuera de red o ambulatorios hay un proceso de reembolso, pero en urgencias siempre se prioriza la atención inmediata.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Qué pasa si no uso el seguro en todo el año?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">El seguro de Gastos Médicos no acumula valor en efectivo como un seguro de vida o plan de retiro. Es una protección pura: pagas la prima y, si no lo necesitas, quedas protegido para el siguiente año. Muchas aseguradoras ofrecen beneficios de no reclamación o descuentos por años sin siniestros.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Desde qué día cubre un accidente?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Los accidentes se cubren desde el primer día de vigencia de la póliza. Las enfermedades tienen un período de espera que varía según la aseguradora y el padecimiento — generalmente 30 días para enfermedades generales, y períodos más largos para maternidad, cáncer o padecimientos crónicos. Es uno de los puntos más importantes a revisar antes de contratar.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿El seguro médico es deducible de impuestos?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Sí, bajo ciertas condiciones. Las primas de seguros de Gastos Médicos Mayores son deducibles en tu declaración anual del SAT como deducción personal, siempre que el pago no haya sido cubierto por tu empleador. El beneficio varía según tu nivel de ingresos y régimen fiscal. Consultamos este punto en tu asesoría para que aproveches el beneficio correctamente.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Puedo cambiarme de aseguradora sin perder mis años de antigüedad?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Depende de la aseguradora de destino y las condiciones de tu póliza actual. Algunas aseguradoras tienen cláusulas de continuidad o portabilidad que permiten respetar la antigüedad al cambiarte, especialmente si no has tenido reclamaciones recientes. Este es uno de los puntos que revisamos a detalle antes de recomendarte cualquier cambio.</div></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿El seguro más barato es el mejor?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">No necesariamente. Un seguro más barato puede tener un deducible alto, un tabulador bajo, una red hospitalaria limitada o períodos de espera más largos. Lo importante es la estructura total del producto, no solo la prima anual. Por eso comparamos varias opciones y te explicamos exactamente qué cubre cada una — para que elijas con información real, no solo con el precio.</div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section testimonials">
+    <div class="container">
+      <div class="testimonials-header">
+        <div class="section-tag tag-red">Testimonios</div>
+        <h2 class="section-title">Familias que <span>ya están</span> protegidas</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+          <p class="testimonial-text">Mi hijo tuvo una apendicitis de emergencia. Gracias al seguro, lo operaron en el hospital privado esa misma noche. La aseguradora pagó todo — yo solo cubrí el deducible. No puedo imaginar lo que hubiera sido sin esa cobertura.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">CG</div>
+            <div>
+              <div class="testimonial-name">Carmen G.</div>
+              <div class="testimonial-role">Mamá de 3 hijos · Guadalajara</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up" style="transition-delay:.1s">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+          <p class="testimonial-text">Soy freelancer y no tenía seguridad social. Contraté mi GMM hace dos años. Este año me detectaron un problema cardíaco — el cateterismo, los stents y la recuperación no me costaron nada más que el deducible. Una bendición.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AL</div>
+            <div>
+              <div class="testimonial-name">Arturo L.</div>
+              <div class="testimonial-role">Consultor independiente · CDMX</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up" style="transition-delay:.2s">
+          <div class="testimonial-quote">"</div>
+          <div class="testimonial-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+          <p class="testimonial-text">Tenía IMSS pero quería atención más rápida y en mejores instalaciones. La asesora me explicó todas las diferencias sin presionarme. Elegí un plan que se ajustó perfecto a mi presupuesto. Excelente experiencia.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">VR</div>
+            <div>
+              <div class="testimonial-name">Valeria R.</div>
+              <div class="testimonial-role">Maestra · Monterrey</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band section-sm">
+    <div class="container">
+      <div class="cta-band-inner">
+        <div>
+          <h2 class="cta-band-title">El seguro que necesitas<br>existe. Solo falta<br><span>encontrar el tuyo.</span></h2>
+          <p class="cta-band-sub">Cotización gratuita, sin compromisos. Te presento las mejores opciones del mercado y tú decides con toda la información.</p>
+        </div>
+        <div class="cta-band-actions">
+          <a href="#cotizar" class="btn btn-gold">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Agendar asesoría gratis
+          </a>
+          <a href="https://wa.me/message/L72YZKC2BBKRG1" class="btn btn-wa">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Escribir por WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="section contact" id="cotizar">
+    <div class="container">
+      <div class="contact-inner">
+        <div class="fade-up">
+          <div class="section-tag tag-red">Solicita tu cotización</div>
+          <h2 class="section-title">Cotiza tu Seguro<br>Médico <span class="gold">gratis</span></h2>
+          <p class="section-sub" style="margin-top:16px">Te envío propuestas de varias aseguradoras con precios y coberturas comparadas, directamente a tu correo o WhatsApp en menos de 24 horas.</p>
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-item-icon">📱</div>
+              <div>
+                <div class="contact-item-label">WhatsApp / Teléfono</div>
+                <div class="contact-item-value">Por agregar</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">📧</div>
+              <div>
+                <div class="contact-item-label">Correo electrónico</div>
+                <div class="contact-item-value">Por agregar</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">🕐</div>
+              <div>
+                <div class="contact-item-label">Horario de atención</div>
+                <div class="contact-item-value">Lunes a viernes · 9am – 7pm</div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:32px">
+            <a href="https://wa.me/message/L72YZKC2BBKRG1" class="btn btn-wa">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Escribir por WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-form-wrap fade-up" style="transition-delay:.15s">
+          <div class="contact-form-title">Solicita tu cotización personalizada</div>
+          <div class="contact-form-sub">Cuéntame un poco sobre ti para enviarte las mejores opciones disponibles en tu ciudad.</div>
+          <form id="gmm-form" onsubmit="handleForm(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Nombre *</label>
+                <input type="text" name="nombre" placeholder="Tu nombre" required />
+              </div>
+              <div class="form-group">
+                <label>Apellido *</label>
+                <input type="text" name="apellido" placeholder="Tu apellido" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Correo electrónico *</label>
+              <input type="email" name="email" placeholder="tu@correo.com" required />
+            </div>
+            <div class="form-group">
+              <label>WhatsApp *</label>
+              <input type="tel" name="whatsapp" placeholder="55 1234 5678" required />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Edad titular *</label>
+                <input type="number" name="edad" placeholder="35" min="18" max="70" required />
+              </div>
+              <div class="form-group">
+                <label>¿A quién quieres asegurar?</label>
+                <select name="cobertura">
+                  <option value="" disabled selected>Selecciona</option>
+                  <option>Solo a mí</option>
+                  <option>A mí y mi pareja</option>
+                  <option>Familia completa</option>
+                  <option>Solo a mis hijos</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>¿Tienes alguna condición de salud relevante?</label>
+              <input type="text" name="salud" placeholder="Ej: diabetes, hipertensión, ninguna..." />
+            </div>
+            <div class="form-group">
+              <label>¿Algo más que quieras que considere?</label>
+              <textarea name="mensaje" placeholder="Hospital de preferencia, presupuesto aproximado, dudas específicas..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-red form-submit">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Enviar solicitud
+            </button>
+          </form>
+          <p style="font-size:.78rem;color:var(--gray);text-align:center;margin-top:14px">Tu información es 100% confidencial y solo será usada para enviarte tu cotización.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-logo">
+            <div class="footer-logo-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11.35C16.5 22.15 20 17.25 20 12V6l-8-4z"/></svg>
+            </div>
+            <div class="footer-logo-name">Mirae Asesores</div>
+          </div>
+          <p class="footer-tagline">Seguros, Ahorro e Inversión. Comprometidos con tu bienestar y el de tu familia.</p>
+          <div class="footer-social">
+            <a href="#" class="footer-social-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+            <a href="#" class="footer-social-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#" class="footer-social-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Otros seguros</div>
+          <ul class="footer-links">
+            <li><a href="index.html#servicios">Seguro de Vida</a></li>
+            <li><a href="ppr.html">Plan de Retiro</a></li>
+            <li><a href="index.html#servicios">Seguro de Auto</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Navegación</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="#cotizar">Cotizar</a></li>
+            <li><a href="index.html#contacto">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Mirae Asesores · Seguros, Ahorro e Inversión. Todos los derechos reservados.</span>
+        <div class="footer-bottom-legal">
+          <a href="#">Aviso de Privacidad</a>
+          <a href="#">Términos de Uso</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING WA -->
+  <div class="wa-float">
+    <div class="wa-float-label">¡Escríbeme ahora!</div>
+    <a href="https://wa.me/message/L72YZKC2BBKRG1" class="wa-float-btn">
+      <div class="wa-ripple"></div>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+  </div>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
+
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    function handleForm(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      const original = btn.innerHTML;
+      btn.innerHTML = '✓ ¡Solicitud recibida! Me pondré en contacto muy pronto.';
+      btn.style.background = '#4ade80';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.innerHTML = original;
+        btn.style.background = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 6000);
+    }
+  </script>
+</body>
+</html>
