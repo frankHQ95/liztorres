@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel de Leads · Mirae Asesores</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root {
+      --blue-dark: #111827; --blue: #3B82F6; --gold: #CDAA2B;
+      --gold-light: #DDB93E; --white: #fff; --gray: #6B7280; --text: #111827;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #F1F5F9; color: var(--text); min-height: 100vh; }
+    a { text-decoration: none; }
+
+    /* ── LOGIN ── */
+    .login-wrap {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #111827 0%, #1e3a5f 100%);
+    }
+    .login-card {
+      background: white; border-radius: 20px; padding: 48px 40px;
+      width: 100%; max-width: 380px; box-shadow: 0 25px 60px rgba(0,0,0,.3); text-align: center;
+    }
+    .login-logo {
+      width: 56px; height: 56px; background: var(--gold); border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px; font-family: 'Montserrat',sans-serif;
+      font-weight: 800; font-size: 1.4rem; color: white;
+    }
+    .login-title { font-family: 'Montserrat',sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--blue-dark); margin-bottom: 6px; }
+    .login-sub { color: var(--gray); font-size: .9rem; margin-bottom: 32px; }
+    .login-input {
+      width: 100%; padding: 14px 16px; border: 1.5px solid #E5E7EB; border-radius: 10px;
+      font-family: 'Inter',sans-serif; font-size: .95rem; color: var(--text);
+      outline: none; transition: border-color .2s; margin-bottom: 16px;
+    }
+    .login-input:focus { border-color: var(--gold); }
+    .login-btn {
+      width: 100%; padding: 14px; background: var(--gold); color: white; border: none;
+      border-radius: 10px; font-family: 'Montserrat',sans-serif; font-weight: 700;
+      font-size: .95rem; cursor: pointer; transition: background .2s, transform .15s;
+    }
+    .login-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .login-error { color: #ef4444; font-size: .85rem; margin-top: 12px; display: none; }
+
+    /* ── HEADER ── */
+    .dashboard { display: none; }
+    .header {
+      background: var(--blue-dark); padding: 0 32px; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,.3);
+    }
+    .header-brand { display: flex; align-items: center; gap: 12px; }
+    .header-logo {
+      width: 36px; height: 36px; background: var(--gold); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat',sans-serif; font-weight: 800; font-size: 1rem; color: white;
+    }
+    .header-title { font-family: 'Montserrat',sans-serif; font-weight: 700; color: white; font-size: .95rem; }
+    .header-sub { color: rgba(255,255,255,.45); font-size: .75rem; }
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+    .btn-export {
+      padding: 8px 18px; background: var(--gold); color: white; border: none;
+      border-radius: 8px; cursor: pointer; font-family: 'Montserrat',sans-serif;
+      font-weight: 700; font-size: .8rem; transition: background .2s;
+    }
+    .btn-export:hover { background: var(--gold-light); }
+    .btn-logout {
+      padding: 8px 14px; background: transparent; color: rgba(255,255,255,.55);
+      border: 1px solid rgba(255,255,255,.2); border-radius: 8px; cursor: pointer;
+      font-size: .8rem; transition: all .2s;
+    }
+    .btn-logout:hover { background: rgba(255,255,255,.08); color: white; }
+
+    /* ── MAIN ── */
+    .main { padding: 28px 32px; max-width: 1400px; margin: 0 auto; }
+
+    /* Stats */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 24px; }
+    .stat-card { background: white; border-radius: 14px; padding: 18px 22px; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+    .stat-label { font-size: .75rem; color: var(--gray); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px; }
+    .stat-value { font-family: 'Montserrat',sans-serif; font-weight: 800; font-size: 1.9rem; color: var(--blue-dark); }
+    .stat-value.gold { color: var(--gold); }
+    .stat-value.green { color: #16a34a; }
+    .stat-value.blue { color: var(--blue); }
+
+    /* Filters */
+    .filters {
+      background: white; border-radius: 14px; padding: 14px 18px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 18px;
+    }
+    .filter-label { font-size: .82rem; font-weight: 600; color: var(--gray); white-space: nowrap; }
+    .filter-input {
+      padding: 8px 12px; border: 1.5px solid #E5E7EB; border-radius: 8px;
+      font-family: 'Inter',sans-serif; font-size: .85rem; outline: none; transition: border-color .2s;
+    }
+    .filter-input:focus { border-color: var(--gold); }
+    .filter-search { flex: 1; min-width: 200px; }
+
+    /* Table */
+    .table-wrap { background: white; border-radius: 14px; box-shadow: 0 2px 8px rgba(0,0,0,.05); overflow: hidden; }
+    .table-topbar {
+      padding: 14px 20px; border-bottom: 1px solid #F1F5F9;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .table-count { font-size: .83rem; color: var(--gray); }
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      background: #F8FAFC; padding: 11px 15px; text-align: left;
+      font-size: .72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .07em; color: var(--gray); border-bottom: 1px solid #F1F5F9;
+    }
+    tbody tr { border-bottom: 1px solid #F8FAFC; transition: background .12s; cursor: pointer; }
+    tbody tr:hover { background: #FFFBEB; }
+    tbody tr:last-child { border-bottom: none; }
+    td { padding: 12px 15px; font-size: .875rem; vertical-align: middle; }
+    .td-name { font-weight: 600; color: var(--blue-dark); }
+    .td-meta { font-size: .78rem; color: var(--gray); margin-top: 2px; }
+
+    /* Badges */
+    .badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 100px; font-size: .72rem; font-weight: 700; white-space: nowrap; }
+    .badge-ppr { background: rgba(205,170,43,.15); color: #7a5c09; }
+    .badge-gmm { background: rgba(220,38,38,.1); color: #b91c1c; }
+    .badge-nuevo { background: #EFF6FF; color: #1d4ed8; }
+    .badge-contactado { background: #FFF7ED; color: #c2410c; }
+    .badge-propuesta { background: #FEFCE8; color: #854d0e; }
+    .badge-cerrado { background: #F0FDF4; color: #15803d; }
+    .badge-descartado { background: #FEF2F2; color: #991b1b; }
+
+    /* Status select */
+    .status-select {
+      padding: 5px 9px; border: 1.5px solid #E5E7EB; border-radius: 7px;
+      font-family: 'Inter',sans-serif; font-size: .78rem; outline: none;
+      cursor: pointer; background: white; transition: border-color .2s;
+    }
+    .status-select:focus { border-color: var(--gold); }
+
+    /* Empty state */
+    .empty-state { padding: 56px 20px; text-align: center; color: var(--gray); }
+    .empty-state svg { margin: 0 auto 14px; display: block; opacity: .25; }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,.48); z-index: 1000;
+      display: none; align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: white; border-radius: 20px; width: 100%; max-width: 540px;
+      max-height: 90vh; overflow-y: auto; box-shadow: 0 28px 64px rgba(0,0,0,.25);
+    }
+    .modal-header { padding: 24px 26px 0; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+    .modal-name { font-family: 'Montserrat',sans-serif; font-weight: 800; font-size: 1.25rem; }
+    .modal-close {
+      width: 30px; height: 30px; border-radius: 50%; border: none; background: #F3F4F6;
+      cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center;
+      color: var(--gray); flex-shrink: 0; transition: background .2s;
+    }
+    .modal-close:hover { background: #E5E7EB; }
+    .modal-body { padding: 18px 26px 10px; }
+    .modal-row { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid #F3F4F6; }
+    .modal-row:last-child { border-bottom: none; }
+    .modal-key { font-size: .78rem; color: var(--gray); font-weight: 600; min-width: 110px; padding-top: 2px; }
+    .modal-val { font-size: .9rem; color: var(--blue-dark); word-break: break-word; }
+    .modal-actions { padding: 16px 26px 26px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-action {
+      display: inline-flex; align-items: center; gap: 7px; padding: 10px 18px;
+      border: none; border-radius: 10px; cursor: pointer;
+      font-family: 'Montserrat',sans-serif; font-weight: 700; font-size: .83rem;
+      transition: opacity .2s; color: white;
+    }
+    .btn-action:hover { opacity: .88; }
+    .btn-action.wa { background: #25D366; }
+    .btn-action.email { background: var(--blue); }
+
+    @media (max-width: 768px) {
+      .main { padding: 16px; }
+      .header { padding: 0 16px; }
+      .td-hide { display: none; }
+      td, thead th { padding: 10px 11px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── LOGIN ─────────────────────────────────────────────────── -->
+<div class="login-wrap" id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">M</div>
+    <div class="login-title">Panel de Leads</div>
+    <div class="login-sub">Mirae Asesores · Acceso restringido</div>
+    <form onsubmit="login(event)">
+      <input type="password" class="login-input" id="pwd" placeholder="Contraseña de acceso" autofocus />
+      <button type="submit" class="login-btn">Ingresar al panel</button>
+      <div class="login-error" id="login-error">Contraseña incorrecta</div>
+    </form>
+  </div>
+</div>
+
+<!-- ── DASHBOARD ──────────────────────────────────────────────── -->
+<div class="dashboard" id="dashboard">
+
+  <header class="header">
+    <div class="header-brand">
+      <div class="header-logo">M</div>
+      <div>
+        <div class="header-title">Panel de Leads</div>
+        <div class="header-sub">Mirae Asesores</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="btn-export" onclick="exportCSV()">⬇ Exportar CSV</button>
+      <button class="btn-logout" onclick="logout()">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-label">Total leads</div><div class="stat-value" id="stat-total">—</div></div>
+      <div class="stat-card"><div class="stat-label">Nuevos hoy</div><div class="stat-value gold" id="stat-today">—</div></div>
+      <div class="stat-card"><div class="stat-label">PPR</div><div class="stat-value blue" id="stat-ppr">—</div></div>
+      <div class="stat-card"><div class="stat-label">GMM</div><div class="stat-value blue" id="stat-gmm">—</div></div>
+      <div class="stat-card"><div class="stat-label">Cerrados</div><div class="stat-value green" id="stat-closed">—</div></div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+      <span class="filter-label">Filtrar:</span>
+      <input type="search" class="filter-input filter-search" id="f-search" placeholder="Nombre, email o WhatsApp…" oninput="renderTable()" />
+      <select class="filter-input" id="f-landing" onchange="renderTable()">
+        <option value="">Todos los productos</option>
+        <option value="PPR">PPR – Retiro</option>
+        <option value="GMM">GMM – Gastos Médicos</option>
+      </select>
+      <select class="filter-input" id="f-status" onchange="renderTable()">
+        <option value="">Todos los estados</option>
+        <option value="nuevo">Nuevo</option>
+        <option value="contactado">Contactado</option>
+        <option value="propuesta">Propuesta enviada</option>
+        <option value="cerrado">Cerrado</option>
+        <option value="descartado">Descartado</option>
+      </select>
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrap">
+      <div class="table-topbar">
+        <span class="table-count" id="table-count">Cargando…</span>
+      </div>
+      <div style="overflow-x:auto">
+        <table>
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Producto</th>
+              <th>Nombre</th>
+              <th class="td-hide">Email</th>
+              <th>WhatsApp</th>
+              <th class="td-hide">Edad</th>
+              <th class="td-hide">Detalle</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody id="leads-tbody"></tbody>
+        </table>
+        <div class="empty-state" id="empty-state" style="display:none">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          <p>No hay leads que coincidan con los filtros.</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ── MODAL ──────────────────────────────────────────────────── -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-name" id="modal-name"></div>
+        <div style="margin-top:8px" id="modal-badges"></div>
+      </div>
+      <button class="modal-close" onclick="document.getElementById('modal-overlay').classList.remove('open')">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-actions" id="modal-actions"></div>
+  </div>
+</div>
+
+<script>
+  // ── CONFIGURACIÓN ── Reemplaza con tus credenciales de Supabase
+  const SUPABASE_URL      = 'https://wgsdwgbsorjnkvpbmzel.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indnc2R3Z2Jzb3Jqbmt2cGJtemVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgzNDcxMzMsImV4cCI6MjA5MzkyMzEzM30.SvjsdkqYNWYBaBUDiqK7ofNnNZe73J-CHiv2M-kG0ns';
+  const ADMIN_PASSWORD    = 'mirae2025';              // cambia esta contraseña
+
+  const { createClient } = window.supabase;
+  const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  let allLeads = [];
+
+  // ── Auth ──────────────────────────────────────────────────────
+  function login(e) {
+    e.preventDefault();
+    if (document.getElementById('pwd').value === ADMIN_PASSWORD) {
+      sessionStorage.setItem('mirae_auth', '1');
+      showDashboard();
+    } else {
+      document.getElementById('login-error').style.display = 'block';
+    }
+  }
+  function logout() { sessionStorage.removeItem('mirae_auth'); location.reload(); }
+  function showDashboard() {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    loadLeads();
+  }
+  if (sessionStorage.getItem('mirae_auth') === '1') showDashboard();
+
+  // ── Cargar leads ──────────────────────────────────────────────
+  async function loadLeads() {
+    const { data, error } = await db
+      .from('leads')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      document.getElementById('table-count').textContent = 'Error al conectar. Verifica las credenciales de Supabase.';
+      return;
+    }
+    allLeads = data || [];
+    updateStats();
+    renderTable();
+  }
+
+  // ── Stats ─────────────────────────────────────────────────────
+  function updateStats() {
+    const today = new Date().toISOString().slice(0, 10);
+    document.getElementById('stat-total').textContent  = allLeads.length;
+    document.getElementById('stat-today').textContent  = allLeads.filter(l => l.created_at.startsWith(today)).length;
+    document.getElementById('stat-ppr').textContent    = allLeads.filter(l => l.landing === 'PPR').length;
+    document.getElementById('stat-gmm').textContent    = allLeads.filter(l => l.landing === 'GMM').length;
+    document.getElementById('stat-closed').textContent = allLeads.filter(l => l.estado === 'cerrado').length;
+  }
+
+  // ── Tabla ─────────────────────────────────────────────────────
+  function renderTable() {
+    const search  = document.getElementById('f-search').value.toLowerCase();
+    const landing = document.getElementById('f-landing').value;
+    const status  = document.getElementById('f-status').value;
+
+    const leads = allLeads.filter(l => {
+      const name = `${l.nombre} ${l.apellido}`.toLowerCase();
+      return (!search  || name.includes(search) || (l.email||'').toLowerCase().includes(search) || (l.whatsapp||'').includes(search))
+          && (!landing || l.landing === landing)
+          && (!status  || l.estado === status);
+    });
+
+    const tbody = document.getElementById('leads-tbody');
+    const empty = document.getElementById('empty-state');
+    const n = leads.length;
+    document.getElementById('table-count').textContent = `${n} lead${n !== 1 ? 's' : ''} encontrado${n !== 1 ? 's' : ''}`;
+
+    if (n === 0) { tbody.innerHTML = ''; empty.style.display = 'block'; return; }
+    empty.style.display = 'none';
+
+    tbody.innerHTML = leads.map(l => `
+      <tr onclick="openModal('${l.id}')">
+        <td><div>${fmtDate(l.created_at)}</div><div class="td-meta">${fmtTime(l.created_at)}</div></td>
+        <td><span class="badge badge-${l.landing.toLowerCase()}">${l.landing}</span></td>
+        <td><div class="td-name">${l.nombre} ${l.apellido}</div></td>
+        <td class="td-hide"><a href="mailto:${l.email}" onclick="event.stopPropagation()" style="color:var(--blue)">${l.email}</a></td>
+        <td><a href="https://wa.me/52${l.whatsapp.replace(/\D/g,'')}" target="_blank" onclick="event.stopPropagation()" style="color:#25D366;font-weight:600">${l.whatsapp}</a></td>
+        <td class="td-hide">${l.edad || '—'}</td>
+        <td class="td-hide">${l.aportacion || l.cobertura || '—'}</td>
+        <td onclick="event.stopPropagation()">
+          <select class="status-select" onchange="updateStatus('${l.id}', this.value)">
+            ${['nuevo','contactado','propuesta','cerrado','descartado']
+              .map(s => `<option value="${s}" ${l.estado===s?'selected':''}>${statusLabel(s)}</option>`).join('')}
+          </select>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  // ── Actualizar estado ─────────────────────────────────────────
+  async function updateStatus(id, estado) {
+    await db.from('leads').update({ estado }).eq('id', id);
+    const lead = allLeads.find(l => l.id === id);
+    if (lead) { lead.estado = estado; updateStats(); }
+  }
+
+  // ── Modal detalle ─────────────────────────────────────────────
+  function openModal(id) {
+    const l = allLeads.find(x => x.id === id);
+    if (!l) return;
+
+    document.getElementById('modal-name').textContent = `${l.nombre} ${l.apellido}`;
+    document.getElementById('modal-badges').innerHTML =
+      `<span class="badge badge-${l.landing.toLowerCase()}" style="margin-right:6px">${l.landing}</span>` +
+      `<span class="badge badge-${l.estado}">${statusLabel(l.estado)}</span>`;
+
+    const rows = [
+      ['Fecha', `${fmtDate(l.created_at)} · ${fmtTime(l.created_at)}`],
+      ['Correo', `<a href="mailto:${l.email}" style="color:var(--blue)">${l.email}</a>`],
+      ['WhatsApp', l.whatsapp],
+      ['Edad', l.edad ? `${l.edad} años` : '—'],
+      l.aportacion      ? ['Aportación', l.aportacion] : null,
+      l.cobertura       ? ['¿A quién asegurar?', l.cobertura] : null,
+      l.condicion_salud ? ['Condición de salud', l.condicion_salud] : null,
+      ['Mensaje', l.mensaje || '—'],
+    ].filter(Boolean);
+
+    document.getElementById('modal-body').innerHTML = rows
+      .map(([k, v]) => `<div class="modal-row"><span class="modal-key">${k}</span><span class="modal-val">${v}</span></div>`)
+      .join('');
+
+    const wa = l.whatsapp.replace(/\D/g, '');
+    document.getElementById('modal-actions').innerHTML = `
+      <a class="btn-action wa" href="https://wa.me/52${wa}?text=Hola%20${encodeURIComponent(l.nombre)}%2C%20soy%20Lizett%20de%20Mirae%20Asesores.%20Vi%20tu%20solicitud%20de%20asesor%C3%ADa%20y%20me%20pongo%20en%20contacto%20para%20ayudarte." target="_blank">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+      <a class="btn-action email" href="mailto:${l.email}">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Enviar correo
+      </a>
+    `;
+    document.getElementById('modal-overlay').classList.add('open');
+  }
+
+  function closeModal(e) {
+    if (e.target === document.getElementById('modal-overlay'))
+      document.getElementById('modal-overlay').classList.remove('open');
+  }
+
+  // ── Export CSV ────────────────────────────────────────────────
+  function exportCSV() {
+    const cols = ['Fecha','Hora','Producto','Nombre','Apellido','Email','WhatsApp','Edad','Aportacion','Cobertura','Condicion_Salud','Mensaje','Estado'];
+    const rows = allLeads.map(l => [
+      fmtDate(l.created_at), fmtTime(l.created_at), l.landing,
+      l.nombre, l.apellido, l.email, l.whatsapp, l.edad ?? '',
+      l.aportacion ?? '', l.cobertura ?? '', l.condicion_salud ?? '',
+      (l.mensaje ?? '').replace(/\n/g,' '), l.estado
+    ].map(v => `"${String(v).replace(/"/g,'""')}"`).join(','));
+
+    const csv = [cols.join(','), ...rows].join('\n');
+    const a   = document.createElement('a');
+    a.href     = 'data:text/csv;charset=utf-8,' + encodeURIComponent('﻿' + csv);
+    a.download = `leads_mirae_${new Date().toISOString().slice(0,10)}.csv`;
+    a.click();
+  }
+
+  // ── Helpers ───────────────────────────────────────────────────
+  function fmtDate(iso) { return new Date(iso).toLocaleDateString('es-MX', { day:'2-digit', month:'short', year:'numeric' }); }
+  function fmtTime(iso) { return new Date(iso).toLocaleTimeString('es-MX', { hour:'2-digit', minute:'2-digit' }); }
+  function statusLabel(s) {
+    return { nuevo:'🆕 Nuevo', contactado:'📞 Contactado', propuesta:'📋 Propuesta', cerrado:'✅ Cerrado', descartado:'❌ Descartado' }[s] || s;
+  }
+</script>
+</body>
+</html>

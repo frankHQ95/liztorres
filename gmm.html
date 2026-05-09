@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
   <style>
     :root {
       --blue-dark:  #111827;
@@ -46,13 +48,12 @@
       font-size: .75rem; letter-spacing: .12em; text-transform: uppercase;
       padding: 6px 16px; border-radius: 100px; margin-bottom: 16px;
     }
-    .tag-red  { background: rgba(220,38,38,.12); color: var(--red); }
     .tag-gold { background: rgba(205,170,43,.15); color: var(--gold-dark); }
     .section-title {
       font-family: 'Montserrat', sans-serif; font-weight: 800;
       font-size: clamp(1.75rem, 4vw, 2.75rem); line-height: 1.15; color: var(--blue-dark);
     }
-    .section-title span { color: var(--red); }
+    .section-title span { color: var(--gold); }
     .section-title .gold { color: var(--gold); }
     .section-sub { font-size: 1.05rem; color: var(--text-soft); line-height: 1.7; max-width: 580px; }
     .text-center { text-align: center; }
@@ -66,10 +67,12 @@
       border: none; white-space: nowrap;
     }
     .btn:hover { transform: translateY(-2px); }
-    .btn-red { background: var(--red); color: var(--white); box-shadow: 0 6px 24px rgba(220,38,38,.35); }
-    .btn-red:hover { background: var(--red-light); box-shadow: 0 10px 32px rgba(220,38,38,.45); }
+    .btn-primary { background: var(--gold); color: var(--blue-dark); box-shadow: 0 6px 24px rgba(205,170,43,.4); }
+    .btn-primary:hover { background: var(--gold-light); box-shadow: 0 10px 32px rgba(205,170,43,.5); }
     .btn-outline-white { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,.6); }
     .btn-outline-white:hover { background: rgba(255,255,255,.1); border-color: var(--white); }
+    .btn-outline-blue { background: transparent; color: var(--blue); border: 2px solid var(--blue); }
+    .btn-outline-blue:hover { background: var(--blue); color: var(--white); }
     .btn-wa { background: #25D366; color: var(--white); box-shadow: 0 6px 24px rgba(37,211,102,.35); }
     .btn-wa:hover { background: #1ebe5d; }
     .btn-sm { padding: 11px 24px; font-size: .85rem; }
@@ -79,26 +82,40 @@
     .nav.scrolled { background: var(--white); box-shadow: 0 2px 20px rgba(17,24,39,.1); }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
     .nav-logo { display: flex; align-items: center; gap: 12px; }
-    .nav-logo-icon { width: 42px; height: 42px; background: var(--red); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .nav-logo-icon { width: 42px; height: 42px; background: var(--gold); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
     .nav-logo-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--white); line-height: 1.15; }
     .nav.scrolled .nav-logo-text { color: var(--blue-dark); }
     .nav-logo-sub { font-size: .65rem; font-weight: 500; letter-spacing: .06em; color: rgba(255,255,255,.75); text-transform: uppercase; }
     .nav.scrolled .nav-logo-sub { color: var(--gray); }
     .nav-back { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: .85rem; color: rgba(255,255,255,.8); display: flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 8px; transition: color .2s, background .2s; }
     .nav.scrolled .nav-back { color: var(--text-soft); }
-    .nav-back:hover { color: var(--red); background: rgba(220,38,38,.08); }
+    .nav-back:hover { color: var(--gold); background: rgba(205,170,43,.08); }
     .nav-cta { display: flex; align-items: center; gap: 10px; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: transform .3s, opacity .3s; }
+    .nav.scrolled .hamburger span { background: var(--blue-dark); }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu {
+      position: fixed; top: 72px; left: 0; right: 0;
+      background: #fff; box-shadow: 0 10px 40px rgba(0,0,0,0.18);
+      z-index: 999; display: flex; flex-direction: column; gap: 12px;
+      max-height: 0; overflow: hidden; padding: 0 24px;
+      transition: max-height .35s ease, padding .35s ease;
+    }
+    .mobile-menu.open { max-height: 500px; padding: 20px 24px 28px; }
 
     /* HERO */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(135deg, #1a0a0a 0%, #3b0d0d 45%, #7f1d1d 100%);
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-mid) 60%, var(--blue-light) 100%);
       display: flex; align-items: center; position: relative; overflow: hidden;
     }
     .hero::before {
       content: ''; position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 60% 70% at 75% 45%, rgba(220,38,38,.15) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 70% at 75% 45%, rgba(59,130,246,.15) 0%, transparent 70%),
         url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
     .hero-shape { position: absolute; border-radius: 50%; opacity: .05; background: var(--white); }
@@ -112,15 +129,15 @@
     }
     .hero-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: .8rem; color: rgba(255,255,255,.5); margin-bottom: 20px; }
     .hero-breadcrumb a { color: rgba(255,255,255,.5); transition: color .2s; }
-    .hero-breadcrumb a:hover { color: var(--red-light); }
-    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(220,38,38,.2); border: 1px solid rgba(220,38,38,.4); color: #fca5a5; font-size: .8rem; font-weight: 600; padding: 8px 18px; border-radius: 100px; margin-bottom: 24px; }
+    .hero-breadcrumb a:hover { color: var(--gold-light); }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(205,170,43,.18); border: 1px solid rgba(205,170,43,.4); color: var(--gold-light); font-size: .8rem; font-weight: 600; padding: 8px 18px; border-radius: 100px; margin-bottom: 24px; }
     .hero-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.1; color: var(--white); margin-bottom: 20px; }
-    .hero-title .accent { color: #fca5a5; }
+    .hero-title .accent { color: var(--gold); }
     .hero-sub { font-size: 1.05rem; color: rgba(255,255,255,.8); line-height: 1.7; margin-bottom: 36px; max-width: 480px; }
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
     .hero-pill { display: flex; gap: 20px; flex-wrap: wrap; }
     .hero-pill-item { display: flex; align-items: center; gap: 8px; font-size: .82rem; color: rgba(255,255,255,.7); font-weight: 500; }
-    .hero-pill-dot { width: 6px; height: 6px; background: #fca5a5; border-radius: 50%; flex-shrink: 0; }
+    .hero-pill-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
 
     /* HERO VISUAL CARD */
     .hero-card { background: rgba(255,255,255,.08); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,.15); border-radius: 24px; padding: 36px; box-shadow: 0 24px 64px rgba(0,0,0,.25); }
@@ -143,7 +160,7 @@
     .covers-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 56px; }
     .cover-card { background: var(--white); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow); text-align: center; transition: transform .3s, box-shadow .3s; position: relative; overflow: hidden; }
     .cover-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
-    .cover-card-1::before { background: linear-gradient(90deg, var(--red), var(--red-light)); }
+    .cover-card-1::before { background: linear-gradient(90deg, var(--blue-mid), var(--blue-light)); }
     .cover-card-2::before { background: linear-gradient(90deg, #9333ea, #c084fc); }
     .cover-card-3::before { background: linear-gradient(90deg, var(--blue), var(--blue-light)); }
     .cover-card-4::before { background: linear-gradient(90deg, #16a34a, #4ade80); }
@@ -159,11 +176,11 @@
     .types-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
     .types-list { margin-top: 32px; display: flex; flex-direction: column; gap: 20px; }
     .type-item { display: flex; gap: 16px; align-items: flex-start; padding: 20px; border-radius: 14px; border: 1.5px solid var(--gray-light); transition: border-color .3s, box-shadow .3s; }
-    .type-item:hover { border-color: var(--red); box-shadow: var(--shadow); }
+    .type-item:hover { border-color: var(--gold); box-shadow: var(--shadow); }
     .type-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
     .type-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .95rem; color: var(--blue-dark); margin-bottom: 6px; }
     .type-desc { font-size: .87rem; color: var(--text-soft); line-height: 1.6; }
-    .types-card { background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%); border-radius: 24px; padding: 40px; color: var(--white); }
+    .types-card { background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-mid) 100%); border-radius: 24px; padding: 40px; color: var(--white); }
     .types-card-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.3rem; margin-bottom: 6px; }
     .types-card-sub { font-size: .85rem; color: rgba(255,255,255,.65); margin-bottom: 28px; }
     .types-card-items { display: flex; flex-direction: column; gap: 14px; }
@@ -173,7 +190,7 @@
 
     /* COST OF NOT HAVING */
     .cost-band { background: var(--blue-dark); color: var(--white); position: relative; overflow: hidden; }
-    .cost-band::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 20% 50%, rgba(220,38,38,.08) 0%, transparent 70%); }
+    .cost-band::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 20% 50%, rgba(59,130,246,.08) 0%, transparent 70%); }
     .cost-inner { position: relative; z-index: 1; }
     .cost-header { text-align: center; margin-bottom: 56px; }
     .cost-header .section-title { color: var(--white); }
@@ -183,7 +200,7 @@
     .cost-card:hover { background: rgba(255,255,255,.1); }
     .cost-icon { font-size: 2.5rem; margin-bottom: 16px; }
     .cost-situation { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1rem; color: var(--white); margin-bottom: 8px; }
-    .cost-amount { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.8rem; color: #fca5a5; margin-bottom: 8px; line-height: 1; }
+    .cost-amount { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.8rem; color: var(--gold-light); margin-bottom: 8px; line-height: 1; }
     .cost-label { font-size: .8rem; color: rgba(255,255,255,.55); line-height: 1.5; }
     .cost-cta { text-align: center; margin-top: 48px; }
     .cost-legal { font-size: .75rem; color: rgba(255,255,255,.35); margin-top: 16px; }
@@ -192,7 +209,7 @@
     .whom { background: var(--off-white); }
     .whom-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; margin-top: 48px; }
     .whom-card { border: 1.5px solid var(--gray-light); border-radius: var(--radius); padding: 28px 32px; display: flex; gap: 18px; align-items: flex-start; transition: border-color .3s, box-shadow .3s, transform .3s; background: var(--white); }
-    .whom-card:hover { border-color: var(--red); box-shadow: var(--shadow); transform: translateY(-3px); }
+    .whom-card:hover { border-color: var(--gold); box-shadow: var(--shadow); transform: translateY(-3px); }
     .whom-icon { font-size: 1.8rem; flex-shrink: 0; margin-top: 2px; }
     .whom-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1rem; color: var(--blue-dark); margin-bottom: 6px; }
     .whom-desc { font-size: .88rem; color: var(--text-soft); line-height: 1.65; }
@@ -201,10 +218,10 @@
     .process { background: var(--white); }
     .process-header { text-align: center; margin-bottom: 56px; }
     .process-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 32px; position: relative; }
-    .process-steps::before { content: ''; position: absolute; top: 32px; left: 10%; right: 10%; height: 2px; background: linear-gradient(90deg, var(--red-light), var(--gold)); }
+    .process-steps::before { content: ''; position: absolute; top: 32px; left: 10%; right: 10%; height: 2px; background: linear-gradient(90deg, var(--blue-light), var(--gold)); }
     .process-step { text-align: center; position: relative; z-index: 1; }
-    .process-step-num { width: 64px; height: 64px; background: var(--white); border: 3px solid var(--red); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--red); margin: 0 auto 20px; box-shadow: var(--shadow); transition: background .3s, color .3s; }
-    .process-step:hover .process-step-num { background: var(--red); color: var(--white); }
+    .process-step-num { width: 64px; height: 64px; background: var(--white); border: 3px solid var(--blue-mid); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--blue-mid); margin: 0 auto 20px; box-shadow: var(--shadow); transition: background .3s, color .3s; }
+    .process-step:hover .process-step-num { background: var(--blue-mid); color: var(--white); }
     .process-step-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .95rem; color: var(--blue-dark); margin-bottom: 8px; }
     .process-step-desc { font-size: .85rem; color: var(--text-soft); line-height: 1.6; }
 
@@ -214,9 +231,9 @@
     .faq-list { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
     .faq-item { background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(17,24,39,.06); }
     .faq-question { width: 100%; background: none; border: none; padding: 22px 28px; display: flex; align-items: center; justify-content: space-between; gap: 16px; cursor: pointer; text-align: left; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .95rem; color: var(--blue-dark); transition: color .2s; }
-    .faq-question:hover { color: var(--red); }
-    .faq-icon { width: 28px; height: 28px; border-radius: 50%; background: var(--off-white); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.2rem; color: var(--red); transition: transform .3s, background .3s; }
-    .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--red); color: var(--white); }
+    .faq-question:hover { color: var(--blue-mid); }
+    .faq-icon { width: 28px; height: 28px; border-radius: 50%; background: var(--off-white); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.2rem; color: var(--blue-mid); transition: transform .3s, background .3s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--blue-mid); color: var(--white); }
     .faq-answer { max-height: 0; overflow: hidden; transition: max-height .4s ease; font-size: .9rem; color: var(--text-soft); line-height: 1.75; }
     .faq-item.open .faq-answer { max-height: 300px; }
     .faq-answer-inner { padding: 0 28px 22px; }
@@ -227,17 +244,17 @@
     .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
     .testimonial-card { background: var(--off-white); border-radius: var(--radius); padding: 32px; transition: box-shadow .3s; }
     .testimonial-card:hover { box-shadow: var(--shadow); }
-    .testimonial-quote { font-size: 3rem; line-height: 1; color: var(--red); font-family: Georgia, serif; margin-bottom: 12px; }
+    .testimonial-quote { font-size: 3rem; line-height: 1; color: var(--blue-mid); font-family: Georgia, serif; margin-bottom: 12px; }
     .testimonial-stars { display: flex; gap: 4px; margin-bottom: 16px; }
     .star { color: var(--gold); font-size: 1rem; }
     .testimonial-text { font-size: .92rem; color: var(--text-soft); line-height: 1.75; margin-bottom: 24px; }
     .testimonial-author { display: flex; align-items: center; gap: 12px; }
-    .testimonial-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--red) 0%, #f87171 100%); display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--white); font-size: .9rem; }
+    .testimonial-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--blue-mid) 0%, var(--blue-light) 100%); display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--white); font-size: .9rem; }
     .testimonial-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .9rem; color: var(--blue-dark); }
     .testimonial-role { font-size: .78rem; color: var(--gray); margin-top: 2px; }
 
     /* CTA BAND */
-    .cta-band { background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 60%, #b91c1c 100%); position: relative; overflow: hidden; }
+    .cta-band { background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-mid) 60%, var(--blue-light) 100%); position: relative; overflow: hidden; }
     .cta-band::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(205,170,43,.12) 0%, transparent 70%); }
     .cta-band-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; padding: 72px 0; }
     .cta-band-title { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: var(--white); line-height: 1.2; margin-bottom: 12px; }
@@ -262,23 +279,23 @@
     .form-group { margin-bottom: 16px; }
     .form-group label { display: block; font-size: .83rem; font-weight: 600; color: var(--text-soft); margin-bottom: 6px; }
     .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 16px; border: 1.5px solid var(--gray-light); border-radius: 10px; font-family: 'Inter', sans-serif; font-size: .9rem; color: var(--text); outline: none; transition: border-color .2s, box-shadow .2s; background: var(--white); resize: vertical; }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(220,38,38,.1); }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(59,130,246,.1); }
     .form-submit { width: 100%; margin-top: 8px; justify-content: center; font-size: 1rem; padding: 16px; }
 
     /* FOOTER */
     .footer { background: var(--blue-dark); color: rgba(255,255,255,.7); padding: 56px 0 28px; }
     .footer-inner { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 48px; }
     .footer-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-    .footer-logo-icon { width: 40px; height: 40px; background: var(--red); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .footer-logo-icon { width: 40px; height: 40px; background: var(--gold); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
     .footer-logo-name { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1rem; color: var(--white); }
     .footer-tagline { font-size: .88rem; line-height: 1.7; margin-bottom: 24px; max-width: 280px; }
     .footer-social { display: flex; gap: 10px; }
     .footer-social-btn { width: 38px; height: 38px; background: rgba(255,255,255,.08); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: background .2s; cursor: pointer; }
-    .footer-social-btn:hover { background: var(--red); }
+    .footer-social-btn:hover { background: var(--gold); }
     .footer-col-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .9rem; color: var(--white); margin-bottom: 18px; }
     .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
     .footer-links a { font-size: .87rem; color: rgba(255,255,255,.6); transition: color .2s; }
-    .footer-links a:hover { color: var(--red-light); }
+    .footer-links a:hover { color: var(--gold-light); }
     .footer-bottom { border-top: 1px solid rgba(255,255,255,.08); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: .82rem; }
     .footer-bottom-legal { display: flex; gap: 20px; }
     .footer-bottom-legal a { color: rgba(255,255,255,.45); transition: color .2s; }
@@ -313,6 +330,10 @@
     }
     @media (max-width: 768px) {
       .section { padding: 72px 0; }
+      .nav-logo-sub { display: none; }
+      .nav-back { display: none; }
+      .nav-cta { display: none; }
+      .hamburger { display: flex; }
       .covers-grid { grid-template-columns: 1fr; }
       .testimonials-grid { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
@@ -379,7 +400,7 @@
       transition: transform .3s, box-shadow .3s;
     }
     .var-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-    .var-card-1 { border-top-color: var(--red); }
+    .var-card-1 { border-top-color: var(--gold); }
     .var-card-2 { border-top-color: var(--blue); }
     .var-card-3 { border-top-color: #9333ea; }
     .var-card-4 { border-top-color: #16a34a; }
@@ -399,7 +420,7 @@
       background: var(--off-white); border-radius: 14px; padding: 20px 22px;
       border-left: 4px solid transparent; transition: border-color .2s, box-shadow .2s;
     }
-    .switch-card:hover { border-left-color: var(--red); box-shadow: var(--shadow); }
+    .switch-card:hover { border-left-color: var(--gold); box-shadow: var(--shadow); }
     .switch-card-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
     .switch-card-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .92rem; color: var(--blue-dark); margin-bottom: 4px; }
     .switch-card-desc { font-size: .86rem; color: var(--text-soft); line-height: 1.6; }
@@ -462,15 +483,29 @@
           Regresar al inicio
         </a>
         <div class="nav-cta">
-          <a href="#cotizar" class="btn btn-red btn-sm">Cotizar mi Seguro</a>
+          <a href="#" class="btn btn-primary btn-sm" onclick="abrirCalendly(event)">📅 Agendar cita</a>
+          <a href="#cotizar" class="btn btn-primary btn-sm">Cotizar mi Seguro</a>
           <a href="https://wa.me/message/L72YZKC2BBKRG1" class="btn btn-wa btn-sm">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             WhatsApp
           </a>
         </div>
+        <div class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </div>
       </div>
     </div>
   </nav>
+
+  <!-- ─── MOBILE MENU ─────────────────────────────────────── -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#" onclick="abrirCalendly(event);closeMobileMenu();" class="btn btn-primary" style="justify-content:center;">📅 Agendar cita gratis</a>
+    <a href="#cotizar" onclick="closeMobileMenu()" class="btn btn-primary" style="justify-content:center;">Cotizar mi Seguro</a>
+    <a href="https://wa.me/message/L72YZKC2BBKRG1" class="btn btn-wa" style="justify-content:center;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+  </div>
 
   <!-- HERO -->
   <section class="hero">
@@ -492,7 +527,7 @@
             Una hospitalización inesperada puede costar cientos de miles de pesos. Con un Seguro de Gastos Médicos Mayores, tú y tu familia están cubiertos ante cualquier emergencia — en los mejores hospitales del país.
           </p>
           <div class="hero-actions">
-            <a href="#cotizar" class="btn btn-red">
+            <a href="#cotizar" class="btn btn-primary">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               Cotizar mi seguro gratis
             </a>
@@ -511,7 +546,7 @@
           <div class="hero-card-label">🏥 ¿Qué cubre tu seguro?</div>
           <div class="hero-coverage-items">
             <div class="hero-coverage-item">
-              <div class="hero-coverage-icon" style="background:rgba(220,38,38,.2)">🏥</div>
+              <div class="hero-coverage-icon" style="background:rgba(59,130,246,.2)">🏥</div>
               <div>
                 <div class="hero-coverage-label">Hospitalización</div>
                 <div class="hero-coverage-desc">Cuarto, médico tratante, enfermería</div>
@@ -587,13 +622,13 @@
   <section class="section covers">
     <div class="container">
       <div class="text-center">
-        <div class="section-tag tag-red">Cobertura completa</div>
+        <div class="section-tag tag-gold">Cobertura completa</div>
         <h2 class="section-title">Todo lo que incluye<br>tu seguro <span>médico</span></h2>
         <p class="section-sub">Un buen Seguro de Gastos Médicos Mayores cubre mucho más de lo que imaginas. Esto es lo que recibes:</p>
       </div>
       <div class="covers-grid">
         <div class="cover-card cover-card-1 fade-up">
-          <div class="cover-icon" style="background:rgba(220,38,38,.1)">🏥</div>
+          <div class="cover-icon" style="background:rgba(59,130,246,.1)">🏥</div>
           <div class="cover-title">Hospitalización</div>
           <div class="cover-desc">Cuarto privado, médico tratante, enfermería y todos los servicios durante tu internamiento, sin límite de días según tu plan.</div>
         </div>
@@ -630,7 +665,7 @@
   <section class="section comparison">
     <div class="container">
       <div class="comparison-header">
-        <div class="section-tag tag-red">Comparativa de aseguradoras</div>
+        <div class="section-tag tag-gold">Comparativa de aseguradoras</div>
         <h2 class="section-title">Precios reales, coberturas<br><span>claras y sin letra chica</span></h2>
         <p class="section-sub text-center" style="margin:16px auto 0">Comparamos las principales aseguradoras del mercado para que tú elijas con información completa. El precio importa, pero la estructura lo es todo.</p>
         <div class="comparison-note">
@@ -746,7 +781,7 @@
         </table>
       </div>
       <div style="text-align:center;margin-top:36px">
-        <a href="#cotizar" class="btn btn-red">
+        <a href="#cotizar" class="btn btn-primary">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
           Quiero mi cotización exacta
         </a>
@@ -808,7 +843,7 @@
     <div class="container">
       <div class="types-inner">
         <div class="types-content fade-up">
-          <div class="section-tag tag-red">Tipos de planes</div>
+          <div class="section-tag tag-gold">Tipos de planes</div>
           <h2 class="section-title">Encuentra el plan<br><span>ideal para ti</span></h2>
           <p class="section-sub" style="margin-top:12px">No todos los seguros son iguales. Te explico las diferencias para que elijas el que mejor se adapta a tu situación y presupuesto.</p>
           <div class="types-list">
@@ -871,8 +906,8 @@
   <section class="section cost-band">
     <div class="container cost-inner">
       <div class="cost-header">
-        <div class="section-tag tag-red" style="background:rgba(220,38,38,.2);color:#fca5a5">¿Cuánto cuesta no tenerlo?</div>
-        <h2 class="section-title" style="color:var(--white)">El costo real de una <span style="color:#fca5a5">emergencia médica</span></h2>
+        <div class="section-tag tag-gold">¿Cuánto cuesta no tenerlo?</div>
+        <h2 class="section-title" style="color:var(--white)">El costo real de una <span style="color:var(--gold-light)">emergencia médica</span></h2>
         <p class="cost-intro">Una sola hospitalización puede borrar años de ahorro. Estos son costos reales en hospitales privados de México:</p>
       </div>
       <div class="cost-cards">
@@ -896,7 +931,7 @@
         </div>
       </div>
       <div class="cost-cta fade-up">
-        <a href="#cotizar" class="btn btn-red" style="font-size:1rem;padding:16px 40px">
+        <a href="#cotizar" class="btn btn-primary" style="font-size:1rem;padding:16px 40px">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           Protegerme desde hoy
         </a>
@@ -909,7 +944,7 @@
   <section class="section whom">
     <div class="container">
       <div class="text-center">
-        <div class="section-tag tag-red">¿Es para mí?</div>
+        <div class="section-tag tag-gold">¿Es para mí?</div>
         <h2 class="section-title">Este seguro es para ti si...</h2>
         <p class="section-sub">No importa tu edad ni tu estado de salud actual. Lo que importa es que empieces antes de necesitarlo.</p>
       </div>
@@ -951,7 +986,7 @@
     <div class="container">
       <div class="switch-inner">
         <div class="fade-up">
-          <div class="section-tag tag-red">¿Ya tienes un GMM?</div>
+          <div class="section-tag tag-gold">¿Ya tienes un GMM?</div>
           <h2 class="section-title">Puede que estés<br><span>pagando de más</span></h2>
           <p class="section-sub" style="margin-top:12px">Cambiar de aseguradora no significa perder lo que has construido. Si llevas años con tu póliza actual, podemos revisar juntos si tienes la mejor opción del mercado.</p>
           <div class="switch-cards">
@@ -978,7 +1013,7 @@
             </div>
           </div>
           <div style="margin-top:28px">
-            <a href="#cotizar" class="btn btn-red">Revisar mi póliza actual →</a>
+            <a href="#cotizar" class="btn btn-primary">Revisar mi póliza actual →</a>
           </div>
         </div>
         <div class="switch-visual fade-up" style="transition-delay:.15s">
@@ -1030,7 +1065,7 @@
   <section class="section process">
     <div class="container">
       <div class="process-header">
-        <div class="section-tag tag-red">¿Cómo funciona?</div>
+        <div class="section-tag tag-gold">¿Cómo funciona?</div>
         <h2 class="section-title">Tu seguro médico<br>en <span>4 pasos</span></h2>
         <p class="section-sub" style="margin:16px auto 0;text-align:center">Sin papeleo complicado, sin visitas innecesarias. Todo rápido y claro.</p>
       </div>
@@ -1063,7 +1098,7 @@
   <section class="section faq">
     <div class="container">
       <div class="faq-header">
-        <div class="section-tag tag-red">Preguntas frecuentes</div>
+        <div class="section-tag tag-gold">Preguntas frecuentes</div>
         <h2 class="section-title">Lo que debes saber<br>antes de <span>contratar</span></h2>
       </div>
       <div class="faq-list">
@@ -1150,7 +1185,7 @@
   <section class="section testimonials">
     <div class="container">
       <div class="testimonials-header">
-        <div class="section-tag tag-red">Testimonios</div>
+        <div class="section-tag tag-gold">Testimonios</div>
         <h2 class="section-title">Familias que <span>ya están</span> protegidas</h2>
       </div>
       <div class="testimonials-grid">
@@ -1221,7 +1256,7 @@
     <div class="container">
       <div class="contact-inner">
         <div class="fade-up">
-          <div class="section-tag tag-red">Solicita tu cotización</div>
+          <div class="section-tag tag-gold">Solicita tu cotización</div>
           <h2 class="section-title">Cotiza tu Seguro<br>Médico <span class="gold">gratis</span></h2>
           <p class="section-sub" style="margin-top:16px">Te envío propuestas de varias aseguradoras con precios y coberturas comparadas, directamente a tu correo o WhatsApp en menos de 24 horas.</p>
           <div class="contact-items">
@@ -1301,7 +1336,7 @@
               <label>¿Algo más que quieras que considere?</label>
               <textarea name="mensaje" placeholder="Hospital de preferencia, presupuesto aproximado, dudas específicas..."></textarea>
             </div>
-            <button type="submit" class="btn btn-red form-submit">
+            <button type="submit" class="btn btn-primary form-submit">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
               Enviar solicitud
             </button>
@@ -1367,6 +1402,28 @@
   </div>
 
   <script>
+    // ── CONFIGURACIÓN ── Reemplaza con tus credenciales
+    const SUPABASE_URL      = 'https://wgsdwgbsorjnkvpbmzel.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indnc2R3Z2Jzb3Jqbmt2cGJtemVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgzNDcxMzMsImV4cCI6MjA5MzkyMzEzM30.SvjsdkqYNWYBaBUDiqK7ofNnNZe73J-CHiv2M-kG0ns';
+    const EMAILJS_SERVICE_ID  = 'TU_EMAILJS_SERVICE_ID';
+    const EMAILJS_TEMPLATE_ID = 'TU_EMAILJS_TEMPLATE_ID';
+    const EMAILJS_PUBLIC_KEY  = 'TU_EMAILJS_PUBLIC_KEY';
+
+    function abrirCalendly(e) {
+      e.preventDefault();
+      Calendly.initPopupWidget({url: 'https://calendly.com/lizettmtorres/retiro'});
+    }
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    function closeMobileMenu() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); });
 
@@ -1383,20 +1440,64 @@
       if (!isOpen) item.classList.add('open');
     }
 
-    function handleForm(e) {
+    async function handleForm(e) {
       e.preventDefault();
       const btn = e.target.querySelector('button[type="submit"]');
       const original = btn.innerHTML;
-      btn.innerHTML = '✓ ¡Solicitud recibida! Me pondré en contacto muy pronto.';
-      btn.style.background = '#4ade80';
+      btn.innerHTML = 'Enviando…';
       btn.disabled = true;
-      setTimeout(() => {
-        btn.innerHTML = original;
-        btn.style.background = '';
-        btn.disabled = false;
-        e.target.reset();
-      }, 6000);
+
+      const fd = new FormData(e.target);
+      const payload = {
+        landing:          'GMM',
+        nombre:           fd.get('nombre'),
+        apellido:         fd.get('apellido'),
+        email:            fd.get('email'),
+        whatsapp:         fd.get('whatsapp'),
+        edad:             parseInt(fd.get('edad')) || null,
+        cobertura:        fd.get('cobertura') || null,
+        condicion_salud:  fd.get('salud') || null,
+        mensaje:          fd.get('mensaje') || null,
+      };
+
+      try {
+        const res = await fetch(SUPABASE_URL + '/rest/v1/leads', {
+          method: 'POST',
+          headers: {
+            'Content-Type':  'application/json',
+            'apikey':        SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+            'Prefer':        'return=minimal',
+          },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) throw new Error('supabase');
+
+        // Notificación por correo a Liz
+        if (EMAILJS_SERVICE_ID !== 'TU_EMAILJS_SERVICE_ID') {
+          emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+            landing:  'GMM – Gastos Médicos Mayores',
+            nombre:   payload.nombre + ' ' + payload.apellido,
+            email:    payload.email,
+            whatsapp: payload.whatsapp,
+            edad:     payload.edad,
+            detalle:  payload.cobertura ? 'Cobertura: ' + payload.cobertura : '',
+            mensaje:  [payload.condicion_salud ? 'Salud: ' + payload.condicion_salud : '', payload.mensaje || ''].filter(Boolean).join(' | ') || 'Sin mensaje adicional',
+            fecha:    new Date().toLocaleString('es-MX'),
+          }, EMAILJS_PUBLIC_KEY);
+        }
+
+        btn.innerHTML = '✓ ¡Solicitud recibida! Me pondré en contacto muy pronto.';
+        btn.style.background = '#4ade80';
+        setTimeout(() => { btn.innerHTML = original; btn.style.background = ''; btn.disabled = false; e.target.reset(); }, 6000);
+
+      } catch {
+        btn.innerHTML = 'Ocurrió un error. Escríbeme por WhatsApp.';
+        btn.style.background = '#ef4444';
+        setTimeout(() => { btn.innerHTML = original; btn.style.background = ''; btn.disabled = false; }, 5000);
+      }
     }
   </script>
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 </body>
 </html>
