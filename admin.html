@@ -125,7 +125,8 @@
     /* Badges */
     .badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 100px; font-size: .72rem; font-weight: 700; white-space: nowrap; }
     .badge-ppr { background: rgba(205,170,43,.15); color: #7a5c09; }
-    .badge-gmm { background: rgba(220,38,38,.1); color: #b91c1c; }
+    .badge-gmm { background: rgba(220,38,38,.1);  color: #b91c1c; }
+    .badge-vm  { background: rgba(219,39,119,.12); color: #9d174d; }
     .badge-nuevo { background: #EFF6FF; color: #1d4ed8; }
     .badge-contactado { background: #FFF7ED; color: #c2410c; }
     .badge-propuesta { background: #FEFCE8; color: #854d0e; }
@@ -227,6 +228,7 @@
       <div class="stat-card"><div class="stat-label">Nuevos hoy</div><div class="stat-value gold" id="stat-today">—</div></div>
       <div class="stat-card"><div class="stat-label">PPR</div><div class="stat-value blue" id="stat-ppr">—</div></div>
       <div class="stat-card"><div class="stat-label">GMM</div><div class="stat-value blue" id="stat-gmm">—</div></div>
+      <div class="stat-card"><div class="stat-label">Vida Mujer</div><div class="stat-value" style="color:#be185d" id="stat-vm">—</div></div>
       <div class="stat-card"><div class="stat-label">Cerrados</div><div class="stat-value green" id="stat-closed">—</div></div>
     </div>
 
@@ -238,6 +240,7 @@
         <option value="">Todos los productos</option>
         <option value="PPR">PPR – Retiro</option>
         <option value="GMM">GMM – Gastos Médicos</option>
+        <option value="VM">VM – Vida Mujer</option>
       </select>
       <select class="filter-input" id="f-status" onchange="renderTable()">
         <option value="">Todos los estados</option>
@@ -350,6 +353,7 @@
     document.getElementById('stat-today').textContent  = allLeads.filter(l => l.created_at.startsWith(today)).length;
     document.getElementById('stat-ppr').textContent    = allLeads.filter(l => l.landing === 'PPR').length;
     document.getElementById('stat-gmm').textContent    = allLeads.filter(l => l.landing === 'GMM').length;
+    document.getElementById('stat-vm').textContent     = allLeads.filter(l => l.landing === 'VM').length;
     document.getElementById('stat-closed').textContent = allLeads.filter(l => l.estado === 'cerrado').length;
   }
 
@@ -415,8 +419,8 @@
       ['Correo', `<a href="mailto:${l.email}" style="color:var(--blue)">${l.email}</a>`],
       ['WhatsApp', l.whatsapp],
       ['Edad', l.edad ? `${l.edad} años` : '—'],
-      l.aportacion      ? ['Aportación', l.aportacion] : null,
-      l.cobertura       ? ['¿A quién asegurar?', l.cobertura] : null,
+      l.aportacion      ? [l.landing === 'VM' ? '¿Cuándo empezar?' : 'Aportación', l.aportacion] : null,
+      l.cobertura       ? [l.landing === 'VM' ? '¿Qué le interesa?' : '¿A quién asegurar?', l.cobertura] : null,
       l.condicion_salud ? ['Condición de salud', l.condicion_salud] : null,
       ['Mensaje', l.mensaje || '—'],
     ].filter(Boolean);

@@ -461,6 +461,9 @@
       .table-wrap { font-size: .8rem; }
       .comp-table td, .comp-table th { padding: 12px 14px; }
     }
+    /* ── Avatares con foto real ── */
+    .testimonial-avatar { overflow: hidden; }
+    .testimonial-avatar img { width: 44px; height: 44px; object-fit: cover; display: block; }
   </style>
 </head>
 <body>
@@ -1194,7 +1197,9 @@
           <div class="testimonial-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
           <p class="testimonial-text">Mi hijo tuvo una apendicitis de emergencia. Gracias al seguro, lo operaron en el hospital privado esa misma noche. La aseguradora pagó todo — yo solo cubrí el deducible. No puedo imaginar lo que hubiera sido sin esa cobertura.</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">CG</div>
+            <div class="testimonial-avatar">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=88&h=88&q=80" alt="Carmen G." loading="lazy" />
+            </div>
             <div>
               <div class="testimonial-name">Carmen G.</div>
               <div class="testimonial-role">Mamá de 3 hijos · Guadalajara</div>
@@ -1206,7 +1211,9 @@
           <div class="testimonial-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
           <p class="testimonial-text">Soy freelancer y no tenía seguridad social. Contraté mi GMM hace dos años. Este año me detectaron un problema cardíaco — el cateterismo, los stents y la recuperación no me costaron nada más que el deducible. Una bendición.</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">AL</div>
+            <div class="testimonial-avatar">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=88&h=88&q=80" alt="Arturo L." loading="lazy" />
+            </div>
             <div>
               <div class="testimonial-name">Arturo L.</div>
               <div class="testimonial-role">Consultor independiente · CDMX</div>
@@ -1218,7 +1225,9 @@
           <div class="testimonial-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
           <p class="testimonial-text">Tenía IMSS pero quería atención más rápida y en mejores instalaciones. La asesora me explicó todas las diferencias sin presionarme. Elegí un plan que se ajustó perfecto a mi presupuesto. Excelente experiencia.</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">VR</div>
+            <div class="testimonial-avatar">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=88&h=88&q=80" alt="Valeria R." loading="lazy" />
+            </div>
             <div>
               <div class="testimonial-name">Valeria R.</div>
               <div class="testimonial-role">Maestra · Monterrey</div>
@@ -1264,14 +1273,14 @@
               <div class="contact-item-icon">📱</div>
               <div>
                 <div class="contact-item-label">WhatsApp / Teléfono</div>
-                <div class="contact-item-value">Por agregar</div>
+                <div class="contact-item-value">+52 33 3843 3486</div>
               </div>
             </div>
             <div class="contact-item">
-              <div class="contact-item-icon">📧</div>
+              <div class="contact-item-icon">📍</div>
               <div>
-                <div class="contact-item-label">Correo electrónico</div>
-                <div class="contact-item-value">Por agregar</div>
+                <div class="contact-item-label">Ubicación</div>
+                <div class="contact-item-value">Av. de las Américas 1500, Country Club, 44610 Guadalajara, Jal.</div>
               </div>
             </div>
             <div class="contact-item">
@@ -1303,10 +1312,6 @@
                 <label>Apellido *</label>
                 <input type="text" name="apellido" placeholder="Tu apellido" required />
               </div>
-            </div>
-            <div class="form-group">
-              <label>Correo electrónico *</label>
-              <input type="email" name="email" placeholder="tu@correo.com" required />
             </div>
             <div class="form-group">
               <label>WhatsApp *</label>

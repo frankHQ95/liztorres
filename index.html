@@ -440,6 +440,7 @@
     .service-card-2::before { background: linear-gradient(90deg, #e53e3e, #fc8181); }
     .service-card-3::before { background: linear-gradient(90deg, #60A5FA, #93C5FD); }
     .service-card-4::before { background: linear-gradient(90deg, #e8a020, #f5b942); }
+    .service-card-5::before { background: linear-gradient(90deg, #db2777, #f472b6); }
 
     .service-icon-wrap {
       width: 64px; height: 64px;
@@ -454,6 +455,8 @@
     .service-card-2 .service-icon-wrap { background: rgba(229,62,62,.1); }
     .service-card-3 .service-icon-wrap { background: rgba(96,165,250,.1); }
     .service-card-4 .service-icon-wrap { background: rgba(205,170,43,.1); }
+    .service-card-5 .service-icon-wrap { background: rgba(219,39,119,.1); }
+    .service-card-5 { grid-column: 1 / -1; max-width: calc(50% - 14px); margin: 0 auto; }
 
     .service-title {
       font-family: 'Montserrat', sans-serif;
@@ -1039,6 +1042,7 @@
       .nav-logo-sub { display: none; }
       .hamburger { display: flex; }
       .services-grid { grid-template-columns: 1fr; }
+      .service-card-5 { grid-column: auto; max-width: 100%; }
       .testimonials-grid { grid-template-columns: 1fr; }
       .hero-stats { gap: 24px; }
       .hero-stat-divider { display: none; }
@@ -1056,6 +1060,29 @@
       .btn { justify-content: center; }
       .process-steps { grid-template-columns: 1fr; }
     }
+
+    /* ── Foto asesora (sección Por qué Liz) ── */
+    .why-advisor-photo {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      aspect-ratio: 4/5;
+    }
+    .why-advisor-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center;
+      display: block;
+    }
+    .why-advisor-cert {
+      position: absolute; bottom: 20px; left: 20px;
+      background: var(--gold); color: var(--white);
+      font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: .75rem; padding: 8px 16px; border-radius: 100px;
+    }
+    /* ── Avatares con foto real ────────────── */
+    .testimonial-avatar { overflow: hidden; }
+    .testimonial-avatar img { width: 44px; height: 44px; object-fit: cover; display: block; }
   </style>
 </head>
 <body>
@@ -1214,6 +1241,14 @@
                 </div>
                 <div class="hero-card-service-check">✓</div>
               </div>
+              <a href="vida-mujer.html" class="hero-card-service" style="text-decoration:none;color:inherit">
+                <div class="hero-card-service-icon" style="background:rgba(219,39,119,.18)">💜</div>
+                <div>
+                  <div class="hero-card-service-label">Vida Mujer</div>
+                  <div class="hero-card-service-desc">Vive tranquila en cada etapa</div>
+                </div>
+                <div class="hero-card-service-check">✓</div>
+              </a>
             </div>
           </div>
         </div>
@@ -1331,6 +1366,23 @@
           </a>
         </div>
 
+        <!-- Vida Mujer -->
+        <div class="service-card service-card-5 fade-up" style="transition-delay:.4s">
+          <div class="service-icon-wrap">💜</div>
+          <h3 class="service-title">Vida Mujer</h3>
+          <p class="service-desc">El único seguro diseñado exclusivamente para la mujer: protege tu salud, tu maternidad y tu futuro en un solo plan. Reconocido por CONDUSEF con la insignia SAASIL por su perspectiva de género.</p>
+          <ul class="service-features">
+            <li>Cobertura por cáncer femenino</li>
+            <li>Protección en embarazo y complicaciones de parto</li>
+            <li>Ahorro con retornos desde el 5° año</li>
+            <li>Beneficio anticipado ante enfermedad terminal</li>
+          </ul>
+          <a href="vida-mujer.html" class="service-link" style="color:#db2777">
+            Quiero cotizar
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1340,27 +1392,13 @@
     <div class="container">
       <div class="why-inner">
         <div class="why-visual fade-up">
-          <div class="why-bg-card">
-            <div class="why-bg-card-title">Mi compromiso contigo</div>
-            <div class="why-bg-card-sub">No soy solo tu agente, soy tu aliada financiera</div>
-            <div class="why-promise">
-              <div class="why-promise-item">
-                <div class="why-promise-icon">🤝</div>
-                <div class="why-promise-text">Siempre pongo tus intereses primero</div>
-              </div>
-              <div class="why-promise-item">
-                <div class="why-promise-icon">📞</div>
-                <div class="why-promise-text">Disponible cuando más me necesites</div>
-              </div>
-              <div class="why-promise-item">
-                <div class="why-promise-icon">💡</div>
-                <div class="why-promise-text">Explico todo con claridad, sin letra pequeña</div>
-              </div>
-              <div class="why-promise-item">
-                <div class="why-promise-icon">🏆</div>
-                <div class="why-promise-text">Negocio las mejores condiciones para ti</div>
-              </div>
-            </div>
+          <div class="why-advisor-photo">
+            <img
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=500&q=80"
+              alt="Liz Torres — Asesora de Seguros · Mirae Asesores"
+              loading="lazy"
+            />
+            <div class="why-advisor-cert">✓ Asesora Certificada</div>
           </div>
           <div class="why-floating">
             <div class="why-floating-num">10+</div>
@@ -1456,7 +1494,9 @@
           </div>
           <p class="testimonial-text">Liz me explicó con mucha paciencia todas las opciones disponibles para mi familia. Contratamos el seguro de gastos médicos y vida, y quedamos muy tranquilos. Su atención es excepcional.</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">MA</div>
+            <div class="testimonial-avatar">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=88&h=88&q=80" alt="María Andrade" loading="lazy" />
+            </div>
             <div>
               <div class="testimonial-name">María Andrade</div>
               <div class="testimonial-role">Emprendedora · Guadalajara</div>
@@ -1471,7 +1511,9 @@
           </div>
           <p class="testimonial-text">Tuve un accidente de auto y Liz estuvo conmigo en todo el proceso de reclamación. Literalmente no tuve que preocuparme por nada. Eso es lo que diferencia a un buen agente de uno extraordinario.</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">RC</div>
+            <div class="testimonial-avatar">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=88&h=88&q=80" alt="Roberto Cruz" loading="lazy" />
+            </div>
             <div>
               <div class="testimonial-name">Roberto Cruz</div>
               <div class="testimonial-role">Ingeniero · Ciudad de México</div>
@@ -1486,7 +1528,9 @@
           </div>
           <p class="testimonial-text">Gracias a Liz empecé mi Plan de Retiro a los 32 años. Me mostró de forma muy clara cómo los ahorros crecen con el tiempo. Sin duda fue la mejor decisión financiera que he tomado.</p>
           <div class="testimonial-author">
-            <div class="testimonial-avatar">SV</div>
+            <div class="testimonial-avatar">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=88&h=88&q=80" alt="Sofía Vargas" loading="lazy" />
+            </div>
             <div>
               <div class="testimonial-name">Sofía Vargas</div>
               <div class="testimonial-role">Profesora · Monterrey</div>
@@ -1533,21 +1577,14 @@
               <div class="contact-item-icon">📱</div>
               <div>
                 <div class="contact-item-label">WhatsApp / Teléfono</div>
-                <div class="contact-item-value">Por agregar</div>
-              </div>
-            </div>
-            <div class="contact-item">
-              <div class="contact-item-icon">📧</div>
-              <div>
-                <div class="contact-item-label">Correo electrónico</div>
-                <div class="contact-item-value">Por agregar</div>
+                <div class="contact-item-value">+52 33 3843 3486</div>
               </div>
             </div>
             <div class="contact-item">
               <div class="contact-item-icon">📍</div>
               <div>
-                <div class="contact-item-label">Ciudad</div>
-                <div class="contact-item-value">Por agregar</div>
+                <div class="contact-item-label">Ubicación</div>
+                <div class="contact-item-value">Av. de las Américas 1500, Country Club, 44610 Guadalajara, Jal.</div>
               </div>
             </div>
             <div class="contact-item">
@@ -1578,10 +1615,6 @@
                 <label for="apellido">Apellido *</label>
                 <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" required />
               </div>
-            </div>
-            <div class="form-group">
-              <label for="email">Correo electrónico *</label>
-              <input type="email" id="email" name="email" placeholder="tu@correo.com" required />
             </div>
             <div class="form-group">
               <label for="telefono">Teléfono / WhatsApp</label>
