@@ -941,25 +941,16 @@
                 <input type="number" name="edad" placeholder="28" min="18" max="55" required />
               </div>
               <div class="form-group">
-                <label>¿Cuándo quieres empezar?</label>
-                <select name="urgencia">
+                <label>¿Qué te interesa más de Vida Mujer?</label>
+                <select name="aportacion">
                   <option value="" disabled selected>Selecciona</option>
-                  <option>Lo antes posible</option>
-                  <option>En el próximo mes</option>
-                  <option>Solo estoy explorando</option>
+                  <option>La cobertura por cáncer femenino</option>
+                  <option>La protección en embarazo</option>
+                  <option>El plan de ahorro</option>
+                  <option>La protección en caso de fallecimiento</option>
+                  <option>Todo lo anterior</option>
                 </select>
               </div>
-            </div>
-            <div class="form-group">
-              <label>¿Qué te interesa más de Vida Mujer?</label>
-              <select name="interes">
-                <option value="" disabled selected>Selecciona</option>
-                <option>La cobertura por cáncer femenino</option>
-                <option>La protección en embarazo</option>
-                <option>El plan de ahorro</option>
-                <option>La protección en caso de fallecimiento</option>
-                <option>Todo lo anterior</option>
-              </select>
             </div>
             <div class="form-group">
               <label>¿Algo más que quieras contarme?</label>
@@ -1075,14 +1066,12 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-    // Form handler — guarda en Supabase
-    async function handleForm(e){
+    async function handleForm(e) {
       e.preventDefault();
-      const btn = document.getElementById('submit-btn');
+      const btn = e.target.querySelector('button[type="submit"]');
       const original = btn.innerHTML;
       btn.innerHTML = 'Enviando…';
       btn.disabled = true;
-
       const fd = new FormData(e.target);
       const payload = {
         landing:    'VM',
@@ -1091,11 +1080,9 @@
         email:      null,
         whatsapp:   fd.get('whatsapp'),
         edad:       parseInt(fd.get('edad')) || null,
-        aportacion: fd.get('urgencia') || null,
-        cobertura:  fd.get('interes') || null,
+        aportacion: fd.get('aportacion') || null,
         mensaje:    fd.get('mensaje') || null,
       };
-
       try {
         const res = await fetch(SUPABASE_URL + '/rest/v1/leads', {
           method: 'POST',
@@ -1108,25 +1095,9 @@
           body: JSON.stringify(payload),
         });
         if (!res.ok) throw new Error('supabase');
-
-        // Notificación por correo a Liz
-        if (EMAILJS_SERVICE_ID !== 'TU_EMAILJS_SERVICE_ID') {
-          emailjs.init(EMAILJS_PUBLIC_KEY);
-          emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-            landing:  'VM – Vida Mujer',
-            nombre:   payload.nombre + ' ' + payload.apellido,
-            whatsapp: payload.whatsapp,
-            edad:     payload.edad,
-            detalle:  payload.cobertura ? 'Interés: ' + payload.cobertura : '',
-            mensaje:  payload.mensaje || 'Sin mensaje adicional',
-            fecha:    new Date().toLocaleString('es-MX'),
-          });
-        }
-
         btn.innerHTML = '✓ ¡Solicitud recibida! Me pondré en contacto muy pronto.';
-        btn.style.background = '#059669';
+        btn.style.background = '#4ade80';
         setTimeout(() => { btn.innerHTML = original; btn.style.background = ''; btn.disabled = false; e.target.reset(); }, 6000);
-
       } catch {
         btn.innerHTML = 'Ocurrió un error. Escríbeme por WhatsApp.';
         btn.style.background = '#ef4444';
