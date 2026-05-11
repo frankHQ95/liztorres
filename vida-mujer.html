@@ -1085,11 +1085,12 @@
 
       const fd = new FormData(e.target);
       const payload = {
-        landing:   'VM',
-        nombre:    fd.get('nombre'),
-        apellido:  fd.get('apellido'),
-        whatsapp:  fd.get('whatsapp'),
-        edad:      parseInt(fd.get('edad')) || null,
+        landing:    'VM',
+        nombre:     fd.get('nombre'),
+        apellido:   fd.get('apellido'),
+        email:      null,
+        whatsapp:   fd.get('whatsapp'),
+        edad:       parseInt(fd.get('edad')) || null,
         aportacion: fd.get('urgencia') || null,
         cobertura:  fd.get('interes') || null,
         mensaje:    fd.get('mensaje') || null,
